@@ -20,9 +20,12 @@ David Gasser
 
 * What class was this project part of?
 PIT-NE Impact Tech Fellowship Summer 2025
-***Dataset Information***
 
+
+***Dataset Information***
 * What data sets did you use in your project? Please provide a link to the data sets, this could be a link to a folder in your GitHub Repo, Spark\! owned Google Drive Folder for this project, or a path on the SCC, etc.  
+N/A - Datasets are confidential to our client.
+
 * Please provide a link to any data dictionaries for the datasets in this project. If one does not exist, please create a data dictionary for the datasets used in this project. **(Example of data dictionary)**   
 * What keywords or tags would you attach to the data set?  
   * Domain(s) of Application: Computer Vision, Object Detection, OCR, Image Classification, Image Segmentation, Facial Recognition, NLP, Topic Modeling, Sentiment Analysis, Named Entity Recognition, Text Classification, Summarization, Anomaly Detection, Other   
@@ -88,6 +91,8 @@ PIT-NE Impact Tech Fellowship Summer 2025
 *Maintenance* 
 
 * If others want to extend/augment/build on/contribute to the dataset, is there a mechanism for them to do so? If so, please provide a description. 
+
+N/A - Datasets are confidential to our client.
 
 *Other*
 
