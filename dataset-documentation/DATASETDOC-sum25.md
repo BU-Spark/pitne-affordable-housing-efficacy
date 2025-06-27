@@ -163,7 +163,7 @@ There were some missing values in the Start Dates and Closing Dates. These were 
 - All scripts were committed to the appropriate **GitHub branch**. 
 
 * Is the code that was used to preprocess/clean the data available? If so, please provide a link to it (e.g., EDA notebook/EDA script in the GitHub repository). 
-Yes, here is the link - (https://github.com/BU-Spark/pitne-affordable-housing-efficacy/tree/2a31fd08cb0b78e8de609454c869144481083cde/dataset-documentation/data-cleaning-scripts)[Link]
+Yes, here is the link - [Link](https://github.com/BU-Spark/pitne-affordable-housing-efficacy/tree/2a31fd08cb0b78e8de609454c869144481083cde/dataset-documentation/data-cleaning-scripts)
 
 
 *Uses* 
