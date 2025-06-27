@@ -4,10 +4,10 @@
 Team CHAPA - Improving Access to Affordable Homeownership
 
 * What is the link to your project’s GitHub repository?
-[https://github.com/BU-Spark/pitne-affordable-housing-efficacy.git](Link)    
+[Link](https://github.com/BU-Spark/pitne-affordable-housing-efficacy.git)
 
 * What is the link to your project’s Google Drive folder? \*\**This should be a Spark\! Owned Google Drive folder \- please contact your PM if you do not have access\*\**  
-[https://drive.google.com/drive/folders/1OhYmg-8f7ar-rGoFBal5h7by8BbwKDbe?usp=sharing](Link) 
+[Link](https://drive.google.com/drive/folders/1OhYmg-8f7ar-rGoFBal5h7by8BbwKDbe?usp=drive_link)
 
 * In your own words, what is this project about? What is the goal of this project?   
 To support CHAPA with expanding access to homeownership for low-income and underrepresented families by highlighting trends in application data and examining how systems impact who applies and who is excluded.
