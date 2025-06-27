@@ -1,13 +1,25 @@
 ***Project Information*** 
 
-* What is the project name?  
-* What is the link to your project’s GitHub repository?   
-* What is the link to your project’s Google Drive folder? \*\**This should be a Spark\! Owned Google Drive folder \- please contact your PM if you do not have access\*\**  
-* In your own words, what is this project about? What is the goal of this project?   
-* Who is the client for the project?  
-* Who are the client contacts for the project?  
-* What class was this project part of?
+* What is the project name?
+Team CHAPA - Improving Access to Affordable Homeownership
 
+* What is the link to your project’s GitHub repository?
+[https://github.com/BU-Spark/pitne-affordable-housing-efficacy.git](Link)    
+
+* What is the link to your project’s Google Drive folder? \*\**This should be a Spark\! Owned Google Drive folder \- please contact your PM if you do not have access\*\**  
+[https://drive.google.com/drive/folders1OhYmg-8f7ar-rGoFBal5h7by8BbwKDbe?usp=drive_link] 
+
+* In your own words, what is this project about? What is the goal of this project?   
+To support CHAPA with expanding access to homeownership for low-income and underrepresented families by highlighting trends in application data and examining how systems impact who applies and who is excluded.
+
+* Who is the client for the project?  
+CHAPA: Citizens’ Housing and Planning Association
+
+* Who are the client contacts for the project?  
+David Gasser
+
+* What class was this project part of?
+PIT-NE Impact Tech Fellowship Summer 2025
 ***Dataset Information***
 
 * What data sets did you use in your project? Please provide a link to the data sets, this could be a link to a folder in your GitHub Repo, Spark\! owned Google Drive Folder for this project, or a path on the SCC, etc.  
