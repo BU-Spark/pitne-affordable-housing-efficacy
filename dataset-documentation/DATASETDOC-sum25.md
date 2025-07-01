@@ -2,6 +2,7 @@
 
 * What is the project name?
 
+
 Team CHAPA: Improving Access to Affordable Homeownership
 * What is the link to your project’s GitHub repository?
 [Link](https://github.com/BU-Spark/pitne-affordable-housing-efficacy.git)  
@@ -28,6 +29,7 @@ We used 3 datasets. Two were application datasets with data from 2021-2023 and 2
 
 * What keywords or tags would you attach to the dataset?  
   * Domain(s) of Application: Civic Tech, Housing, Affordable Homeownership, Policymaking, Community Development
+
 
 *The following questions pertain to the datasets you used in your project.*   
 *Motivation* 
@@ -83,7 +85,109 @@ No, it is not possible.
 
 * Was any preprocessing/cleaning/labeling of the data done (e.g., discretization or bucketing, tokenization, part-of-speech tagging, SIFT feature extraction, removal of instances, processing of missing values)? If so, please provide a description. If not, you may skip the remaining questions in this section.
 
-Answered in detail below
+# Round 1 Data Cleaning and Processing
+1. **Create a Copy**
+   - Created a copy of the sheet within the same spreadsheet document.
+
+2. **Initial Observations**
+   - Observed general properties of the data and took notes.
+
+3. **Removing Irrelevant Data**
+   - As informed by David, bolded values are not relevant.
+   - Unbolded those rows in my copy of the sheet.
+
+4. **Sorting the Data**
+   - Sorted the sheet by **Closing Date** to better organize rows with and without values.
+
+5. **Download and Setup**
+   - Downloaded a `.csv` file of the copy of the Google Sheet.
+   - Set up Jupyter, Python, Pandas, and VSCode on local computer.
+
+6. **Data Parsing**
+   - Split the **"Town - Development - Address"** column into 4 new columns:
+     - **Town**
+     - **Development**
+     - **Address**
+     - **Unit Number**
+   - Original structure of the column:  
+     `"Town - Development</br>Address</br>Unit: Unit Number"`
+
+7. **Script Management**
+   - Added the data cleaning script to the GitHub folder.
+
+8. **Import Cleaned Data**
+   - Imported the cleaned version from local machine into the spreadsheet as **Round1**.
+
+9. **Manual Cleanup**
+    - Manually highlighted confusion points in the **Round1** sheet.
+    - Deleted the original **"Town - Development - Address"** column in **Round1**.
+
+10. **Duplicate Sale Detection**
+    - Wrote a script to identify units that were resold.
+    - Manually confirmed the duplicates detected by the script.
+
+12. **Additional Enhancements**
+    - Added a column for the corresponding **MSA**.
+      - *Reasoning:* MSAs are referenced in background readings for minority balancing and might be helpful for analysis.
+    - Refer to Round 2 for steps around geocoding
+
+14. **Final Cleanup**
+    - Deleted local files after confirmation.
+
+# Round 2 Data Cleaning and Geocoding
+
+## 1. Missing Bedroom Information
+- Searched online for the number of bedrooms for 4 properties maintained by **CHAPA** that were missing this data.
+
+## 2. Sorting and Download
+- Sorted the sheet by **Transaction Start Date**.
+- Downloaded the spreadsheet for **Round 2**.
+
+## 3. Date Column Conversion
+- Changed **Start Date** and **Closing Date** columns from string objects to datetime format for efficient processing.
+
+## 4. Transaction Filtering Script
+- Wrote a script that:
+  - Identifies rows where:
+    - `Transaction Start Date` < **2024-09-01**
+    - `Closing Date` is empty or null.
+  - Counts the number of such rows.
+  - Temporarily sets their `Closing Date` to **1900-09-01**.
+    - *Purpose:* Flagged for David to clarify if data is missing or if sales were never completed.
+  - Leaves other null `Closing Date` values as blank.
+- Added the script to my branch on **GitHub**.
+- Updated these dates later into the project after receiving info from CHAPA
+
+## 5. Age Restricted Column Standardization
+- Sorted the sheet by the **Age Restricted** column.
+- Manually changed:
+  - `'Some 55+'` → `'55+'`
+- Wrote a script to:
+  - Fill missing/null values in the **Age Restricted** column with `'No'`.
+  - Later reverted those `'No'` values back to `null` based on client feedback.
+- Imported the updated `.csv` into the spreadsheet as a **duplicate**.
+- Copied the cleaned column into the **Round 2** sheet.
+- Deleted the temporary duplicate sheet.
+- Added this script to my branch on **GitHub**.
+
+## 6. Geocoding Process
+
+### Preparation
+- Sorted sheet by **Town** for easier review.
+- Created a plan:
+  - Prepare imports and DataFrame.
+  - Add a **Unique ID** column to the CSV as required by the census geocoder API.
+  - Use **batch geocoding** to obtain standardized addresses.
+
+### MSA Matching
+- Accessed corresponding MSAs **row by row**.
+- Created a new DataFrame with the following new columns:
+  - `Match Status`
+  - `Match Type`
+  - `Matched Address`
+
+### Manual Review
+- Manually reviewed **21 street addresses** that the Census API could not match or associate with an MSA. Maybe because MSA data changes every so often.
 
 * Were any transformations applied to the data (e.g., cleaning mismatched values, cleaning missing values, converting data types, data aggregation, dimensionality reduction, joining input sources, redaction or anonymization, etc.)? If so, please provide a description.
 
@@ -152,7 +256,7 @@ Data Analysis and creating Visualizations.
 
 * What (other) tasks could the dataset be used for?
 
-Predictive Analytics
+Data analysis -> Visualizations for our report and for our presentations
 
 * Is there anything about the composition of the dataset or the way it was collected and preprocessed/cleaned/labeled that might impact future uses?
 
@@ -162,11 +266,12 @@ Data is confidential.
 
 n/a
 
+
 *Distribution*
 
 * Based on discussions with the client, what access type should this dataset be given (eg., Internal (Restricted), External Open Access, Other)?
-
 Internal access only. Only authorised people from Spark and CHAPA team can and should access the data. 
+
 
 *Maintenance* 
 
@@ -198,4 +303,4 @@ geocoding.ipynb: Using census API to extract MSA and matched addresses.
 
 merging.ipynb: This script was used to extract information on bedrooms and age restricted properties by matching addresses across the application datasets and resale transactions datasets. 
 
-
+The visualizations that we made for the report involved scripts written in python. Those scripts are in the dataset-documentation directories for each of the datasets on the main branch. Similarly, the data cleaning scripts are also in the dataset-documentation directory.
