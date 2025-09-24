@@ -9,7 +9,7 @@
 ### 2. CHAPA's limited property pool
 *To what extent are the applicant demographics driven by CHAPA’s limited property pool (suburban, age-restricted homes) versus applicant choice?*
 * The lottery system is randomized, but certain people are prioritized for certain homes
-  *
+  * For example, 
 * bullet pt
 
 ### 3. Affordable homeownership
