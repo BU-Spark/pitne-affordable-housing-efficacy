@@ -1,11 +1,20 @@
 # Initial research
 
 ## Problem
-### How far an applicant is willing to move from their current home (applicant accessibility)? 
+### 1. Applicant accessibility
+*How far an applicant is willing to move from their current home? How does the applicant geographic range compare between different demographic groups?*
+* bullet pt
+* bullet pt
 
-### To what extent are the applicant demographics driven by CHAPA’s limited property pool (suburban, age-restricted homes) versus applicant choice?
+### 2. CHAPA's limited property pool
+*To what extent are the applicant demographics driven by CHAPA’s limited property pool (suburban, age-restricted homes) versus applicant choice?*
+* bullet pt
+* bullet pt
 
-### Does the price of the affordable home affect applicant quantity and demographics, controlling for income limits? 
+### 3. Affordable homeownership
+*Does the price of the affordable home affect applicant quantity and demographics, controlling for income limits?*
+* bullet pt
+* bullet pt
 
 ## Possible solution approaches
 
