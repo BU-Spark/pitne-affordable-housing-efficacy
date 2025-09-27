@@ -1,7 +1,7 @@
 # Initial research
 
 ## Problem
-### 1. Applicant accessibility
+### 1. Movement and Distance analysis
 *How far an applicant is willing to move from their current home? How does the applicant geographic range compare between different demographic groups?*
 * Depending on which organization is responsible, the application can be very different (e.g., requiring extra documentation, longer)
 * Out-of-state applicants are allowed. CHAPA observes a limited number of out-of-state applicants, with applicants from New Hampshire occasionally.
@@ -14,8 +14,9 @@
      * People with disabilities are more likely to get picked for housing overall, since they have a smaller population demographic.
 * CHAPA is assigned properties to manage, which limits CHAPA's influence in affordable homeownership to monitoring and policy advocacy.
 * Applicants are encouraged to apply to multiple properties.
+* CHAPA applicants apply from a range of sources.
 
-### 3. Affordable homeownership
+### 3. Price in Affordable homeownership
 *Does the price of the affordable home affect applicant quantity and demographics, controlling for income limits?*
 * The housing market across communities can be vastly different. Prices vary region to region.
 * Affordable homes at CHAPA are below the 80% AMI threshold.
