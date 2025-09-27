@@ -22,5 +22,17 @@
 * Affordable homes at CHAPA are below the 80% AMI threshold.
 
 ## Possible solution approaches
+### 1. Approach for movement and distance analysis
+*How far an applicant is willing to move from their current home?*
+* To analyze how far an applicant is willing to move from their current home, we can compare the zip codes of the house applied for and current home address (refer to columns Application Property and Current Residence in CHAPA Chapter 40B Application Data dataset).
+* Using Applicant ID as a primary key, conduct separate spatial analysis for standard and 55+ applicants, with PIT-NE Summer team's cleaned age-restricted datasets.
+* Distance between the two addresses can be measured by commute time.
+  * Commute time could also provide insight into accessibility of a place. E.g.: applicants moving to a place with greater oublic transit accessibility.
+    
+*How does the applicant geographic range compare between different demographic groups?*
+* Use PIT-NE team's demographic grouping to compare each demographic group's average geographic movement (based on commute time).
+* Analyze location demand differences across demographic groups (can refer to PITNE's team CHAPA final report, visualization on page 80).
+
+### 3. Analyzing effects of price on applicant quantity and demographics
 
 ## Citations
