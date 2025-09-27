@@ -3,20 +3,22 @@
 ## Problem
 ### 1. Applicant accessibility
 *How far an applicant is willing to move from their current home? How does the applicant geographic range compare between different demographic groups?*
-* bullet pt
-* bullet pt
+* Depending on which organization is responsible, the application can be very different (e.g., requiring extra documentation, longer)
+* Out-of-state applicants are allowed. CHAPA observes a limited number of out-of-state applicants, with applicants from New Hampshire occasionally.
+* The standard and 55+ applications have very different markets / buyer groups, which CHAPA observes as almost two separate programs. Analysis should be separated.
 
 ### 2. CHAPA's limited property pool
 *To what extent are the applicant demographics driven by CHAPA’s limited property pool (suburban, age-restricted homes) versus applicant choice?*
-* All aplicants are put into a lottery system for CHAPA's housing. The lottery system is randomized, but certain people are prioritized for certain homes. 
-  * For example, people with disabilities are priortized when the lottery system is picking for accessbile houses.
-     * People with disabilities are more likely to get picked four housing overall, since they have a smaller population demographic. 
-* bullet pt
+* All applicants are put into a lottery system for CHAPA's housing. The lottery system is randomized, but certain people are prioritized for certain homes.
+  * For example, people with disabilities are prioritized when the lottery system is picking for accessible houses.
+     * People with disabilities are more likely to get picked for housing overall, since they have a smaller population demographic.
+* CHAPA is assigned properties to manage, which limits CHAPA's influence in affordable homeownership to monitoring and policy advocacy.
+* Applicants are encouraged to apply to multiple properties.
 
 ### 3. Affordable homeownership
 *Does the price of the affordable home affect applicant quantity and demographics, controlling for income limits?*
-* bullet pt
-* bullet pt
+* The housing market across communities can be vastly different. Prices vary region to region.
+* Affordable homes at CHAPA are below the 80% AMI threshold.
 
 ## Possible solution approaches
 
