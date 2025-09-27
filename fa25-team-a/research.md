@@ -41,7 +41,7 @@
 
 *Price of affordable homes impacting demographics*
 * Reports from the summer team can provide information to compare towns that receive a high demand of applications from Households of Color vs Non-households of color, and create clusters based on price to analyze for a correlation between the two.
-* Similarly, we can compare proportions of different demographics applications (such as different income levels) to towns with highest price and those with lowest price.\
+* Similarly, we can compare proportions of different demographics applications (such as different income levels) to towns with highest price and those with lowest price.
 * Possible model(s): Multinomial regression
   * The model would estimate how changes in price affect the probability that an applicant belongs to each demographic group.
 ## Citations
