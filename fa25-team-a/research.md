@@ -34,6 +34,17 @@
 * Use PIT-NE team's demographic grouping to compare each demographic group's average geographic movement (based on commute time).
 * Analyze location demand differences across demographic groups. This can be referred in PITNE's team CHAPA final report, visualization on page 80).
 
+###**2. To find what drives applicant pool of CHAPA, whether it is based on the properties offered by CHAPA or applicant's choice?**
+*By using the resale transaction info we can find out the location, age restrictions, bedrooms, accesibility of properties of CHAPA.
+*We can clean the data of properties( clean addresses e.g street/st) and link property address to link both the data sets of applicant pool and properties.
+*classifying properties in real transaction info by uburban vs. urban, age-restricted vs. family, and accessible vs. non-accessible.
+*Summarizing the applicant pool by age group (seniors vs. non-seniors), disability status, household size, and income levels.
+*Comparison result:
+   *If the demographics are closely related to the property pool (for example seniors apply to senior restricted homes) then supply is driving the demographics
+   *But if demographics don't match( for example many seniors apply even though property is not age restricted) then applicant choice overrides.
+*We can run a logistic regression where the dependent variable will be the property type and independent variables will be demographics(age, disability, income, household size).
+*this will show whether demographic or property supply drives the applicant pool
+
 ### 3. Analyzing effects of price on applicant quantity and demographics
 *Price of affordable homes impacting applicant quantity*
 * We can focus on certain areas that have high demand - which also possibly experience greater changes in price over time - to analyze how the number of applications from each demographic changes for those areas.
