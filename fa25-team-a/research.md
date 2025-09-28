@@ -34,7 +34,7 @@
 * Use PIT-NE team's demographic grouping to compare each demographic group's average geographic movement (based on commute time).
 * Analyze location demand differences across demographic groups. This can be referred in PITNE's team CHAPA final report, visualization on page 80).
 
-###**2. To find what drives applicant pool of CHAPA, whether it is based on the properties offered by CHAPA or applicant's choice?**
+###**2. To find what drives applicant pool of CHAPA, whether it is based on the properties offered by CHAPA or applicant's choice?**  
 *By using the resale transaction info we can find out the location, age restrictions, bedrooms, accesibility of properties of CHAPA.  
 *We can clean the data of properties( clean addresses e.g street/st) and link property address to link both the data sets of applicant pool and properties.  
 *classifying properties in real transaction info by uburban vs. urban, age-restricted vs. family, and accessible vs. non-accessible.  
