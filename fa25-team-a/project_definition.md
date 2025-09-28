@@ -3,11 +3,11 @@
 To provide an in-depth analysis and insights into the systemic barriers present in the application process for permanently affordable homes in Massachusetts, with a particular focus on geographic trends, demographic representation, and access disparities.
 
 ## Key Focus
-•	**Applicant Movement Patterns**: Analyze how applicants connect their current residence with the location of the homes they apply for. Examine how this geographic search radius differs among various demographic groups, such as families, seniors, and different racial groups.
+* **Applicant Movement Patterns**: Analyze how applicants connect their current residence with the location of the homes they apply for. Examine how this geographic search radius differs among various demographic groups, such as families, seniors, and different racial groups.
 
-•	**Portfolio Bias & Age-Restricted Housing Effects**: Explore the bias of the CHAPA portfolio and the impact of age-restricted housing on applicants.
+* **Portfolio Bias & Age-Restricted Housing Effects**: Explore the bias of the CHAPA portfolio and the impact of age-restricted housing on applicants.
 
-•	**Access Disparities**: Identify how marketing strategies, listing sources, and the complexity of the application process affect applicant diversity and equitable access.
+* **Access Disparities**: Identify how marketing strategies, listing sources, and the complexity of the application process affect applicant diversity and equitable access.
 
 ## Dataset
 Our project will go one step further than the previous summer team's results (which focused on 'What' happened) to focus on the 'Why' and 'How' behind the findings (analyzing the causes and mechanisms).
