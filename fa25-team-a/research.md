@@ -20,6 +20,7 @@
 *Does the price of the affordable home affect applicant quantity and demographics, controlling for income limits?*
 * The housing market across communities can be vastly different. Prices vary region to region.
 * Affordable homes at CHAPA are below the 80% AMI threshold.
+* Chapter 40B is a Massachusetts statute enacted in 1969 to help address the shortage of affordable housing 
 
 ## Possible solution approaches
 ### 1. Approach for movement and distance analysis
