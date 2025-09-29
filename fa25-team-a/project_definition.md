@@ -1,4 +1,8 @@
 # Project definition
+
+## Partner Organization
+**CHAPA (Citizens’ Housing and Planning Association)** is Massachusetts’ statewide affordable housing umbrella organization. CHAPA monitors approximately 3,000 permanently affordable homes across the state.  
+
 ## Objective
 To provide an in-depth analysis and insights into the systemic barriers present in the application process for permanently affordable homes in Massachusetts, with a particular focus on geographic trends, demographic representation, and access disparities.
 
@@ -29,3 +33,5 @@ Our project will go one step further than the previous summer team's results (wh
 * **Additional large lottery data** needs to be analyzed. This data can reveal demographic characteristics and hidden patterns that are difficult to find in the existing dataset.
 
 * We will also consider **integrating data from other monitoring agencies and municipalities**, such as the City of Boston, to expand the scope of our analysis. By integrating CHAPA's data (which primarily deals with homes in suburban areas) with data from other agencies, we can verify and expand the generalizability of CHAPA's findings.
+
+* Focus analysis on **movement and distance, portfolio effects, price sensitivity, and marketing/access disparities** to provide actionable insights.  
