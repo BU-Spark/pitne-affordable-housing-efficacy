@@ -1,1 +1,41 @@
+#### Getting general application count 
 
+```{python}
+import pandas as pd 
+
+# importing data set 
+df = pd.read_csv('2021-2023chapa.csv')
+
+# counting how many applicants applied to multiple properties 
+repeated_ids = (df['ID Number'].value_counts() > 1).sum()
+print("Number of repeated IDs:", repeated_ids)
+
+# counting total number of applicants 
+id_count = (df['ID Number'].value_counts()).sum()
+print('Total amount of applications:', id_count)
+```
+
+#### Analyzing applicants by demographic 
+
+```{python}
+import numpy as np 
+
+all_applicants = df
+
+# get ids that appear more than once
+id_counts = df['ID Number'].value_counts()
+repeat_ids = id_counts[id_counts > 1].index
+
+# creating a subset of repeat applicants 
+repeat_applicants = df[df['ID Number'].isin(repeat_ids)].drop_duplicates(subset = 'ID Number')
+
+# getting demographics of applicants who applied multiple times and all applicants 
+race_repeat_counts = repeat_applicants['Census Race'].value_counts()
+race_all_counts = all_applicants['Census Race'].value_counts()
+
+# seeing values 
+print('Repeat Applicant Demographics:')
+print(race_repeat_counts)
+print('All Applicant Demographics:')
+print(race_all_counts)
+```
