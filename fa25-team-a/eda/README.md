@@ -1,7 +1,7 @@
 # Exploratory Data Analysis
 
-## Data Preparation documentation
-### Resale datasets
+## Data cleaning, preparation, and preliminary visualization
+### Resale Transaction datasets
 * Pipeline:
    1. Recorded differences in counts between *TOUCHABLE Resale Transaction Info* (Old cleaned dataset) and **Resale Transaction Info updated Sept 2025** (New dataset), to check for new data to be added to the cleaned dataset.
    2. Within **TOUCHABLE Resale Transaction Info,** final\_round2 sheet was used, since it appeared to be the latest cleaned version of the Resale Transaction Info dataset by the previous team.  
@@ -11,7 +11,8 @@
 * Notebooks:
    * Aastha_EDA_resale.ipynb
 
-### 2021-23 datasets
+### Chapter 40B Applicant datasets
+#### 2021-23
 * Pipeline:
    1. 
    2. 
@@ -20,7 +21,7 @@
    * Jihyeon_EDA_geocoded_2021_23.ipynb
    * madison_eda_2021-23.ipynb
 
-### 2023-25 datasets
+#### 2023-25
 * Dataset: TOUCHABLE CHAPA Chapter 40B Application Data 2021-2023 & 10|2023-05|2025 (https://docs.google.com/spreadsheets/d/1xcW0qveqOPD-1JvJX1jaSJjPyCVVMGbY/edit?gid=690813037#gid=690813037)
 * Sheet used: 23-25_data_updated
 * Pipeline:
