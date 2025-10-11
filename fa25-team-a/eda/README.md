@@ -45,4 +45,4 @@
 
 ## Requirements
 * requirements.txt
-   * `pip install fa25-team-a/eda/requirements.txt` before running the Jupyter Notebook files
+   * `pip install -r fa25-team-a/eda/requirements.txt` before running the Jupyter Notebook files
