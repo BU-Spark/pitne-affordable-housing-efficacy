@@ -13,10 +13,15 @@
 
 ### Chapter 40B Applicant datasets
 #### 2021-23
+* Dataset: TOUCHABLE CHAPA Chapter 40B Application Data 2021-2023 & 10|2023-05|2025
+(https://docs.google.com/spreadsheets/d/1xcW0qveqOPD-1JvJX1jaSJjPyCVVMGbY/edit?gid=690813037#gid=690813037)
+* Sheet used: Geocoded Kayla 2021-2023, CLEAN w stats Kayla 2021-2023
 * Pipeline:
-   1. 
-   2. 
-   3.  
+   1. Explore the sheets and select one which covers up all the other sheets and one with geocoded data
+   2. Extract zip values from 'Matched Address' and fill 'ZIP' null values
+   3. Analyze the movement and distance trends across different demographic groups
+   4. Preprocess the dataset: replace age median to round value, deal with null values, visualizing
+   5. Check blockers for blockers: difference between 'Race/Ethnicity' and 'Census Race' categories (e.g. Hispanic/Latino) require clarification, further gecoded data needed
 * Notebooks:
    * Jihyeon_EDA_geocoded_2021_23.ipynb
    * madison_eda_2021-23.ipynb
