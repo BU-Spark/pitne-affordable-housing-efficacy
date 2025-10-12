@@ -36,12 +36,14 @@
         * Note all findings in a Markdown table
    4. Outline next steps to manipulate the dataset: questions to ask clients, cleaning methods, and creating new columns
         * Will perform more EDA using clarification from the Oct 10 client meeting
+        * perform **geocoding** and **race–ethnicity realignment** before advanced modeling or equity analysis.
 * Notebooks:
    * Ngo_EDA_Chapter-40B_2023-25.ipynb
       * `zip` null values can be extracted from `matched_address`
       * further geocode to fill the rest of `matched_address `
       * need help from client in handling null values and outliers in some columns (e.g., `age`, `hh_income`)
    * Rohan_S2.ipynb
+      * Complete cleaning and initial visualization of 2023–25 CHAPA applicant data (focus: income, race, submission trends, and next-step recommendations)
 
 ## Requirements
 * requirements.txt
