@@ -1,0 +1,7 @@
+google-api-python-client
+google-auth
+google-auth-oauthlib
+pandas
+rapidfuzz
+geopy>=2.4.0
+tqdm

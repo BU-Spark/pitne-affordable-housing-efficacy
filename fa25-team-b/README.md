@@ -16,6 +16,20 @@
   <a href="#data-locations">Data Locations</a>
 </p>
 
+# CHAPA – Local Data Access
+
+
+This repo uses **Google OAuth (per user)** to read files from the shared Drive folder named **`Dataset`**. Data is downloaded to `data/` (gitignored). Secrets are kept out of Git.
+
+
+## One-time setup
+1. Get `oauth_client.json` from a teammate and put it at `secrets/oauth_client.json`.
+2. run the setup script 01_auth.py
+3. click the link it prints and log in with your BU google account
+
+## Pipeline
+You can run all the scripts in order if you wish, but the only important ones are number 4 and number 6. Files land in `data/` and are **not** committed to Git.
+
 ## Key Features
 In this section you will be including a list of key features of your code/project.
 
@@ -30,6 +44,8 @@ You should also include a short description of what each part of your code does.
   - Excepteur sint occaecat
 * Excepteur Sint Occaecat
   - Curabitur efficitur, nunc non ultricies gravida, felis purus posuere eros, sed faucibus sapien est nec quam. Nulla at nisl nisl.
+
+
  
 ## How To Use
 
