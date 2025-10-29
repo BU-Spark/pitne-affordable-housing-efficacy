@@ -5,7 +5,7 @@
 * Pipeline:
    1. Recorded differences in counts between *TOUCHABLE Resale Transaction Info* (Old cleaned dataset) and **Resale Transaction Info updated Sept 2025** (New dataset), to check for new data to be added to the cleaned dataset.
    2. Within **TOUCHABLE Resale Transaction Info,** final\_round2 sheet was used, since it appeared to be the latest cleaned version of the Resale Transaction Info dataset by the previous team.  
-   3. Parsed and concatenated address fields into structured columns (Town, Development, Address, Unit Number) for **Resale Transaction Info updated Sept 2025**. *Ref: ParseResaleData.ipynb.* 
+   3. Parsed and concatenated address fields into structured columns (Town, Development, Address, Unit Number) for **Resale Transaction Info updated Sept 2025**. *Ref: ParseResaleData_Revised.ipynb.* 
    4. Checked for discrepancies between the New and Old datasets, and saved a CSV file of the new Sept 2025 entries that weren't present in the Old dataset. *Ref: DisparityCheckResale.ipynb.*  
    5. Merged these new entries into the Old cleaned dataset. *Ref: Merge_Resale_Data.ipynb.*  
 * Notebooks:
