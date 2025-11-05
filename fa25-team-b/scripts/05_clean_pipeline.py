@@ -12,10 +12,6 @@ def main(which: str | None):
         run_apps()
 
 
-    if which in (None, "resales"):
-        print("[todo] hook up resales pipeline when ready")
-
-
 if __name__ == "__main__":
     ap = argparse.ArgumentParser(description="Run cleaning pipeline")
     ap.add_argument("--which", choices=["applications", "resales"], default=None)

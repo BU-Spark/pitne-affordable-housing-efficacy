@@ -5,3 +5,6 @@ pandas
 rapidfuzz
 geopy>=2.4.0
 tqdm
+openpyxl
+pyyaml
+pyarrow
