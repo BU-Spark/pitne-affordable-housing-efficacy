@@ -5,6 +5,7 @@ from tools.schema import standardize_columns
 from cleaners.current_residence_name_normalization_v1 import normalize_current_residence
 from cleaners.geographic_encoding_ma_cities import geocode_ma_cities
 from cleaners.race_naming_normalization import normalize_race
+from cleaners.append_resale_data import append_resale_data
 import time
 from tqdm.auto import tqdm
 import json
@@ -116,6 +117,11 @@ def run():
     with Timer():
         target_race_col = "Race/Ethnicity" if "Race/Ethnicity" in df.columns else df.columns[df.columns.str.contains("race", case=False)][0]
         df = normalize_race(df, col=target_race_col)
+
+    # append resale data
+    _stage("Appending resale price data")
+    with Timer():
+        df = append_resale_data(df)
 
     # ensure parquet-safe dtypes
     df = sanitize_for_parquet(df)
