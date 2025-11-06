@@ -6,6 +6,7 @@ from cleaners.current_residence_name_normalization_v1 import normalize_current_r
 from cleaners.geographic_encoding_ma_cities import geocode_ma_cities
 from cleaners.race_naming_normalization import normalize_race
 from cleaners.append_resale_data import append_resale_data
+from cleaners.HUD_economic_data_import_cleaning import import_clean_append_HUD
 import time
 from tqdm.auto import tqdm
 import json
@@ -122,6 +123,11 @@ def run():
     _stage("Appending resale price data")
     with Timer():
         df = append_resale_data(df)
+
+    # append MTSP Income Limit data
+    _stage("Appending Applicant MTSP Income Limit data")
+    with Timer():
+        df = import_clean_append_HUD(df)
 
     # ensure parquet-safe dtypes
     df = sanitize_for_parquet(df)

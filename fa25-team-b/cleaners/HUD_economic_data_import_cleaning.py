@@ -1,10 +1,11 @@
+from __future__ import annotations
 import pandas as pd
 
-def import_clean_HUD():
+def import_clean_append_HUD(app_df: pd.DataFrame):
 
     """
-    This script imports and cleans Multifamily Tax Subsidy (MTSP) Income Limit 
-    data from the Housing and Urban Development (HUD) department.
+    This script imports, cleans, and appends Multifamily Tax Subsidy (MTSP) Income Limit 
+    data from the Housing and Urban Development (HUD) department to applicant data.
 
     It returns a dataframe with the following columns:
         - fips code
@@ -33,4 +34,35 @@ def import_clean_HUD():
     # adding new column, 'HH_Size', for household-dependent numbers
     dt["HH_Size"] = dt["variable"].str.extract(r"p([1-8])$")[0].astype(float)
 
-    return dt
+    # creating a 'city' column that matches 'matched city' column in applicant dataset
+    dt['city'] = (
+        dt["county_town_name"]
+        .str.replace(r"\s*(town|city)\b", "", case=False, regex=True)
+        .str.lower()
+        .str.strip()
+    )
+
+    # Merging to applicant dataset
+    merged = app_df.merge(
+        dt[["HH_Size", "city", "value"]],
+        left_on=["HH Size", "matched_city"],
+        right_on=["HH_Size", "city"],
+        how="left"
+    )
+
+    # Handle NA rows by imputing median values for location (without HH_Size)
+    mask_missing = merged["value"].isna()
+    fallback = app_df.merge(
+        dt.loc[dt["variable"] == "median2025", ["city", "value"]],
+        left_on="matched_city",
+        right_on="city",
+        how="left"
+    )
+
+    # combining two merges
+    merged.loc[mask_missing, "value"] = fallback.loc[mask_missing, "value"]
+
+    # adding column to app_df
+    app_df["applicant_MTSP_Income_Limit"] = merged["value"]
+
+    return app_df
