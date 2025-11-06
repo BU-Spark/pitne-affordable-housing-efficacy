@@ -14,13 +14,13 @@ resales:
     id: 1ItkgY49Q_fLOoE0XaJxGXQWfq4kcMFqI
     type: xlsx
   - name: Resale Values_Oct 2023 to May 2025.xlsx
-    id: 1Gq_dIYjOjTSYqudI4lqf_mySzj5rOlai
+    id: 1xUZiF2iZUYgu6TGgdJhk02ucIY8D1dSi
     type: xlsx
   - name: Resale Values_Jun 2021 to Sept 2023.xlsx
-    id: 1gTz3Wg2clVd1Jvw1bTLYa4tanln-FFNs
+    id: 10Qrvet8XwBC2V368U9wMvy9y85GyXzEO
     type: xlsx
   - name: Resale Values_May 2025 to Sept 2025.xlsx
-    id: 12pygwRwYZ0UKmwyFsNRAOHIgz-H8yrTY
+    id: 1fCMvyaWI-w-40o3P7rx1bkQZBHUohtBJ
     type: xlsx
 
 excludes:
