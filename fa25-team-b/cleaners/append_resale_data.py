@@ -15,7 +15,7 @@ def append_resale_data(df: pd.DataFrame):
 
     # import price data 
     prices_1 = pd.read_excel('data/raw/Resale_Values_Jun_2021_to_Sept_2023.xlsx')
-    prices_2 = pd.read_excel('data/raw/Resale_Values_May_2025_to_Sept_2025.xlsx')
+    prices_2 = pd.read_excel('data/raw/Resale_Values_Oct_2023_to_May_2025.xlsx')
 
     # concatinating the two prices
     prices = pd.concat([prices_1, prices_2])
