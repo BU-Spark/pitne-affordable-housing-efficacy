@@ -4,8 +4,8 @@ Date: Nov 9, 2025
 
 ## Project Base Questions
 1. Movement and Distance Analysis
-    a. How far from their current homes, do applicants apply for these affordable homeownership opportunities?
-    b. How does the applicant geographic range compare between different demographic groups? (e.g., race, household type, age, marketing source, etc.). Are local applicant demographics similar or different from more distant applicants?
+    a) How far from their current homes, do applicants apply for these affordable homeownership opportunities?
+    b) How does the applicant geographic range compare between different demographic groups? (e.g., race, household type, age, marketing source, etc.). Are local applicant demographics similar or different from more distant applicants?
 2. Portfolio Effects: To what extent are the applicant demographics driven by CHAPA’s limited property pool (suburban, age-restricted homes) versus applicant choice?
 3. Price: Does the price of the affordable home affect applicant quantity and demographics, controlling for income limits?
 
