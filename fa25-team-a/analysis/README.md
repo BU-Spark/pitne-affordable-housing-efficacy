@@ -34,12 +34,96 @@ Date: Nov 9, 2025
     * `./Ngo_q1_viz.ipynb`
     * `./Ngo_q2_viz.ipynb`
 
-### Resale & Prices Data
+### Resale & Prices Data (2021-25)
+#### Data Sources
+
+*Datasets provided by **CHAPA** and used in the data pipeline:*
+
+#### Resale Data
+- **File:** `Resale Transaction Info - Confidential_updated Sept 2025`
+
+#### Price Data
+- **Original Files:**
+  - `Resale Values_Jun 2021 to Sept 2023.xlsx`
+  - `Resale Values_Oct 2023 to May 2025.xlsx`
+  - `Resale Values_May 2025 to Sept 2025.xlsx`
+
+- **Supplementary File (for missing resale properties):**
+  - `Property_Data_Jun2021_Sep2025_MissingResaleValues_Completed.csv`
+  - **Note that this file wasn't used in the pipeline since it was provided after this pipeline was done running.** To replicate this pipeline please run **(NOTEBOOK NAME)** to include data from the Supplmentary file.
+
 #### Pipeline:
-* 
+1. **Initial Cleaning**  
+   - Clean the **resale** and **price** datasets separately to handle missing values, inconsistent formats, and extraneous text.  
+
+2. **Data Parsing & Feature Extraction**  
+   - Using Excel, combine all June 2021–September 2025 price data into a single file.  
+   - Parse the concatenated **Address** column into standardized components for easier merging and analysis:  
+     - **Town**  
+     - **Street Address**  
+     - **Unit Number**  
+   - From the price dataset, extract comments such as *(age restricted)*, *(first come first serve)*, and *(55+)* into a new column called **Property Feature**.  
+   - **Output Files:**  
+     - `ParsedResale_updatedSept2025_New.csv` — parsed resale data  
+     - `Jun21_Sept25_Parsed.csv` — parsed price data  
+
+3. **Dataset Integration**  
+   - Merge both output datasets using the combined keys **(Town, Address, Unit Number)** as the primary identifiers.  
+   - Save the merged dataset as `merged_dataset_price&resale_Sept25.csv`.  
+   - Validate the join by checking for unmatched, duplicate, or incorrectly formatted entries.  
+
 #### Notebooks:
 * 
 
+### Merged master files for answering differnt base questions
+#### Dataset in reference:
+
+#### Property (Price & Resale) Data (that we get from previously mentioned Resale & Prices Data pipeline)
+- **File:** `merged_dataset_price&resale_Sept25.csv`
+
+#### Applicant Data (that we get from Applicant Data pipeline)
+- **File:** `CHAPA_Chapter-40B_Application-Data_2021-2025_merged_v0.3.csv`
+
+#### Supplementary Price Data
+- **File:** `Property_Data_Jun2021_Sep2025_MissingResaleValues_Completed.csv`
+
+
+#### Pipeline
+
+1. **Load Datasets**  
+   - Import the **Property (Price & Resale)**, **Applicant**, and **Supplementary Price** datasets into pandas.  
+   - These collectively include property-level resale information, Chapter 40B applicant data, and additional price data for missing records.
+
+2. **Column Standardization for Merging**  
+   - Create a helper function to clean and standardize key text columns by:  
+     - Stripping leading/trailing spaces  
+     - Converting all text to lowercase for consistent merging  
+   - Align merge keys across datasets:  
+     - From **Property Dataset:** `Town`, `Address`, `Unit Number`  
+     - From **Applicant Dataset:** `property_town_city`, `property_street_address`, `property_unit`  
+   - Generate standardized columns: `Town_clean`, `Address_clean`, and `Unit_clean`.
+
+3. **Merge Applicants with Properties**  
+   - Perform a **left join** between the Property and Applicant datasets using the standardized columns.  
+   - This ensures that **all property records are retained**, even if corresponding applicants are missing.  
+   - This join structure is crucial for **analyzing how property characteristics and resale prices influence applicant patterns** — directly addressing the **third base question** in the analysis.  
+   - Drop helper columns (`Town_clean`, `Address_clean`, `Unit_clean`) after merging.  
+   - **Output File:**  
+     - `merged_properties_with_applicants.csv`
+
+4. **Fill Missing Maximum Resale Prices**  
+   - Load the merged dataset and the **Supplementary Price Data** containing missing resale prices.
+   - Run *Price_Resale_Applicant_MergeV2.ipynb* to merge all three datasets.
+   - The final dataset `new_merged_dataset_filled.csv` integrates Property and resale information (with filled maximum resale prices from supplementary records) , Applicant data for Chapter 40B properties  
+
+#### Notebooks
+- *Price_Resale_Applicant_MergeV2.ipynb:*
+   - Rename the price column for consistency: `Price → Maximum Resale Price`.  
+   - Merge supplementary prices using keys **(Town, Address, Unit Number)**.  
+   - Fill any missing prices in the main dataset using the newly merged data.  
+   - Drop helper columns after imputation.  
+   - **Final Output File:**  
+     - `new_merged_dataset_filled.csv`
 
 ## Next Steps
 
