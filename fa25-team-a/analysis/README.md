@@ -9,8 +9,8 @@ Date: Nov 9, 2025
 2. Portfolio Effects: To what extent are the applicant demographics driven by CHAPA’s limited property pool (suburban, age-restricted homes) versus applicant choice?
 3. Price: Does the price of the affordable home affect applicant quantity and demographics, controlling for income limits?
 
+---
 
-## Work Completed
 ### Applicant Data (2021-25)
 #### Pipeline:
 * Merge, clean, and standardize 2021-23 and 2023-25 CHAPA Chapter 40B Applicant datasets
@@ -36,16 +36,17 @@ Date: Nov 9, 2025
     * `./madison_eda_2021-23.ipynb`
     * `./madison_eda_2_2021-23.ipynb`
     * `./madison_merged_data_analysis.ipynb`
-
+ 
+---
 ### Resale & Prices Data (2021-25)
 #### Data Sources
 
 *Datasets provided by **CHAPA** and used in the data pipeline:*
 
-#### Resale Data
+**Resale Data**
 - **File:** `Resale Transaction Info - Confidential_updated Sept 2025`
 
-#### Price Data
+**Price Data**
 - **Original Files:**
   - `Resale Values_Jun 2021 to Sept 2023.xlsx`
   - `Resale Values_Oct 2023 to May 2025.xlsx`
@@ -55,13 +56,12 @@ Date: Nov 9, 2025
   - `Property_Data_Jun2021_Sep2025_MissingResaleValues_Completed.csv`
   - **Note:** This file was provided after the original workflow was executed. To include this data in the pipeline, please follow the **New Workflow** section below.
 
----
 
-### Original Workflow (Executed)
+#### Original Workflow (Executed)
 
 The **original workflow** was the one actually run to produce datasets for analysis. It follows these steps:
 
-#### 1. Parsing and Cleaning
+##### 1. Parsing and Cleaning
 **Resale Data**
 - Clean missing values, inconsistent formats, and extraneous text.
 - **Output File:** `ParsedResale_updatedSept2025_New.csv`
@@ -75,7 +75,7 @@ The **original workflow** was the one actually run to produce datasets for analy
 - Extract property features such as `(55+)`, `(first come first serve)`, `(age restricted)` into a new column: **Property Feature**  
 - **Output File:** `Jun21_Sept25_Parsed.csv`
 
-#### 2. Dataset Integration
+##### 2. Dataset Integration
 **Merge Price and Resale**
 - Merge parsed price and resale datasets using keys: `Town`, `Address`, `Unit Number`
 - **Output File:** `merged_dataset_price&resale_Sept25.csv`  
@@ -88,25 +88,24 @@ The **original workflow** was the one actually run to produce datasets for analy
 - Perform **left join** to retain all property records
 - **Output File:** `merged_properties_with_applicants.csv`
 
-#### 3. Handling Missing Prices (Supplementary Data)
+##### 3. Handling Missing Prices (Supplementary Data)
 - Supplementary price file was **not included** in this workflow  
 - To fill missing maximum resale prices:
   - Merge `merged_properties_with_applicants.csv` with `Property_Data_Jun2021_Sep2025_MissingResaleValues_Completed.csv`
   - **Output File:** `new_merged_dataset_filled.csv`
 
-#### Notebooks (Original Workflow)
+##### Notebooks (Original Workflow)
 1. `Ria_ParseResaleData.ipynb`  
 2. `Ria_ParsePrices_OriginalWorkFlow.ipynb`  
 3. `Ria_Merge_Resale&Price_OriginalWorkFlow.ipynb`  
 4. `Ria_Merge_PriceResaleApplicantData_OriginalWorkFlow.ipynb`
 
----
-
-### Recommended New Workflow (Streamlined for Supplementary Prices)
+--
+#### Recommended New Workflow (Streamlined for Supplementary Prices)
 
 The **new workflow** integrates the supplementary price data **before merging with resale**, providing a cleaner and fully reproducible pipeline.
 
-#### 1. Parsing and Cleaning
+##### 1. Parsing and Cleaning
 - Parse resale and original price data as before
 - Merge supplementary price data with the original price dataset **before merging with resale**
 - **Notebooks:**
@@ -114,18 +113,19 @@ The **new workflow** integrates the supplementary price data **before merging wi
   2. `Ria_ParsePrices_NewWorkFlow.ipynb`  
      > Includes step to merge missing prices before resale merge
 
-#### 2. Merge Price and Resale
+##### 2. Merge Price and Resale
 - Merge updated price dataset (original + missing prices) with resale dataset
 - **Output File:** `MergedPrice_Resale_Full.csv`
 - **Notebook:** `Ria_Merge_Resale&Price_NewWorkFlow.ipynb`
 
-#### 3. Merge with Applicant Data
+##### 3. Merge with Applicant Data
 - Merge `MergedPrice_Resale_Full.csv` with cleaned applicant dataset:
   `CHAPA_Chapter-40B_Application-Data_2021-2025_merged_v0.3.csv`
 - Fill any missing prices from supplementary dataset if necessary
 - **Output File:** `Final_Merged_CHAPA_Dataset.csv`
 - **Notebook:** `Ria_Merge_PriceResaleApplicantData_NewWorkFlow.ipynb
-    
+
+--- 
 ### Price Analysis and Demographic Insights
 
 **Objective:**  
