@@ -127,8 +127,32 @@ Date: Nov 9, 2025
    - Drop helper columns after imputation.  
    - **Final Output File:**  
      - `new_merged_dataset_filled.csv`
+    
+### Price Analysis and Demographic Insights
+
+**Objective:**  
+Evaluate whether the resale price of affordable homes affects applicant quantity and demographic composition, while controlling for income limits.
+
+**Methods & Work Completed:**  
+- **Data Cleaning:** Standardized `Maximum Resale Price` and `hh_income` fields, removed symbols, and converted text-based income ranges into numeric values.  
+- **Data Aggregation:** Grouped applicants by `Matched Address` to calculate average resale price, average applicant income, and total applicant count per property.  
+- **Modeling:** Ran Ordinary Least Squares (OLS) regression models to test whether price predicts applicant count while holding income constant.  
+- **Visualizations:**  
+  - *Applicant Count vs. Price (OLS Trend)* –shows slight negative slope but statistically insignificant relationship.  
+  - *Correlation Heatmap (Price,Income, Applicant Count)* – weak correlation, confirming minimal price impact.  
+  - *Correlation by Income Bracket* – highlights that lower-income applicants (<$60k) are more price-sensitive than higher-income brackets.  
+  - *Average Price by Race* – explores whether price distribution differs across racial groups, showing no major disparities.  
+- **Demographic Extension:** Expanded analysis to assess race and income diversity across property price levels.
+
+**Notebooks Reference:**  
+- `Aastha__full_merged_V1_analysis.ipynb`- performs price sensitivity modeling and regression analysis.  
+- `Aastha_Demographic and applicant vs price analysis.ipynb`- explores racial and demographic patterns in price sensitivity.  
+
+
 
 ## Next Steps
+###  Price Analysis
+- Explore **interaction effects** between price and demographics (race, household type, age group) to understand nuanced affordability patterns.
 
 
 ## Initial Analysis Results
@@ -141,8 +165,16 @@ Date: Nov 9, 2025
 * 
 
 ### 3. Price
-* 
-* 
+
+**Initial Findings:**  
+Regression and demographic analyses show that within the affordable range (below 80% AMI), **price does not significantly affect applicant volume or composition**.  
+Higher-priced homes attract slightly fewer applicants, but this relationship is statistically weak.  
+**Lower-income groups (<$60k)** show more price sensitivity, while higher-income and racial groups display consistent participation across price levels.  
+This indicates that **factors like location, property type, and accessibility** play a greater role in driving applicant demand than minor price differences.
+
+
+
+
 
 
 ## Notebook Requirements
