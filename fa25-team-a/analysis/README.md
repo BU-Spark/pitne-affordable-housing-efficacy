@@ -73,7 +73,15 @@ Date: Nov 9, 2025
    - Validate the join by checking for unmatched, duplicate, or incorrectly formatted entries.  
 
 #### Notebooks:
-* 
+* Aastha_Demographic and applciant vs price analysis.ipynb
+* Aastha__full_merged_V1_analysis.ipynb
+* Chapter-40B_zip_long_lat.ipynb
+* Ngo_q1_viz.ipynb
+* Ngo_q2_viz.ipynb
+* Price_Resale_Applicant_Merge_Copy.ipynb
+* madison_eda_2021-23.ipynb
+* madison_eda_2_2021-23.ipynb
+* madison_merged_data_analysis.ipynb
 
 ### Merged master files for answering differnt base questions
 #### Dataset in reference:
