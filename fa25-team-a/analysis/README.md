@@ -37,7 +37,6 @@ Date: Nov 9, 2025
     * `./madison_eda_2_2021-23.ipynb`
     * `./madison_merged_data_analysis.ipynb`
  
----
 ### Resale & Prices Data (2021-25)
 #### Data Sources
 
@@ -56,10 +55,11 @@ Date: Nov 9, 2025
   - `Property_Data_Jun2021_Sep2025_MissingResaleValues_Completed.csv`
   - **Note:** This file was provided after the original workflow was executed. To include this data in the pipeline, please follow the **New Workflow** section below.
 
+---
 
 #### Original Workflow (Executed)
 
-The **original workflow** was the one actually run to produce datasets for analysis. It follows these steps:
+The **original workflow** was actually run to produce datasets for analysis. Steps included:
 
 ##### 1. Parsing and Cleaning
 **Resale Data**
@@ -72,7 +72,7 @@ The **original workflow** was the one actually run to produce datasets for analy
   - **Town**  
   - **Street Address**  
   - **Unit Number**  
-- Extract property features such as `(55+)`, `(first come first serve)`, `(age restricted)` into a new column: **Property Feature**  
+- Extract property features such as `(55+)`, `(first come first serve)`, `(age restricted)` into **Property Feature**  
 - **Output File:** `Jun21_Sept25_Parsed.csv`
 
 ##### 2. Dataset Integration
@@ -95,21 +95,23 @@ The **original workflow** was the one actually run to produce datasets for analy
   - **Output File:** `new_merged_dataset_filled.csv`
 
 ##### Notebooks (Original Workflow)
-**The following notebooks will be found in:** fa25-team-a/analysis/resale_price_original_workflow 
+**Location:** `fa25-team-a/analysis/resale_price_original_workflow`
+
 1. `Ria_ParseResaleData.ipynb`  
 2. `Ria_ParsePrices_OriginalWorkFlow.ipynb`  
 3. `Ria_Merge_Resale&Price_OriginalWorkFlow.ipynb`  
 4. `Ria_Merge_PriceResaleApplicantData_OriginalWorkFlow.ipynb`
 
---
+---
+
 #### Recommended New Workflow (Streamlined for Supplementary Prices)
 
-The **new workflow** integrates the supplementary price data **before merging with resale**, providing a cleaner and fully reproducible pipeline.
+The **new workflow** integrates supplementary price data **before merging with resale**, providing a cleaner, fully reproducible pipeline.
 
 ##### 1. Parsing and Cleaning
 - Parse resale and original price data as before
 - Merge supplementary price data with the original price dataset **before merging with resale**
-
+- **Output File:** `PriceData_Filled.csv`
 
 ##### 2. Merge Price and Resale
 - Merge updated price dataset (original + missing prices) with resale dataset
@@ -121,17 +123,16 @@ The **new workflow** integrates the supplementary price data **before merging wi
   `CHAPA_Chapter-40B_Application-Data_2021-2025_merged_v0.3.csv`
 - Fill any missing prices from supplementary dataset if necessary
 - **Output File:** `Final_Merged_CHAPA_Dataset.csv`
-- **Notebook:** `Ria_Merge_PriceResaleApplicantData_NewWorkFlow.ipynb
+- **Notebook:** `Ria_Merge_PriceResaleApplicantData_NewWorkFlow.ipynb`
 
-##### Notebooks:
-**The following notebooks will be found in:** `fa25-team-a/analysis/resale_price_new_workflow`
+##### Notebooks (New Workflow)
+**Location:** `fa25-team-a/analysis/resale_price_new_workflow`
 
-1. `Ria_ParseResaleData.ipynb`
+1. `Ria_ParseResaleData.ipynb`  
 2. `Ria_ParsePrices_NewWorkFlow.ipynb`  
-   > Includes step to merge missing prices before resale merge
-3. `Ria_Merge_Resale&Price_OriginalWorkFlow.ipynb`
-4. `Ria_Merge_PriceResaleApplicantData_OriginalWorkFlow.ipynb`
-
+   > Includes step to merge missing prices before resale merge  
+3. `Ria_Merge_Resale&Price_NewWorkFlow.ipynb`  
+4. `Ria_Merge_PriceResaleApplicantData_NewWorkFlow.ipynb`
 --- 
 ### Price Analysis and Demographic Insights
 
