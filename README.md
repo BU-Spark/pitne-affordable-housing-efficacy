@@ -81,14 +81,41 @@ Contains static reference files and lookup tables used to support cleaning and a
 ---
 
 ### 🧹 `cleaners/`
-Houses Python scripts that clean, normalize, and preprocess the raw CHAPA dataset.  
-Each script focuses on a specific aspect of data preparation before analysis.  
-- **`append_resale_data.py`** → merges resale property data.  
-- **`current_residence_name_normalization.py`** → standardizes “current residence” fields.  
-- **`geographic_encoding_ma_cities.py`** → adds latitude/longitude for Massachusetts cities.  
-- **`HUD_economic_data_import_cleaning.py`** → integrates HUD economic data for contextual variables.  
-- **`race_norm_corrections.py`** → normalizes racial/ethnic categories for consistency.  
-- **`__init__.py`** → allows the folder to be imported as a Python package.
+Contains all **data-cleaning and preprocessing scripts** that prepare the raw CHAPA dataset for analysis.  
+Each script focuses on a specific aspect of the cleaning pipeline.
+
+#### **`HUD_economic_data_import_cleaning.py`**
+- Imports, cleans, and appends **Multifamily Tax Subsidy (MTSP) Income Limit data** from HUD to the applicant dataset.  
+- Ensures consistent linkage between applicant income levels and federal HUD thresholds.  
+
+#### **`append_resale_data.py`**
+- Takes the application dataset and **appends resale value datasets** to it.  
+- Integrates resale-related attributes to allow further analysis on property affordability and pricing trends.  
+
+#### **`current_residence_name_normalization_v1.py`**
+- Normalizes the **‘Current Residence’** column in the application dataset.  
+- Handles directional abbreviations (e.g., *N.*, *S.*, *E.*, *W.* → *North*, *South*, *East*, *West*).  
+- Merges subregions (e.g., *East Boston*, *West Boston* → *Boston*).  
+- Applies **fuzzy matching** against a standardized list of Massachusetts city names.  
+
+#### **`geographic_encoding_ma_cities.py`**
+- Geolocates normalized city names for spatial analysis.  
+- Outputs columns for `city_name`, `longitude`, `latitude`, and `full_location_name`.  
+- Enables visualization of applicant distributions across Massachusetts.  
+
+#### **`race_naming_normalization.py`**
+- Normalizes the **‘Race/Ethnicity’** column in the dataset.  
+- Fixes symbol issues, typos, and inconsistent abbreviations.  
+- Creates a **‘White_MENA’** category and adds **dummy columns** for each race.  
+- Adds a boolean **`is_mixed_race`** column to flag multi-racial applicants.  
+- Final standardized race field is stored in `race_norm_final`.  
+
+#### **`race_norm_corrections.py`**
+- Performs **secondary corrections** on the race column after normalization.  
+- Combines “unknown” and “choose_not_to_answer” responses.  
+- Fixes logic where “White_MENA” was incorrectly included in other race flags.  
+- Recreates dummy columns to ensure clean final outputs.  
+
 
 ---
 
