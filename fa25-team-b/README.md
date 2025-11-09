@@ -74,14 +74,45 @@ Open a Pull Request to dev. Add your PM and TPM as reviewers.
 
 At the end of the semester during project wrap up open a final Pull Request to main from dev branch.
  
-## Project Description
+## 📄 Project Description
 
-In this section, you should include the project description, either from the client or spark.
+The purpose of this project is to **assist the Citizens’ Housing and Planning Association (CHAPA)** with demographic information regarding applicants to their affordable housing projects.  
+With a portfolio of nearly **3,000 properties**, CHAPA has a wide range of applicants — both from within Massachusetts and out-of-state individuals.
 
-Please make sure it reflects what you see on the documents (project description) you recieved.
+Continuing the work of students in the **Summer of 2025**, we are focusing on identifying **applicant movement patterns**, **portfolio biases**, and the **importance of age-restricted home offerings**.
 
-* Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi. Donec vel nunc at libero ultrices tincidunt. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Mauris ut ligula nec risus posuere ultricies at et ligula. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
-* Veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+---
+
+### 🎯 The project is divided into three main base questions:
+
+#### **1. Movement & Distance Analysis**
+- Identifying movement patterns of applicants  
+- Do applicants apply to properties around their current residence?  
+- Are they applying solely to major cities?  
+- Are locations of applicants static or showing changing trends?  
+
+---
+
+#### **2. Geographical Range Analysis**
+- Are applicants applying to properties regardless of location?  
+- Are there specific regions with high/low applicant interest?  
+- What regions or major cities are out-of-state applicants applying to?  
+
+---
+
+#### **3. Portfolio Effects**
+
+**Demographic Influence**
+- What factors are influencing the varying demographics of applicants?  
+- Are there any specific demographic trends?  
+- Considerations include: race/ethnicity, age, current residence, household income, and household assets  
+
+**Price**
+- Price deterring applicants?  
+- Does property price affect applicant quantity?  
+- Are these demographic trends different for lower vs. higher-priced properties?  
+
+---
 
 ## Data locations
 
