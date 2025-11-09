@@ -36,7 +36,9 @@ Date: Nov 9, 2025
     * `./madison_eda_2021-23.ipynb`
     * `./madison_eda_2_2021-23.ipynb`
     * `./madison_merged_data_analysis.ipynb`
- 
+
+---
+
 ### Resale & Prices Data (2021-25)
 #### Data Sources
 
@@ -55,7 +57,7 @@ Date: Nov 9, 2025
   - `Property_Data_Jun2021_Sep2025_MissingResaleValues_Completed.csv`
   - **Note:** This file was provided after the original workflow was executed. To include this data in the pipeline, please follow the **New Workflow** section below.
 
----
+--
 
 #### Original Workflow (Executed)
 
@@ -102,7 +104,7 @@ The **original workflow** was actually run to produce datasets for analysis. Ste
 3. `Ria_Merge_Resale&Price_OriginalWorkFlow.ipynb`  
 4. `Ria_Merge_PriceResaleApplicantData_OriginalWorkFlow.ipynb`
 
----
+--
 
 #### Recommended New Workflow (Streamlined for Supplementary Prices)
 
@@ -133,6 +135,7 @@ The **new workflow** integrates supplementary price data **before merging with r
    > Includes step to merge missing prices before resale merge  
 3. `Ria_Merge_Resale&Price_NewWorkFlow.ipynb`  
 4. `Ria_Merge_PriceResaleApplicantData_NewWorkFlow.ipynb`
+
 --- 
 ### Price Analysis and Demographic Insights
 
@@ -166,7 +169,7 @@ Evaluate whether the resale price of affordable homes affects applicant quantity
    - Expanded demographic variables (race, household type, income, age)
    These refinements will enable more accurate interpretation of how CHAPA’s property pool influences applicant diversity and choice.
 
-
+--- 
 ## Initial Analysis Results
 ### 1. Movement and Distance Analysis
 * **Findings:** 
@@ -190,7 +193,7 @@ This indicates that **factors like location, property type, and accessibility** 
 
 
 
-
+--- 
 ## Notebook Requirements
 * requirements.txt
    * `pip install -r fa25-team-a/eda/requirements.txt` before running the Jupyter Notebook files
