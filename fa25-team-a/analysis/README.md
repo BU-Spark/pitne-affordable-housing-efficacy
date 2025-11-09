@@ -153,12 +153,20 @@ Evaluate whether the resale price of affordable homes affects applicant quantity
 ## Next Steps
 ###  Price Analysis
 - Explore **interaction effects** between price and demographics (race, household type, age group) to understand nuanced affordability patterns.
+- **Finalize Distance Metrics:** Validate geocoding accuracy and confirm the definition of “local” vs “non-local” applicants. Finalize whether to use **county-level aggregation** or a finer geographic unit (town or ZIP) for distance calculations.
+- **Clarify Base Question 2 (Portfolio Effects):** Revisit the analysis with complete demographic data now available, incorporating clearer distinctions for:
+   - **FTHB (First-Time Home Buyer)** vs non-FTHB applicants  
+   - **Age-restricted** vs unrestricted properties  
+   - Expanded demographic variables (race, household type, income, age)
+   These refinements will enable more accurate interpretation of how CHAPA’s property pool influences applicant diversity and choice.
 
 
 ## Initial Analysis Results
 ### 1. Movement and Distance Analysis
-* 
-* 
+* **Findings:** 
+- 94.8 % of applicants are from Massachusetts; only 3.4 % from New Hampshire and <2% from other states.  
+- Most applicants live within 25 km of their applied property, indicating primarily local demand.
+* **Insight:** Younger and non-White applicants show wider geographic reach, implying broader search behavior beyond local counties.
 
 ### 2. Portfolio Effects
 * 
