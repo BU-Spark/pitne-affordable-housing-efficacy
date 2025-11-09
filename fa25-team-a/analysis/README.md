@@ -33,6 +33,9 @@ Date: Nov 9, 2025
 * Visualizing:
     * `./Ngo_q1_viz.ipynb`
     * `./Ngo_q2_viz.ipynb`
+    * `./madison_eda_2021-23.ipynb`
+    * `./madison_eda_2_2021-23.ipynb`
+    * `./madison_merged_data_analysis.ipynb`
 
 ### Resale & Prices Data (2021-25)
 #### Data Sources
