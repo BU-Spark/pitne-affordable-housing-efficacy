@@ -29,7 +29,7 @@ Date: Nov 9, 2025
     * `../eda/Rohan_EDA_RaceCleaning_2021_25.ipynb`
 * Populating geographical info columns:
     * MA county and city dataset: https://www.mass.gov/doc/metrolstpdf/download
-    * `./Chapter-40B_zip_long_lat.ipynb`
+    * `./Jihyeon_Chapter-40B_zip_long_lat.ipynb`
 * Visualizing:
     * `./Ngo_q1_viz.ipynb`
     * `./Ngo_q2_viz.ipynb`
