@@ -95,6 +95,7 @@ The **original workflow** was the one actually run to produce datasets for analy
   - **Output File:** `new_merged_dataset_filled.csv`
 
 ##### Notebooks (Original Workflow)
+**The following notebooks will be found in:** fa25-team-a/analysis/resale_price_original_workflow 
 1. `Ria_ParseResaleData.ipynb`  
 2. `Ria_ParsePrices_OriginalWorkFlow.ipynb`  
 3. `Ria_Merge_Resale&Price_OriginalWorkFlow.ipynb`  
@@ -108,10 +109,7 @@ The **new workflow** integrates the supplementary price data **before merging wi
 ##### 1. Parsing and Cleaning
 - Parse resale and original price data as before
 - Merge supplementary price data with the original price dataset **before merging with resale**
-- **Notebooks:**
-  1. `Ria_ParseResaleData.ipynb`
-  2. `Ria_ParsePrices_NewWorkFlow.ipynb`  
-     > Includes step to merge missing prices before resale merge
+
 
 ##### 2. Merge Price and Resale
 - Merge updated price dataset (original + missing prices) with resale dataset
@@ -124,6 +122,15 @@ The **new workflow** integrates the supplementary price data **before merging wi
 - Fill any missing prices from supplementary dataset if necessary
 - **Output File:** `Final_Merged_CHAPA_Dataset.csv`
 - **Notebook:** `Ria_Merge_PriceResaleApplicantData_NewWorkFlow.ipynb
+
+##### Notebooks:
+**The following notebooks will be found in:** `fa25-team-a/analysis/resale_price_new_workflow`
+
+1. `Ria_ParseResaleData.ipynb`
+2. `Ria_ParsePrices_NewWorkFlow.ipynb`  
+   > Includes step to merge missing prices before resale merge
+3. `Ria_Merge_Resale&Price_OriginalWorkFlow.ipynb`
+4. `Ria_Merge_PriceResaleApplicantData_OriginalWorkFlow.ipynb`
 
 --- 
 ### Price Analysis and Demographic Insights
