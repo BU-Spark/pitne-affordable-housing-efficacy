@@ -128,6 +128,11 @@ The **new workflow** integrates supplementary price data **before merging with r
     * *Correlation Heatmap (Price,Income, Applicant Count)* – weak correlation, confirming minimal price impact.
     * *Correlation by Income Bracket* – highlights that lower-income applicants (<$60k) are more price-sensitive than higher-income brackets.
     * *Average Price by Race* – explores whether price distribution differs across racial groups, showing no major disparities.
+    * *Race Distribution: Repeat vs. All Applicatis* - shows the race distribution between repeat applicants vs. all applicants.
+    * *Race Distrubution by Property Town* - shows the proportion of race distribution by property town.
+    * *Distribution of Properties by Town* - a visulization of the count of each property available by town.
+    * *Applicant Race/Ethnicity Distribution*  - displays count of each applicant race/ethicity.
+    * *Unique Applicants and Repeat Applicants by Property Town* - emphasizes towns with the most applications for all and repeat applicants. 
   * **Demographic Extension:** Expanded analysis to assess race and income diversity across property price levels.
 
 * Notebooks:
