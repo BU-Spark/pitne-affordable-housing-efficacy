@@ -16,65 +16,7 @@
   <a href="#data-locations">Data Locations</a>
 </p>
 
-# CHAPA – Local Data Access
-
-
-This repo uses **Google OAuth (per user)** to read files from the shared Drive folder named **`Dataset`**. Data is downloaded to `data/` (gitignored). Secrets are kept out of Git.
-
-
-## One-time setup
-1. Get `oauth_client.json` from a teammate and put it at `secrets/oauth_client.json`.
-2. run the setup script 01_auth.py
-3. click the link it prints and log in with your BU google account
-
-## Pipeline
-You can run all the scripts in order if you wish, but the only important ones are number 4 and number 6. Files land in `data/` and are **not** committed to Git.
-
-## Key Features
-In this section you will be including a list of key features of your code/project.
-
-You should also include a short description of what each part of your code does. (Detailed description in the readme of each directory, if applicable)
-* /path/to/directory - function and description
-  - Key notes
-* /path/to/script - function and description
-  - Key notes
-* Lorem Ipsum - Dolor Sit Amet
-  - Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-* Duis Aute Irure Dolor
-  - Excepteur sint occaecat
-* Excepteur Sint Occaecat
-  - Curabitur efficitur, nunc non ultricies gravida, felis purus posuere eros, sed faucibus sapien est nec quam. Nulla at nisl nisl.
-
-
- 
-## How To Use
-
-To clone and run this application, you'll need <a href="https://git-scm.com" target="_blank">Git</a>
-From your command line:
-
-```bash
-# Clone this repository
-$ git clone [repo link]
-
-# Further Instructions
-...
-```
-
-Create a new branch from dev, add changes on the new branch you just created.
-
-You will want to look into <a href="https://git-scm.com/docs/git-branch" target="_blank">git branch</a> and <a href="https://git-scm.com/docs/git-checkout" target="_blank">git checkout</a>
-
-```bash
-# Create and Checkout a new branch if it doesn't exist
-$ git checkout -b your-branch main
-...
-```
-
-Open a Pull Request to dev. Add your PM and TPM as reviewers. 
-
-At the end of the semester during project wrap up open a final Pull Request to main from dev branch.
- 
-## 📄 Project Description
+# Project Description
 
 The purpose of this project is to **assist the Citizens’ Housing and Planning Association (CHAPA)** with demographic information regarding applicants to their affordable housing projects.  
 With a portfolio of nearly **3,000 properties**, CHAPA has a wide range of applicants — both from within Massachusetts and out-of-state individuals.
@@ -83,7 +25,7 @@ Continuing the work of students in the **Summer of 2025**, we are focusing on id
 
 ---
 
-### 🎯 The project is divided into three main base questions:
+### The project is divided into three main base questions:
 
 #### **1. Movement & Distance Analysis**
 - Identifying movement patterns of applicants  
@@ -110,13 +52,27 @@ Continuing the work of students in the **Summer of 2025**, we are focusing on id
 **Price**
 - Price deterring applicants?  
 - Does property price affect applicant quantity?  
-- Are these demographic trends different for lower vs. higher-priced properties?  
+- Are these demographic trends different for lower vs. higher-priced properties?
+
+# CHAPA – Local Data Access
+
+
+This repo uses **Google OAuth (per user)** to read files from the shared Drive folder named **`Dataset`**. Data is downloaded to `data/` (gitignored). Secrets are kept out of Git.
+
+
+## One-time setup
+1. Get `oauth_client.json` from a teammate and put it at `secrets/oauth_client.json`.
+2. run the setup script 01_auth.py
+3. click the link it prints and log in with your BU google account
+
+## Pipeline
+You can run all the scripts in order if you wish, but the only important ones are number 4 and number 6. Files land in `data/` and are **not** committed to Git.  
 
 ---
 
-## Data locations
+# Folder Structure Guide
 
-In this section, you should include the location of all of your datasets for the project (if applicable)
+CHAPA application data is confidential and therefore not available on this public repo. We have worked around this using OAuth; go back to the Local Data Access section for more information. Beyond that, here is a breakdown of what belongs in each folder and what each file does.
 
 <a href="dataset-documentation">Dataset Documentation</a>
 
@@ -177,7 +133,7 @@ These files ensure reproducibility across different scripts and notebooks.
 
 ### 📊 `data/`
 Used to store local or intermediate datasets.  
-- May contain cleaned `.csv` or `.parquet` files created during preprocessing.  
+- Contains cleaned `.csv` or `.parquet` files created during preprocessing.  
 - **Raw CHAPA data is *not* stored here** due to confidentiality — it’s instead accessed from a secure Google Drive folder.  
 - Temporary or test data (like `temp.txt`) may also appear here during development.
 
@@ -205,9 +161,9 @@ Automation and pipeline scripts that connect to the CHAPA data sources, perform 
 These are generally executed in sequence to fetch, clean, and prepare data for analysis.  
 - **`01_auth.py`** → authenticates access to CHAPA / Google Drive data.  
 - **`03_pull_dataset.py` / `04_pull_all.py`** → download and combine raw data.  
-- **`05_clean_pipeline.py` / `06_clean_applications_pipeline.py`** → run full cleaning workflows.  
-- **`analyze_property_popularityV2.py`** → analyzes property-level application demand.  
-Together, these scripts automate the end-to-end data preparation process.
+- **`05_clean_pipeline.py` / `06_clean_applications_pipeline.py`** → run full cleaning workflows.    
+Together, these scripts automate the end-to-end data preparation process. Unnumbered scripts exist for data analysis:
+- **`analyze_property_popularityV2.py`** → analyzes property-level application demand.
 
 ---
 
