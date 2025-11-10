@@ -134,6 +134,7 @@ The **new workflow** integrates supplementary price data **before merging with r
     * *Applicant Race/Ethnicity Distribution*  - displays count of each applicant race/ethicity.
     * *Unique Applicants and Repeat Applicants by Property Town* - emphasizes towns with the most applications for all and repeat applicants.
     * *Race/Ethnicity Proportions by Marketing Source* - shows which marketing source reached which race demographic of applicants.
+    * *Property Restrictions (e.g., Age-Restricted)* - highlights the amount of applications for each type of property restriction 
   * **Demographic Extension:** Expanded analysis to assess race and income diversity across property price levels.
 
 * Notebooks:
