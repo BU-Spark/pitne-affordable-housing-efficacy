@@ -172,14 +172,48 @@ Evaluate whether the resale price of affordable homes affects applicant quantity
 --- 
 ## Initial Analysis Results
 ### 1. Movement and Distance Analysis
-* **Findings:** 
-- 94.8 % of applicants are from Massachusetts; only 3.4 % from New Hampshire and <2% from other states.  
-- Most applicants live within 25 km of their applied property, indicating primarily local demand.
-* **Insight:** Younger and non-White applicants show wider geographic reach, implying broader search behavior beyond local counties.
+* Strong In-State Concentration: About 95 % of applicants are from Massachusetts, with neighboring NH (57 %) and RI (23 %) forming the bulk of the remainder — confirming CHAPA’s programs primarily serve a regional audience.
+
+* Localized Demand Patterns: Most applicants live within 25 km of their chosen property, implying affordability demand is highly local. Larger distances tend to come from younger and non-White applicants.
+
+* Spatial & Demographic Segmentation:
+
+  - Boston–Cambridge MSA attracts younger, racially diverse applicants.
+
+  - Cape Cod & Central MA towns show older, predominantly White applicants linked to age-restricted housing.
+
+* Portfolio-Linked Repeat Behavior: Repeat applications cluster in high-inventory towns such as Andover, Ayer, and Braintree, suggesting movement is guided more by property availability than by relocation interest.
 
 ### 2. Portfolio Effects
-* 
-* 
+* Age-Restriction Drives Demographics:
+
+  - 55+/62+ properties have 75–100 % White applicants.
+
+  - Unrestricted properties are substantially more diverse (≈ 40 % non-White).
+
+  - Regression confirms that a higher share of age-restricted units → older median applicant age.
+
+* Racial Segregation by Town:
+
+  - Suburban/exurban towns (Ayer, Northborough, Medway) remain majority White.
+
+  - Urban-adjacent towns (Braintree, Canton, Tyngsborough) show the highest racial mix.
+
+  - Multiracial applicants cluster where new developments are concentrated, e.g. Bedford, Billerica, Milford.
+
+* Marketing Channel Disparities:
+
+  - MyMassHome and Zillow/Trulia dominate outreach (~60 % of total applications) but skew heavily White.
+
+  - City of Boston MetroList and Word of Mouth channels yield higher Black and Hispanic participation.
+
+  - Social Media/Local Community channels remain underutilized yet attract the most diverse proportions.
+
+* Financial & First-Time Buyer Divide:
+
+  - Median assets cluster around $40 k – $60 k, with outliers > $250 k mainly from older applicants.
+
+  - Towns with many 55+ properties (e.g. Andover, Orleans) exhibit near-universal first-time homebuyer rates, showing programs capture downsizing seniors entering ownership rather than long-term renters.
 
 ### 3. Price
 
