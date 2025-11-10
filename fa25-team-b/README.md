@@ -3,17 +3,16 @@
   <br>
   <a href="https://www.bu.edu/spark/" target="_blank"><img src="https://www.bu.edu/spark/files/2023/08/logo.png" alt="BUSpark" width="200"></a>
   <br>
-  Project README Template <change to project name>
+  CHAPA Affordable Housing Project
   <br>
 </h1>
 
-<h4 align="center">A template for the project readme file. </h4> <change to repo short description>
+<h4 align="center">A repo providing a data analysis of CHAPA's application data. </h4> <change to repo short description>
 
 <p align="center">
-  <a href="#key-features">Key Features</a> •
-  <a href="#how-to-use">How To Use</a> •
   <a href="#project-description">Project Description</a> •
-  <a href="#data-locations">Data Locations</a>
+  <a href="#chapa--local-data-access">CHAPA - Local Data Access</a> •
+  <a href="#folder-structure-guide">Folder Structure Guide</a> 
 </p>
 
 # Project Description
