@@ -9,7 +9,6 @@ Date: Nov 9, 2025
 2. **Portfolio Effects**: To what extent are the applicant demographics driven by CHAPA’s limited property pool (suburban, age-restricted homes) versus applicant choice?
 3. **Price**: Does the price of the affordable home affect applicant quantity and demographics, controlling for income limits?
 
----
 
 ## Work Completed
 ### Applicant Data (2021-25)
@@ -135,7 +134,6 @@ The **new workflow** integrates supplementary price data **before merging with r
   * `Aastha__full_merged_V1_analysis.ipynb`: performs price sensitivity modeling and regression analysis
   * `Aastha_Demographic and applicant vs price analysis.ipynb`: explores racial and demographic patterns in price sensitivity
 
----
 
 ## Next Steps
 ### 1. Movement and Distance Analysis
@@ -152,7 +150,6 @@ The **new workflow** integrates supplementary price data **before merging with r
 ### 3. Price
 * Explore **interaction effects** between price and demographics (race, household type, age group) to understand nuanced affordability patterns
 
----
 
 ## Initial Analysis Results
 ### 1. Movement and Distance Analysis
@@ -186,7 +183,6 @@ The **new workflow** integrates supplementary price data **before merging with r
 * **Lower-income groups (<$60k)** show more price sensitivity, while higher-income and racial groups display consistent participation across price levels.  
 This indicates that **factors like location, property type, and accessibility** play a greater role in driving applicant demand than minor price differences.
 
----
 
 ## Notebook Requirements
 * requirements.txt
