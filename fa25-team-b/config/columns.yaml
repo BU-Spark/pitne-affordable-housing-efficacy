@@ -1,0 +1,18 @@
+# Canonical column names on the left. Variants you might see in raw files on the right.
+Race/Ethnicity:
+  - Race/Ethnicity
+  - Race Ethnicity
+  - Race
+  - race_eth
+
+Current Residence:
+  - Current Residence
+  - Applicant City
+  - City
+  - Residence City
+
+Application Date:
+  - Application Date
+  - Date Applied
+  - Submitted
+

@@ -1,0 +1,30 @@
+applications:
+  - name: CHAPA Chapter 40B Application Data_Oct 2023 to May 2025 - Confidential.xlsx
+    id: 1T4fxMvTW0WccmcGBFzH7aLcR0UmW-AAA
+    type: xlsx
+  - name: CHAPA Chapter 40B Application Data_June 2021 to Sept 2023 - Confidential.xlsx
+    id: 1Bw4DPZ3kvTztUVNY0bQYtYYokJag1XPP
+    type: xlsx
+
+resales:
+  - name: Resale Transaction Info - Confidential (Google Sheet)
+    id: 1IYqpzU06c7KCieH9bjQvqFeS0610EddXvUESmjChJ-o
+    type: google_sheet
+  - name: Resale Transaction Info - Confidential_updated Sept 2025.xlsx
+    id: 1ItkgY49Q_fLOoE0XaJxGXQWfq4kcMFqI
+    type: xlsx
+  - name: Resale Values_Oct 2023 to May 2025.xlsx
+    id: 1xUZiF2iZUYgu6TGgdJhk02ucIY8D1dSi
+    type: xlsx
+  - name: Resale Values_Jun 2021 to Sept 2023.xlsx
+    id: 10Qrvet8XwBC2V368U9wMvy9y85GyXzEO
+    type: xlsx
+  - name: Resale Values_May 2025 to Sept 2025.xlsx
+    id: 1fCMvyaWI-w-40o3P7rx1bkQZBHUohtBJ
+    type: xlsx
+
+excludes:
+  - OLD_TOUCHABLE CHAPA Chapter 40B Application Data_Oct 2023 to May 2025 - Confidential.xlsx
+  - Copy of CHAPA Chapter 40B Application Data_Oct 2023 to May 2025 - Confidential.xlsx
+  - Copy of CHAPA Chapter 40B Application Data_June 2021 to Sept 2023 - Confidential.xlsx
+

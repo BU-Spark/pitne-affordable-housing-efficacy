@@ -72,7 +72,3 @@ Please make sure it reflects what you see on the documents (project description)
 In this section, you should include the location of all of your datasets for the project (if applicable)
 
 <a href="dataset-documentation">Dataset Documentation</a>
-* Location 1: [location]
-  - [description]
-* Location 2: [location]
-  - [description]
