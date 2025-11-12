@@ -125,6 +125,7 @@ The **new workflow** integrates supplementary price data **before merging with r
     * *Correlation Heatmap (Price,Income, Applicant Count)* – weak correlation, confirming minimal price impact.
     * *Correlation by Income Bracket* – highlights that lower-income applicants (<$60k) are more price-sensitive than higher-income brackets.
     * *Average Price by Race* – explores whether price distribution differs across racial groups, showing no major disparities.
+    * *Slope of Age vs Resale Price per Income Bracket* - applicants in $20K–$39K and $40K–$59K income brackets have a weak, yet statistically significant correlation indicating that older owners tend to buy slightly higher-priced homes. 
     * *Race Distribution: Repeat vs. All Applicatis* - shows the race distribution between repeat applicants vs. all applicants.
     * *Race Distrubution by Property Town* - shows the proportion of race distribution by property town.
     * *Distribution of Properties by Town* - a visulization of the count of each property available by town.
@@ -139,6 +140,7 @@ The **new workflow** integrates supplementary price data **before merging with r
 * Notebooks:
   * `Aastha__full_merged_V1_analysis.ipynb`: performs price sensitivity modeling and regression analysis
   * `Aastha_Demographic and applicant vs price analysis.ipynb`: explores racial and demographic patterns in price sensitivity
+  * `Ria_Q3_visualizations.ipynb`: effect of price on demographics (including age, household size, number of dependents)
   * `./madison_eda_2021-23.ipynb`: repeat vs. all applicant demographics 
   * `./madison_eda_2_2021-23.ipynb`: applicant demographics by property town
   * `./madison_merged_data_analysis.ipynb`: analyzing applicant demographics by CHAPA's property pool
