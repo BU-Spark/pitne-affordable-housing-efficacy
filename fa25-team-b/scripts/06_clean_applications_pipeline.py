@@ -129,6 +129,14 @@ def run():
     with Timer():
         df = import_clean_append_HUD(df)
 
+    # remove redundant residence columns in final output
+    cols_to_drop = [
+        "Current Residence",
+        "current_residence_norm_v1",
+        "matched_city",
+    ]
+    df = df.drop(columns=[c for c in cols_to_drop if c in df.columns])
+
     # ensure parquet-safe dtypes
     df = sanitize_for_parquet(df)
 
