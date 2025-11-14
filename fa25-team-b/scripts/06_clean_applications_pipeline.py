@@ -133,7 +133,6 @@ def run():
     cols_to_drop = [
         "Current Residence",
         "current_residence_norm_v1",
-        "matched_city",
     ]
     df = df.drop(columns=[c for c in cols_to_drop if c in df.columns])
 
