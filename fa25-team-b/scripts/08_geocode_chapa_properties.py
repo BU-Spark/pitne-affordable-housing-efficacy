@@ -25,7 +25,7 @@ APPS_FILE = PROCESSED / "applications_clean.parquet"
 PROPS_FILE = PROCESSED / "chapa_properties_from_apps.csv"
 PROP_CACHE_FILE = CACHE_DIR / "property_geocode.parquet"
 OUT_FILE = PROCESSED / "applications_with_property_geo.parquet"
-OUT_CSV = PROCESSED / "applications_with_property_geo.csv"   # <- NEW
+OUT_CSV = PROCESSED / "applications_with_property_geo.csv"
 
 
 # ---------- helpers ----------
@@ -60,13 +60,11 @@ def split_property(prop: str) -> tuple[str, str]:
     s = _normalize_spaces(s)
 
     # 3) If there is a "~", assume "street ~ city"
-    #    e.g. "1 Harvest Drive Unit 110 ~ North Andover"
     if "~" in s:
         street, city = [_normalize_spaces(x) for x in s.split("~", 1)]
         return street.strip(", "), city.strip(", ")
 
     # 4) Pattern: "City, 503 Main"
-    #    e.g. "Groton, 503 Main"
     m_city_comma = re.match(r"^([A-Za-z .'-]+),\s*(\d.+)$", s)
     if m_city_comma:
         city = _normalize_spaces(m_city_comma.group(1))
@@ -74,7 +72,6 @@ def split_property(prop: str) -> tuple[str, str]:
         return street.strip(", "), city.strip(", ")
 
     # 5) Pattern: "City - something with numbers"
-    #    e.g. "Falmouth - 110 Dillingham", "West Boylston - 103 Afra Drive Unit 51"
     m_city_dash = re.match(r"^([A-Za-z .'-]+)\s*-\s*(.+)$", s)
     if m_city_dash and re.search(r"\d", m_city_dash.group(2)):
         city = _normalize_spaces(m_city_dash.group(1))
@@ -82,7 +79,6 @@ def split_property(prop: str) -> tuple[str, str]:
         return street.strip(", "), city.strip(", ")
 
     # 6) Otherwise, treat the whole thing as street with unknown city
-    #    e.g. "1 Ashley Lane, Unit 50"
     return s.strip(", "), ""
 
 
@@ -133,6 +129,7 @@ def geocode_chapa_properties(properties: pd.Series) -> pd.DataFrame:
 
     Returns columns:
         - Application Property
+        - property_cleaned_address  <-- street, city used for geocoding
         - property_latitude
         - property_longitude
         - property_full_location_name
@@ -142,10 +139,31 @@ def geocode_chapa_properties(properties: pd.Series) -> pd.DataFrame:
     if PROP_CACHE_FILE.exists():
         cache = pd.read_parquet(PROP_CACHE_FILE)
         print(f"📦 Loaded existing property cache: {PROP_CACHE_FILE}")
+
+        # Backwards compatibility: old cache might not have this column
+        if "property_cleaned_address" not in cache.columns:
+            cache["property_cleaned_address"] = np.nan
+
+        # Backfill cleaned addresses where missing
+        mask = cache["property_cleaned_address"].isna() | (
+            cache["property_cleaned_address"].astype(str).str.strip() == ""
+        )
+        if mask.any():
+            print(f"🧽 Backfilling cleaned addresses for {mask.sum()} cached properties...")
+            cache.loc[mask, "property_cleaned_address"] = (
+                cache.loc[mask, "Application Property"]
+                .astype(str)
+                .apply(
+                    lambda p: ", ".join(
+                        [part for part in split_property(p) if part]
+                    ).strip(", ")
+                )
+            )
     else:
         cache = pd.DataFrame(
             columns=[
                 "Application Property",
+                "property_cleaned_address",
                 "property_latitude",
                 "property_longitude",
                 "property_full_location_name",
@@ -164,6 +182,8 @@ def geocode_chapa_properties(properties: pd.Series) -> pd.DataFrame:
 
     if not to_geocode:
         print("   (no new properties to geocode, using cache only)")
+        # ensure cache (with backfilled cleaned addresses) is saved
+        cache.to_parquet(PROP_CACHE_FILE, index=False)
         return cache
 
     print(f"🌍 Need to geocode {len(to_geocode)} new properties")
@@ -172,6 +192,7 @@ def geocode_chapa_properties(properties: pd.Series) -> pd.DataFrame:
 
     for i, prop in enumerate(to_geocode, start=1):
         street, city = split_property(prop)
+        cleaned_addr = ", ".join([part for part in (street, city) if part]).strip(", ")
         queries = build_query_variants(street, city)
 
         lat = lon = addr = None
@@ -197,6 +218,7 @@ def geocode_chapa_properties(properties: pd.Series) -> pd.DataFrame:
         new_rows.append(
             {
                 "Application Property": str(prop),
+                "property_cleaned_address": cleaned_addr,
                 "property_latitude": lat,
                 "property_longitude": lon,
                 "property_full_location_name": addr,
@@ -258,6 +280,7 @@ def main():
     # 3) Merge property coordinates into applications
     merge_cols = [
         "Application Property",
+        "property_cleaned_address",
         "property_latitude",
         "property_longitude",
         "property_full_location_name",
@@ -265,10 +288,10 @@ def main():
     apps_geo = apps.merge(geo[merge_cols], on="Application Property", how="left")
     print("🔗 Property coordinates merged into applications.")
 
-    # 4) Save result (no distance column – Pavlo can add distance from these coords)
+    # 4) Save result
     PROCESSED.mkdir(parents=True, exist_ok=True)
     apps_geo.to_parquet(OUT_FILE, index=False)
-    apps_geo.to_csv(OUT_CSV, index=False)   # <- NEW
+    apps_geo.to_csv(OUT_CSV, index=False)
 
     print("\n✅ Done. Output written to:")
     print(f"   {OUT_FILE}")
