@@ -12,6 +12,5 @@ tqdm
 openpyxl
 pyyaml
 pyarrow
-numpy>=1.25
-matplotlib>=3.8
-fuzzywuzzy[speedup]>=0.18
+pymc
+arviz
