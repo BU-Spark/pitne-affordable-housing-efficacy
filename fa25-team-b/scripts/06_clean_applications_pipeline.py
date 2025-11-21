@@ -131,6 +131,10 @@ def run():
     with Timer():
         df = import_clean_append_HUD(df)
 
+        _stage("Appending Property Geocoding")
+    with Timer():
+        df = applicant_property_geocoding(df)
+
     # remove redundant residence columns in final output
     cols_to_drop = [
         "Current Residence",
