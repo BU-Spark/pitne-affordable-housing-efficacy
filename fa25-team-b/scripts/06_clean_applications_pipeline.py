@@ -7,6 +7,8 @@ from cleaners.geographic_encoding_ma_cities import geocode_ma_cities
 from cleaners.race_naming_normalization import normalize_race
 from cleaners.append_resale_data import append_resale_data
 from cleaners.HUD_economic_data_import_cleaning import import_clean_append_HUD
+from cleaners.applicant_property_geocoding import applicant_property_geocoding
+
 import time
 from tqdm.auto import tqdm
 import json
