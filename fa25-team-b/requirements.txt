@@ -4,6 +4,9 @@ google-auth-oauthlib
 pandas
 rapidfuzz
 geopy>=2.4.0
+numpy>=1.25
+matplotlib>=3.8
+fuzzywuzzy[speedup]>=0.18
 geopandas
 shapely
 pyproj
