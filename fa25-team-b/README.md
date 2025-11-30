@@ -222,7 +222,9 @@ Contains static reference files and lookup tables used to support cleaning and a
 - Example: `city_names_norm_ma.csv` — standardized list of Massachusetts city names used for matching and geographic encoding.  
 - These files do not change frequently and are used by scripts in `cleaners/` or `tools/`.
 
+
 ---
+
 
 ### 🧹 `cleaners/`
 Contains all **data-cleaning and preprocessing scripts** that prepare the raw CHAPA dataset for analysis.  
