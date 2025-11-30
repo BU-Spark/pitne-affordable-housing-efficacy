@@ -205,8 +205,13 @@ You can run all the scripts in order if you wish, but the only important ones ar
 ---
 
 
+## 📁 Data Locations
 
-# Folder Structure Guide
+The CHAPA project relies on **confidential raw datasets** stored in a private
+Google Drive folder. These files are **never committed to GitHub** and are
+pulled locally using OAuth through the scripts in `fa25-team-b/scripts`.
+
+Below is a complete map of where data lives inside the `fa25-team-b` folder.
 
 CHAPA application data is confidential and therefore not available on this public repo. We have worked around this using OAuth; go back to the Local Data Access section for more information. Beyond that, here is a breakdown of what belongs in each folder and what each file does.
 
