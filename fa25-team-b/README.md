@@ -11,6 +11,7 @@
 
 <p align="center">
   <a href="#project-description">Project Description</a> •
+  <a href="#How To Use">How To Use</a> •
   <a href="#chapa--local-data-access">CHAPA - Local Data Access</a> •
   <a href="#folder-structure-guide">Folder Structure Guide</a> 
 </p>
@@ -58,18 +59,159 @@ Continuing the work of students in the **Summer of 2025**, we are focusing on id
 
 This repo uses **Google OAuth (per user)** to read files from the shared Drive folder named **`Dataset`**. Data is downloaded to `data/` (gitignored). Secrets are kept out of Git.
 
+---
+## 🚀 How To Use
 
-## One-time setup
-1. Get `oauth_client.json` from a teammate and put it at `secrets/oauth_client.json`.
-2. run the setup script 01_auth.py
-3. click the link it prints and log in with your BU google account
+This guide explains how to set up the environment, configure Google OAuth,
+place data correctly, and run the full CHAPA Team B processing pipeline.
+
+---
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/BU-Spark/ds-chapa-affordable-housing.git
+cd ds-chapa-affordable-housing/fa25-team-b
+```
+
+---
+
+### 2. (Optional) Create a virtual environment
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate      # Windows: .venv\Scripts\activate
+```
+
+---
+
+### 3. Install dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+## 🔐 4. Google OAuth Setup (Required for Sheets-Based Scripts)
+
+Some validation scripts connect to Google Sheets (crosswalks, validation tables).
+These require Google OAuth credentials.
+
+### 4.1 Create OAuth Credentials
+
+🟩 Visit: https://console.cloud.google.com  
+🟩 Go to **APIs & Services → Credentials**  
+🟩 Click **Create Credentials → OAuth Client ID**  
+🟩 Choose **Desktop App**  
+🟩 Download the JSON file  
+🟩 Save it to:
+
+```
+fa25-team-b/.credentials/client_secret.json
+```
+
+*(Create the `.credentials/` folder if it does not exist.)*
+
+---
+
+### 4.2 First-Time Google Authentication
+
+🟩 Run any script that uses Google Sheets  
+🟩 A browser window will open  
+🟩 Log in with your BU Google account  
+🟩 Approve access  
+
+A token file will be created:
+
+```
+fa25-team-b/.credentials/token.json
+```
+
+---
+
+## 📁 5. Data Locations
+
+Raw CHAPA CSV files (confidential):
+
+```
+data/raw/
+```
+
+Outputs created by scripts:
+
+```
+data/processed/
+data/cache/
+```
+
+Notebooks and visuals:
+
+```
+notebooks/
+visuals/
+```
+
+---
+
+## ⚙️ 6. Run the Data Processing Pipeline
+
+Run all cleaning + property extraction + geocoding scripts from the
+`fa25-team-b` directory.
+
+---
+
+### 6.1 Clean application-level data
+
+```bash
+python cleaners/01_clean_applications.py
+```
+
+Produces:
+
+🟩 `data/processed/applications_clean.parquet`
+
+---
+
+### 6.2 Extract unique CHAPA properties
+
+```bash
+python cleaners/07_find_chapa_properties.py
+```
+
+Produces:
+
+🟩 `data/processed/chapa_properties_from_apps.csv`
+
+---
+
+### 6.3 Geocode CHAPA properties (cached)
+
+```bash
+python cleaners/08_geocode_chapa_properties.py
+```
+
+Produces:
+
+🟩 `data/cache/property_geocode.parquet`  
+🟩 `data/processed/applications_with_property_geo.parquet`
+
+---
+
 
 ## Pipeline
 You can run all the scripts in order if you wish, but the only important ones are number 4 and number 6. Files land in `data/` and are **not** committed to Git.  
 
 ---
 
-# Folder Structure Guide
+
+## 📁 Data Locations
+
+The CHAPA project relies on **confidential raw datasets** stored in a private
+Google Drive folder. These files are **never committed to GitHub** and are
+pulled locally using OAuth through the scripts in `fa25-team-b/scripts`.
+
+Below is a complete map of where data lives inside the `fa25-team-b` folder.
 
 CHAPA application data is confidential and therefore not available on this public repo. We have worked around this using OAuth; go back to the Local Data Access section for more information. Beyond that, here is a breakdown of what belongs in each folder and what each file does.
 
@@ -80,7 +222,9 @@ Contains static reference files and lookup tables used to support cleaning and a
 - Example: `city_names_norm_ma.csv` — standardized list of Massachusetts city names used for matching and geographic encoding.  
 - These files do not change frequently and are used by scripts in `cleaners/` or `tools/`.
 
+
 ---
+
 
 ### 🧹 `cleaners/`
 Contains all **data-cleaning and preprocessing scripts** that prepare the raw CHAPA dataset for analysis.  
