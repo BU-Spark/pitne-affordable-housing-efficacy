@@ -141,9 +141,9 @@ The **new workflow** integrates supplementary price data **before merging with r
   * `Aastha__full_merged_V1_analysis.ipynb`: performs price sensitivity modeling and regression analysis
   * `Aastha_Demographic and applicant vs price analysis.ipynb`: explores racial and demographic patterns in price sensitivity
   * `Ria_Q3_visualizations.ipynb`: effect of price on demographics (including age, household size, number of dependents)
-  * `./madison_eda_2021-23.ipynb`: repeat vs. all applicant demographics 
-  * `./madison_eda_2_2021-23.ipynb`: applicant demographics by property town
-  * `./madison_merged_data_analysis.ipynb`: analyzing applicant demographics by CHAPA's property pool
+  * `./q2_viz_2_2021-23.ipynb`: repeat vs. all applicant demographics 
+  * `./q1_viz_1_2021-23.ipynb`: applicant demographics by property town
+  * `./q2_viz_2021-2025.ipynb`: analyzing applicant demographics by CHAPA's property pool
 
 
 ## Next Steps
