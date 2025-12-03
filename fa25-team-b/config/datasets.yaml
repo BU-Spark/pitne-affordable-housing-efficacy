@@ -22,6 +22,9 @@ resales:
   - name: Resale Values_May 2025 to Sept 2025.xlsx
     id: 1fCMvyaWI-w-40o3P7rx1bkQZBHUohtBJ
     type: xlsx
+  - name: Resale Transaction Info - Updated.xlsx
+    id: 1cRnPBugd7m2TfGDZM21ivKTvFtITztui
+    type: xlsx
 
 excludes:
   - OLD_TOUCHABLE CHAPA Chapter 40B Application Data_Oct 2023 to May 2025 - Confidential.xlsx
