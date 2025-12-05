@@ -49,7 +49,8 @@ The Fall 2025 project shifts toward explaining the *why* and *how* behind these 
 This project aims to produce actionable insights for CHAPA that can inform program design, marketing strategy, and policy discussions surrounding equitable access to affordable homeownership opportunities in Massachusetts.
  
 ## Key Components of our repository
-This repository contains all Fall 2025 work for **Team A** within the CHAPA project. Below is an overview of the repository structure and key components, along with short descriptions of what each part of the codebase does. More detailed documentation exists within each folder’s individual README.
+This repository contains all Fall 2025 work for **Team A** within the CHAPA project. 
+Below is an overview of the repository structure and key pipeline components, along with short descriptions of what each part of the codebase does. **More detailed documentation for the EDA and Analysis workflow and findings exists within the respective folder’s individual README**.
 
 * `fa25-team-a/data/` – All datasets used in the project  
   - Includes raw and intermediate data files  
@@ -74,24 +75,30 @@ This repository contains all Fall 2025 work for **Team A** within the CHAPA proj
 To clone and run this application, you'll need <a href="https://git-scm.com" target="_blank">Git</a>
 From your command line:
 
-```bash
+
 # Clone this repository
+```bash
 $ git clone https://github.com/BU-Spark/ds-chapa-affordable-housing.git
 cd ds-chapa-affordable-housing/fa25-team-a
-
+```
 # Set up a virtual environment (Optional)
 **Using Conda**
 ```bash
 conda create -n chapa-fa25 python=3.10
 conda activate chapa-fa25
+```
 
 **Using Python venv**
+```bash
 python3 -m venv .venv
 source .venv/bin/activate     # On macOS/Linux
 # OR: .venv\Scripts\activate  # On Windows PowerShell
+```
 
 # Installing requirements
-pip install -r requirements.txt  
+```bash
+pip install -r requirements.txt
+```
 
 ## Data locations
 
