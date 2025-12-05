@@ -17,19 +17,25 @@
 </p>
 
 ## Key Features
-In this section you will be including a list of key features of your code/project.
+his repository contains all Fall 2024 work for **Team A** within the CHAPA project. Below is an overview of the repository structure and key components, along with short descriptions of what each part of the codebase does. More detailed documentation exists within each folder’s individual README.
 
-You should also include a short description of what each part of your code does. (Detailed description in the readme of each directory, if applicable)
-* /path/to/directory - function and description
-  - Key notes
-* /path/to/script - function and description
-  - Key notes
-* Lorem Ipsum - Dolor Sit Amet
-  - Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-* Duis Aute Irure Dolor
-  - Excepteur sint occaecat
-* Excepteur Sint Occaecat
-  - Curabitur efficitur, nunc non ultricies gravida, felis purus posuere eros, sed faucibus sapien est nec quam. Nulla at nisl nisl.
+* `fa25-team-a/data/` – All datasets used in the project  
+  - Includes raw and intermediate data files  
+  - May require manual download if not stored in the repo
+
+* `fa25-team-a/eda/` – Exploratory Data Analysis notebooks and scripts  
+  - Documents data cleaning, preparation, and preliminary visualizations  
+  - Contains early insights that informed the modeling process
+
+* `fa25-team-a/analysis/` – Full analytical workflow  
+  - Contains scripts and notebooks used to answer all three research questions  
+  - Includes modeling, evaluation, and final outputs
+
+* `fa25-team-a/project_definition.md` – Project scope  
+  - High-level description of the project goals and guiding questions
+
+* `fa25-team-a/research.md` – Background research  
+  - Preliminary research and contextual understanding of the domain
  
 ## How To Use
 
