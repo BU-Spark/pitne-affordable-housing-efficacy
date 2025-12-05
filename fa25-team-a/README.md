@@ -16,7 +16,7 @@
   <a href="#data-locations">Data Locations</a>
 </p>
 
-## Project Description
+# Project Description
 
 This project is conducted in partnership with **CHAPA (Citizens' Housing and Planning Association)**, Massachusetts’ statewide affordable housing umbrella organization. CHAPA monitors roughly 3,000 permanently affordable homes across the state, and our work contributes to understanding equity and accessibility within the homeownership application process.
 
@@ -48,7 +48,7 @@ The Fall 2025 project shifts toward explaining the *why* and *how* behind these 
 
 This project aims to produce actionable insights for CHAPA that can inform program design, marketing strategy, and policy discussions surrounding equitable access to affordable homeownership opportunities in Massachusetts.
  
-## Key Components of our repository
+# Key Components of our repository
 This repository contains all Fall 2025 work for **Team A** within the CHAPA project. 
 Below is an overview of the repository structure and key pipeline components, along with short descriptions of what each part of the codebase does. **More detailed documentation for the EDA and Analysis workflow and findings exists within the respective folder’s individual README**.
 
@@ -70,18 +70,18 @@ Below is an overview of the repository structure and key pipeline components, al
 * `fa25-team-a/research.md` – Background research  
   - Preliminary research and contextual understanding of the domain
  
-## How To Use
+# How To Use
 
 To clone and run this application, you'll need <a href="https://git-scm.com" target="_blank">Git</a>
 From your command line:
 
 
-# Clone this repository
+### Clone this repository
 ```bash
 $ git clone https://github.com/BU-Spark/ds-chapa-affordable-housing.git
 cd ds-chapa-affordable-housing/fa25-team-a
 ```
-# Set up a virtual environment (Optional)
+### Set up a virtual environment (Optional)
 **Using Conda**
 ```bash
 conda create -n chapa-fa25 python=3.10
@@ -95,12 +95,12 @@ source .venv/bin/activate     # On macOS/Linux
 # OR: .venv\Scripts\activate  # On Windows PowerShell
 ```
 
-# Installing requirements
+### Installing requirements
 ```bash
 pip install -r requirements.txt
 ```
 
-## Data locations
+# Data locations
 
 In this section, you should include the location of all of your datasets for the project (if applicable)
 
