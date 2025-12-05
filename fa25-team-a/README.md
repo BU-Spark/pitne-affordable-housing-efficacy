@@ -16,8 +16,40 @@
   <a href="#data-locations">Data Locations</a>
 </p>
 
-## Key Features
-his repository contains all Fall 2024 work for **Team A** within the CHAPA project. Below is an overview of the repository structure and key components, along with short descriptions of what each part of the codebase does. More detailed documentation exists within each folder’s individual README.
+## Project Description
+
+This project is conducted in partnership with **CHAPA (Citizens' Housing and Planning Association)**, Massachusetts’ statewide affordable housing umbrella organization. CHAPA monitors roughly 3,000 permanently affordable homes across the state, and our work contributes to understanding equity and accessibility within the homeownership application process.
+
+### Objective
+The goal of this project is to analyze systemic barriers in the application process for permanently affordable homes in Massachusetts. We focus on geographic trends, demographic representation, price sensitivity, and marketing/access disparities to better understand who applies, where they apply, and why certain gaps persist.
+
+### Key Focus Areas
+- **Applicant Movement Patterns**: How applicants connect their current residence to the locations of homes they apply for, and how this geographic search radius varies by race, age, household type, and other demographics.
+- **Portfolio Bias & Age-Restricted Housing**: To what extent applicant demographics are influenced by CHAPA’s current housing portfolio, which is heavily suburban and often age-restricted.
+- **Access & Marketing Disparities**: How listing sources, marketing strategies, and application complexity shape applicant diversity and equitable access.
+
+### Dataset and Prior Work
+Our work builds on the **Summer 2025 CHAPA project**, which focused on identifying *what* trends existed in the data. The previous team:
+- Used the **Combined Dataset (Merged 2021–2025)** and **Resale Transactions Dataset** from CHAPA.
+- Conducted descriptive analyses of age, race/ethnicity, income, assets, household composition, and marketing channels.
+- Explored geographic trends and initial impacts of simplifying the application process.
+- Examined income and asset gaps and preliminary effects of age-restricted units.
+
+### Current Fall 2025 Scope
+The Fall 2025 project shifts toward explaining the *why* and *how* behind these patterns:
+- **Integrate four new months of data** into the existing pipeline created by the summer team, following their cleaning and preprocessing documentation.
+- Analyze **additional large lottery data**, which may reveal new demographic patterns not visible in the main dataset.
+- Consider incorporating external datasets (e.g., **City of Boston** or other monitoring agencies) to broaden geographic and demographic coverage.
+- Conduct deeper analysis on:
+  - **Movement & Distance**: How far applicants are willing to move and how this varies across demographic groups.
+  - **Portfolio Effects**: Distinguishing whether demographic patterns are driven by applicant preferences or CHAPA’s limited property pool.
+  - **Price Sensitivity**: Whether maximum resale price influences applicant quantity and demographic composition.
+  - **Marketing & Access Disparities**: How different listing sources affect who ends up applying.
+
+This project aims to produce actionable insights for CHAPA that can inform program design, marketing strategy, and policy discussions surrounding equitable access to affordable homeownership opportunities in Massachusetts.
+ 
+## Key Components of our repository
+This repository contains all Fall 2025 work for **Team A** within the CHAPA project. Below is an overview of the repository structure and key components, along with short descriptions of what each part of the codebase does. More detailed documentation exists within each folder’s individual README.
 
 * `fa25-team-a/data/` – All datasets used in the project  
   - Includes raw and intermediate data files  
@@ -44,34 +76,22 @@ From your command line:
 
 ```bash
 # Clone this repository
-$ git clone [repo link]
+$ git clone https://github.com/BU-Spark/ds-chapa-affordable-housing.git
+cd ds-chapa-affordable-housing/fa25-team-a
 
-# Further Instructions
-...
-```
-
-Create a new branch from dev, add changes on the new branch you just created.
-
-You will want to look into <a href="https://git-scm.com/docs/git-branch" target="_blank">git branch</a> and <a href="https://git-scm.com/docs/git-checkout" target="_blank">git checkout</a>
-
+# Set up a virtual environment (Optional)
+**Using Conda**
 ```bash
-# Create and Checkout a new branch if it doesn't exist
-$ git checkout -b your-branch main
-...
-```
+conda create -n chapa-fa25 python=3.10
+conda activate chapa-fa25
 
-Open a Pull Request to dev. Add your PM and TPM as reviewers. 
+**Using Python venv**
+python3 -m venv .venv
+source .venv/bin/activate     # On macOS/Linux
+# OR: .venv\Scripts\activate  # On Windows PowerShell
 
-At the end of the semester during project wrap up open a final Pull Request to main from dev branch.
- 
-## Project Description
-
-In this section, you should include the project description, either from the client or spark.
-
-Please make sure it reflects what you see on the documents (project description) you recieved.
-
-* Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi. Donec vel nunc at libero ultrices tincidunt. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Mauris ut ligula nec risus posuere ultricies at et ligula. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
-* Veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+# Installing requirements
+pip install -r requirements.txt  
 
 ## Data locations
 
