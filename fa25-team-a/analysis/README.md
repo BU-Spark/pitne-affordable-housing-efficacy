@@ -138,7 +138,7 @@ The **new workflow** integrates supplementary price data **before merging with r
   * **Demographic Extension:** Expanded analysis to assess race and income diversity across property price levels.
 
 * Notebooks:
-  * `Aastha__full_merged_V1_analysis.ipynb`: performs price sensitivity modeling and regression analysis
+  * `Q3)_full_merged_V1_analysis.ipynb`: performs price sensitivity modeling and regression analysis 
   * `Aastha_Demographic and applicant vs price analysis.ipynb`: explores racial and demographic patterns in price sensitivity
   * `Ria_Q3_visualizations.ipynb`: effect of price on demographics (including age, household size, number of dependents)
   * `./q2_viz_2_2021-23.ipynb`: repeat vs. all applicant demographics 
