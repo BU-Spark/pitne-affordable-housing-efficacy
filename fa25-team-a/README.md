@@ -10,7 +10,7 @@
 <h4 align="center">A template for the project readme file. </h4> <change to repo short description>
 
 <p align="center">
-  <a href="#key-features">Key Features</a> •
+  <a href="#key-features">Key Components</a> •
   <a href="#how-to-use">How To Use</a> •
   <a href="#project-description">Project Description</a> •
   <a href="#data-locations">Data Locations</a>
