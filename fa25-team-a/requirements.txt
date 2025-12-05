@@ -4,4 +4,7 @@ numpy
 matplotlib
 seaborn
 openpyxl
-re
+scipy
+uszipcode
+geopy
+geopandas
