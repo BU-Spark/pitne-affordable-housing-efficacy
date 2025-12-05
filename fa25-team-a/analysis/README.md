@@ -138,8 +138,8 @@ The **new workflow** integrates supplementary price data **before merging with r
   * **Demographic Extension:** Expanded analysis to assess race and income diversity across property price levels.
 
 * Notebooks:
-  * `Q3)_full_merged_V1_analysis.ipynb`: performs price sensitivity modeling and regression analysis 
-  * `Aastha_Demographic and applicant vs price analysis.ipynb`: explores racial and demographic patterns in price sensitivity
+  * `Q3)_full_merged_V1_analysis.ipynb`: performs price sensitivity modeling and regression analysis and also explores racial patterns in price sensitivity
+  * `Q3)_applicant_vs_price_analysis.ipynb`: explores demographic patterns in price sensitivity
   * `Ria_Q3_visualizations.ipynb`: effect of price on demographics (including age, household size, number of dependents)
   * `./q2_viz_2_2021-23.ipynb`: repeat vs. all applicant demographics 
   * `./q1_viz_1_2021-23.ipynb`: applicant demographics by property town
@@ -193,6 +193,10 @@ The **new workflow** integrates supplementary price data **before merging with r
 * Higher-priced homes attract slightly fewer applicants, but this relationship is statistically weak.
 * **Lower-income groups (<$60k)** show more price sensitivity, while higher-income and racial groups display consistent participation across price levels.  
 This indicates that **factors like location, property type, and accessibility** play a greater role in driving applicant demand than minor price differences.
+*Applicant racial groups show distinct price-range preferences.
+* Lower-priced units disproportionately attract Hispanic/Latino applicants, while higher-priced units see more Black applicants.
+* These differences remain after statistical testing, suggesting meaningful variation in affordability preferences or constraints across groups.
+
 
 
 ## Notebook Requirements
