@@ -4,3 +4,8 @@ numpy
 matplotlib
 seaborn
 openpyxl
+scikit-learn
+geopandas
+shapely
+pyogrio
+requests
