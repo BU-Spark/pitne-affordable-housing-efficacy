@@ -152,7 +152,7 @@ The **new workflow** integrates supplementary price data **before merging with r
   * `Q3)_applicant_vs_price_analysis.ipynb`: explores demographic patterns in price sensitivity
   * `Ria_Q3_visualizations.ipynb`: effect of price on demographics (including age, household size, number of dependents)
   * `./q2_viz_2_2021-23.ipynb`: repeat vs. all applicant demographics 
-  * `./q1_viz_1_2021-23.ipynb`: applicant demographics by property town
+  * `./q2_viz_1_2021-23.ipynb`: applicant demographics by property town
   * `./q2_viz_2021-2025.ipynb`: analyzing applicant demographics by CHAPA's property pool
 
 
