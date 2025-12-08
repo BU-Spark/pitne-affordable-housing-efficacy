@@ -147,6 +147,11 @@ The **new workflow** integrates supplementary price data **before merging with r
     * *Applicant Race/Ethnicity Proportions by Property Restriction* - shows how CHAPA’s property restrictions shape the applicant pool.
     * *Local vs. Non-Local Applicants* - count of how many applicants live in the same town where they apply.  
   * **Demographic Extension:** Expanded analysis to assess race and income diversity across property price levels.
+ **My Price-Applicant Analysis (Q3):**
+- `Q3-price_applicants_income_analysis.ipynb`: Merged resale + CHAPA data (1,265 properties), found prices slightly increase applicants (statistically significant, R²=0.059)
+- `Q3-_full_merged_V1_analysis.ipynb`: Analyzed 120 specific addresses, confirmed prices don't significantly affect applicants after controlling for income
+- `Q3-_applicant_vs_price_analysis-2-.ipynb`: 47-town analysis + race patterns (Hispanics prefer lowest prices, Black applicants highest prices)
+
 
 * Notebooks:
   * `Q3)_full_merged_V1_analysis.ipynb`: performs price sensitivity modeling and regression analysis and also explores racial patterns in price sensitivity
