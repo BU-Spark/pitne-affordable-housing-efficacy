@@ -34,6 +34,7 @@ Date: Nov 9, 2025
 * Visualizing:
     * `./Ngo_q1_viz.ipynb`
     * `./Ngo_q2_viz.ipynb`
+    * `./q1_viz_2021-2025.ipynb`: Applicant movement analysis and demographics
 
 ### Repeat Applicant Analysis (2021-25)
 #### Focus:
