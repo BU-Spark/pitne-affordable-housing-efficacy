@@ -9,7 +9,7 @@
    4. Checked for discrepancies between the New and Old datasets, and saved a CSV file of the new Sept 2025 entries that weren't present in the Old dataset. *Ref: DisparityCheckResale.ipynb.*  
    5. Merged these new entries into the Old cleaned dataset. *Ref: Merge_Resale_Data.ipynb.*  
 * Notebooks:
-   * Aastha_EDA_resale.ipynb
+   * fa25-team-a/eda/Q3)_EDA_price_and_resale.ipynb
 
 ### Chapter 40B Applicant datasets
 #### 2021-23
