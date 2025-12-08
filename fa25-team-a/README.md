@@ -102,10 +102,25 @@ pip install -r requirements.txt
 
 # Data locations
 
-In this section, you should include the location of all of your datasets for the project (if applicable)
-
+Since all of CHAPA's datasets are confidential, below are the attached links to the datasets in the administered access Google Drive.
 <a href="dataset-documentation">Dataset Documentation</a>
-* Location 1: [location]
+**Raw Datasets provided by CHAPA**
+*Applicant datasets*
+* CHAPA Chapter 40B Application Data_June 2021 to Sept 2023 - Confidential: [https://docs.google.com/spreadsheets/d/1Bw4DPZ3kvTztUVNY0bQYtYYokJag1XPP/edit?usp=drive_link&ouid=103584276599024109029&rtpof=true&sd=true]
   - [description]
-* Location 2: [location]
+* CHAPA Chapter 40B Application Data_Oct 2023 to May 2025 - Confidential: [https://docs.google.com/spreadsheets/d/1T4fxMvTW0WccmcGBFzH7aLcR0UmW-AAA/edit?usp=drive_link&ouid=103584276599024109029&rtpof=true&sd=true]
   - [description]
+*  TOUCHABLE CHAPA Chapter 40B Application Data 2021-2023 & 10_2023-05_2025: [https://docs.google.com/spreadsheets/d/1aOj-mwxEqZFxyOyb-hZ_h4PSL7t55A1B/edit?usp=drive_link&ouid=103584276599024109029&rtpof=true&sd=true]
+
+*Resale Transaction datasets*
+*  Resale Transaction Info - Confidential_updated Sept 2025: [https://docs.google.com/spreadsheets/d/1ItkgY49Q_fLOoE0XaJxGXQWfq4kcMFqI/edit?usp=drive_link&ouid=103584276599024109029&rtpof=true&sd=true]
+*  TOUCHABLE Resale Transaction Info - Confidential: [https://docs.google.com/spreadsheets/d/1cRnPBugd7m2TfGDZM21ivKTvFtITztui/edit?usp=sharing&ouid=103584276599024109029&rtpof=true&sd=true]
+
+*Price datasets*
+* Resale Values_Jun 2021 to Sept 2023: [https://docs.google.com/spreadsheets/d/1gTz3Wg2clVd1Jvw1bTLYa4tanln-FFNs/edit?usp=drive_link&ouid=103584276599024109029&rtpof=true&sd=true]
+* Resale Values_Oct 2023 to May 2025: [https://docs.google.com/spreadsheets/d/1Gq_dIYjOjTSYqudI4lqf_mySzj5rOlai/edit?usp=drive_link&ouid=103584276599024109029&rtpof=true&sd=true]
+* Resale Values_May 2025 to Sept 2025: [https://docs.google.com/spreadsheets/d/12pygwRwYZ0UKmwyFsNRAOHIgz-H8yrTY/edit?usp=drive_link&ouid=103584276599024109029&rtpof=true&sd=true]
+* Property_Data_Jun2021_Sep2025_MissingResaleValues_Completed: [https://drive.google.com/file/d/18OpLHK7w0rI9agJQ25twMncOaTXhNjwg/view?usp=drive_link]
+
+ 
+ 
