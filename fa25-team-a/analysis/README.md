@@ -72,6 +72,7 @@
 
 #### Notebook:
 * `./q4_repeat_applicants.ipynb`
+* `./q4_repeat_demographics.ipynb`
 
 
 ### Resale & Prices Data (2021-25)
