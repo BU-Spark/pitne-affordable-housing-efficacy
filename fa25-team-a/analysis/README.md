@@ -60,7 +60,7 @@
 #### Notebooks:
 * `./q2_property_restrictions.ipynb`
 * `./q2_property_demand.ipynb`
-* `./q2_property_demand.ipynb`
+* `./q2_portfolio_effects.ipynb`
 
 
 ### Q4 - Repeat vs. Non-repeat Applicant Analysis
