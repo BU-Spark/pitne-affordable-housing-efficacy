@@ -24,7 +24,7 @@ DS 701 at Boston University
 ***Dataset Information***
 
 * What data sets did you use in your project? Please provide a link to the data sets, this could be a link to a folder in your GitHub Repo, Spark\! owned Google Drive Folder for this project, or a path on the SCC, etc.
-[Link](https://drive.google.com/drive/u/1/folders/1nlVp39HIudp6QNPv4IvXQCVbhfo7djES) <br>
+[Link](https://drive.google.com/drive/u/1/folders/1nlVp39HIudp6QNPv4IvXQCVbhfo7djES),
 [Link](https://drive.google.com/drive/u/1/folders/1iiFpNSMI6VF4kaUujSlOxAJbUot3NVbI)
 * Please provide a link to any data dictionaries for the datasets in this project. If one does not exist, please create a data dictionary for the datasets used in this project. **(Example of data dictionary)**   
 * What keywords or tags would you attach to the data set?  
@@ -38,8 +38,12 @@ DS 701 at Boston University
 The dataset was created to give CHAPA a clearer understanding of how people interact with the affordable housing system in Massachusetts. By bringing together information on applicant demographics, property characteristics, locations, prices, and application behavior, it fills an important gap in understanding who applies for affordable housing, how far they are willing to move, and what factors shape their choices. The primary purpose was to analyze patterns such as movement distance, demographic differences, the influence of CHAPA’s limited property portfolio, the role of pricing, and how repeat applicants behave compared to one-time applicants. Overall, the dataset was built to support more informed decisions about housing access, equity, and resource planning. <br>
 *Composition*
 
-* What do the instances that comprise the dataset represent (e.g., documents, photos, people, countries)? Are there multiple types of instances (e.g., movies, users, and ratings; people and interactions between them; nodes and edges)? What is the format of the instances (e.g., image data, text data, tabular data, audio data, video data, time series, graph data, geospatial data, multimodal (please specify), etc.)? Please provide a description.   
-* How many instances are there in total (of each type, if appropriate)?  
+* What do the instances that comprise the dataset represent (e.g., documents, photos, people, countries)? Are there multiple types of instances (e.g., movies, users, and ratings; people and interactions between them; nodes and edges)? What is the format of the instances (e.g., image data, text data, tabular data, audio data, video data, time series, graph data, geospatial data, multimodal (please specify), etc.)? Please provide a description.
+
+The instances in this dataset represent individual affordable housing applications submitted to CHAPA. Each row corresponds to a single application and includes information about the applicant (such as age, race, household size, income group), the property they applied to (location, price, unit type), and the applicant’s geographic origin (current address). All datasets were shared as spreadsheets but each instance links applicant characteristics, and property attributes.
+* How many instances are there in total (of each type, if appropriate)?
+  
+The final merged and cleaned dataset we used has 1619 instances in total (2023-2025 data).
 * Does the dataset contain all possible instances or is it a sample (not necessarily random) of instances from a larger set? If the dataset is a sample, then what is the larger set? Is the sample representative of the larger set? If so, please describe how this representativeness was validated/verified. If it is not representative of the larger set, please describe why not (e.g., to cover a more diverse range of instances, because instances were withheld or unavailable).  
 * What data does each instance consist of? “Raw” data (e.g., unprocessed text or images) or features? In either case, please provide a description.   
 * Is there any information missing from individual instances? If so, please provide a description, explaining why this information is missing (e.g., because it was unavailable). This does not include intentionally removed information, but might include redacted text.   
