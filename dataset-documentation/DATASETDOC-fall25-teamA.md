@@ -45,7 +45,7 @@ The dataset was created to give CHAPA a clearer understanding of how people inte
 The instances in this dataset represent individual affordable housing applications submitted to CHAPA. Each row corresponds to a single application and includes information about the applicant (such as age, race, household size, income group), the property they applied to (location, price, unit type), and the applicant’s geographic origin (current address). All datasets were shared as spreadsheets but each instance links applicant characteristics, and property attributes.
 * How many instances are there in total (of each type, if appropriate)?
   
-The final merged and cleaned dataset we used has 1619 instances for the 2023-2025 data.
+The final merged and cleaned dataset we used has 1623 instances.
 * Does the dataset contain all possible instances or is it a sample (not necessarily random) of instances from a larger set? If the dataset is a sample, then what is the larger set? Is the sample representative of the larger set? If so, please describe how this representativeness was validated/verified. If it is not representative of the larger set, please describe why not (e.g., to cover a more diverse range of instances, because instances were withheld or unavailable).
 
 The dataset represents a sample of all affordable housing applications submitted across Massachusetts, specifically limited to the properties managed or administered by CHAPA. It is not a complete census of all affordable housing applications statewide, because it only includes applications from CHAPA’s portfolio.
@@ -77,16 +77,11 @@ No, the dataset does not contain data that, if viewed directly, might be offensi
 
 Since the dataset includes personally identifiable information about applicants, it is possible to indirectly identify individuals from the dataset. 
 * Dataset Snapshot, if there are multiple datasets please include multiple tables for each dataset. 
-
-
+ 
 | Size of dataset |  |
 | :---- | :---- |
-| Number of instances |  |
-| Number of fields  |  |
-| Labeled classes |  |
-| Number of labels  |  |
-
-
+| Number of instances | 1623 |
+| Number of fields  | 63 |
   
 *Collection Process*
 
