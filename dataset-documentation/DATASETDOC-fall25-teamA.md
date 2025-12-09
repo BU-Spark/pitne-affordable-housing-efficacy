@@ -64,10 +64,18 @@ The dataset contains some sources of noise and potential redundancies. Because t
 * Is the dataset self-contained, or does it link to or otherwise rely on external resources (e.g., websites, tweets, other datasets)? If it links to or relies on external resources,   
   * Are there guarantees that they will exist, and remain constant, over time;  
   * Are there official archival versions of the complete dataset (i.e., including the external resources as they existed at the time the dataset was created)?  
-  * Are there any restrictions (e.g., licenses, fees) associated with any of the external resources that might apply to a dataset consumer? Please provide descriptions of all external resources and any restrictions associated with them, as well as links or other access points as appropriate.   
-* Does the dataset contain data that might be considered confidential (e.g., data that is protected by legal privilege or by doctor-patient confidentiality, data that includes the content of individuals’ non-public communications)? If so, please provide a description.   
-* Does the dataset contain data that, if viewed directly, might be offensive, insulting, threatening, or might otherwise cause anxiety? If so, please describe why.   
-* Is it possible to identify individuals (i.e., one or more natural persons), either directly or indirectly (i.e., in combination with other data) from the dataset? If so, please describe how.   
+  * Are there any restrictions (e.g., licenses, fees) associated with any of the external resources that might apply to a dataset consumer? Please provide descriptions of all external resources and any restrictions associated with them, as well as links or other access points as appropriate.
+
+The dataset is self-contained. All information needed for analysis, including applicant demographics, property attributes, pricing, and calculated features such as distances and geocoded coordinates, is included within the dataset itself. It does not link to or rely on external resources such as websites, APIs, or other datasets. There are no dependencies on external data, so there are no guarantees, archival considerations, or restrictions associated with external resources that a dataset consumer would need to consider. All analyses can be performed using the provided data without accessing any outside sources.
+* Does the dataset contain data that might be considered confidential (e.g., data that is protected by legal privilege or by doctor-patient confidentiality, data that includes the content of individuals’ non-public communications)? If so, please provide a description.
+
+The dataset contains confidential and personally identifiable information about applicants, including age, race, household size, income, and current residential address. These details are protected under privacy considerations and cannot be publicly disclosed in a way that would identify individuals.
+* Does the dataset contain data that, if viewed directly, might be offensive, insulting, threatening, or might otherwise cause anxiety? If so, please describe why.
+
+No, the dataset does not contain data that, if viewed directly, might be offensive, insulting, threatening, or might otherwise cause anxiety. 
+* Is it possible to identify individuals (i.e., one or more natural persons), either directly or indirectly (i.e., in combination with other data) from the dataset? If so, please describe how.
+
+Since the dataset includes personally identifiable information about applicants, it is possible to indirectly identify individuals from the dataset. 
 * Dataset Snapshot, if there are multiple datasets please include multiple tables for each dataset. 
 
 
