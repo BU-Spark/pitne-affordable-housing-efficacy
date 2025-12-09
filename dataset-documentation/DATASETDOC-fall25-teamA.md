@@ -8,7 +8,9 @@ CHAPA Affordable Housing - Team A
 [Link](https://github.com/BU-Spark/pitne-affordable-housing-efficacy.git)  
 * What is the link to your project’s Google Drive folder? \*\**This should be a Spark\! Owned Google Drive folder \- please contact your PM if you do not have access\*\**
 [Link](https://drive.google.com/drive/u/1/folders/1p01teV8XJz43jc-hNAiNo4L22ePyiaex)
-* In your own words, what is this project about? What is the goal of this project?   
+* In your own words, what is this project about? What is the goal of this project?
+
+This project analyzes housing application patterns for the Citizens’ Housing and Planning Association (CHAPA), a nonprofit focused on expanding access to affordable housing across Massachusetts. The work uses applicant-level data to understand who applies, where they apply from, and what factors influence their application choices. Overall, the project aims to provide insight into access, equity, and demand in the affordable housing market, helping CHAPA make more informed decisions about property locations, outreach, and policy interventions.
 * Who is the client for the project?
 
 David Gasser and Josh Vogel
@@ -17,8 +19,8 @@ David Gasser and Josh Vogel
 David Gasser: dgasser@chapa.org <br>
 Josh Vogel: jvogel@chapa.org
 * What class was this project part of?
+  
 DS 701 at Boston University
-
 ***Dataset Information***
 
 * What data sets did you use in your project? Please provide a link to the data sets, this could be a link to a folder in your GitHub Repo, Spark\! owned Google Drive Folder for this project, or a path on the SCC, etc.  
