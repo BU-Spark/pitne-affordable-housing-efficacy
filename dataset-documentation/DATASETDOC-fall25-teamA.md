@@ -2,7 +2,7 @@
 
 * What is the project name?
 
-CHAPA Affordable Housing - Team A
+ CHAPA Affordable Housing - Team A
 
 * What is the link to your project’s GitHub repository?
 [Link](https://github.com/BU-Spark/pitne-affordable-housing-efficacy.git)  
@@ -11,12 +11,12 @@ CHAPA Affordable Housing - Team A
 * In your own words, what is this project about? What is the goal of this project?   
 * Who is the client for the project?
 
-David Gasser and Josh Vogel
+ David Gasser and Josh Vogel
 * Who are the client contacts for the project?
 
- 
+
 * What class was this project part of?
-DS 701 at Boston University
+ DS 701 at Boston University
 
 ***Dataset Information***
 
