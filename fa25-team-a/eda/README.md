@@ -47,6 +47,19 @@
    * `EDA_Chapter-40B_applicant_2023-25_viz.ipynb`
       * Complete cleaning and initial visualization of 2023–25 CHAPA applicant data (focus: income, race, submission trends, and next-step recommendations)
 
+#### 2021-25
+* Notebooks:
+   * `EDA_Chapter-40B_2021-25.ipynb`
+      * Merge 2021-23 and 2023-25 applicant datasets
+      * Clean and standardize columns
+   * `EDA_applicant_geocode.ipynb`
+      * Geocode the ZIP code, longitude, and latitude for current residence town/city
+      * Extract the ZIP code from matched-addresss properties
+      * Geocode longitude and latitude for properties
+      * Calculate distance from current residence to property
+      * Categorize applicants into local vs. distance (after a log transformation)
+
+
 ## Requirements
 * requirements.txt
    * `pip install -r fa25-team-a/requirements.txt` before running the Jupyter Notebook files
