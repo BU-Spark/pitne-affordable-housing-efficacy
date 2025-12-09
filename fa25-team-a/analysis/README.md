@@ -6,8 +6,9 @@ Date: Nov 9, 2025
 1. **Movement and Distance Analysis**
     * a. How far from their current homes, do applicants apply for these affordable homeownership opportunities?
     * b. How does the applicant geographic range compare between different demographic groups? (e.g., race, household type, age, marketing source, etc.). Are local applicant demographics similar or different from more distant applicants?
-2. **Portfolio Effects**: To what extent are the applicant demographics driven by CHAPA’s limited property pool (suburban, age-restricted homes) versus applicant choice?
+2. **Portfolio Effects**: To what extent are the applicant demographics driven by CHAPA's limited property pool (suburban, age-restricted homes) versus applicant choice?
 3. **Price**: Does the price of the affordable home affect applicant quantity and demographics, controlling for income limits?
+4. **Repeat vs. Single Applicants**: What differentiates repeat applicants (multiple submissions) from one-time applicants in terms of demographics, geographic search patterns, and housing preferences?
 
 
 ## Work Completed
@@ -33,6 +34,16 @@ Date: Nov 9, 2025
 * Visualizing:
     * `./Ngo_q1_viz.ipynb`
     * `./Ngo_q2_viz.ipynb`
+    * `./q1_viz_2021-2025.ipynb`: Applicant movement analysis and demographics
+
+### Repeat Applicant Analysis (2021-25)
+#### Focus:
+* Compare demographic characteristics (age, income, race/ethnicity, assets) between repeat and single applicants
+* Analyze geographic search behavior: distance between properties, county/town clustering patterns
+* Map spatial distribution of repeat applicants across Massachusetts counties
+* Visualize property similarity and movement patterns for multi-time applicants
+#### Notebook:
+* `./Additional_q_1.ipynb`
 
 ### Resale & Prices Data (2021-25)
 #### Data Sources:
@@ -136,13 +147,18 @@ The **new workflow** integrates supplementary price data **before merging with r
     * *Applicant Race/Ethnicity Proportions by Property Restriction* - shows how CHAPA’s property restrictions shape the applicant pool.
     * *Local vs. Non-Local Applicants* - count of how many applicants live in the same town where they apply.  
   * **Demographic Extension:** Expanded analysis to assess race and income diversity across property price levels.
+ **My Price-Applicant Analysis (Q3):**
+- `Q3-price_applicants_income_analysis.ipynb`: Merged resale + CHAPA data (1,265 properties), found prices slightly increase applicants (statistically significant, R²=0.059). This was performed on data file with missing price values, which were given by the client later.
+- `Q3-_full_merged_V1_analysis.ipynb`: Analyzed 120 specific addresses, confirmed prices don't significantly affect applicants after controlling for income
+- `Q3-_applicant_vs_price_analysis-2-.ipynb`: 47-town analysis + race patterns (Hispanics prefer lowest prices, Black applicants highest prices)
+
 
 * Notebooks:
   * `Q3)_full_merged_V1_analysis.ipynb`: performs price sensitivity modeling and regression analysis and also explores racial patterns in price sensitivity
   * `Q3)_applicant_vs_price_analysis.ipynb`: explores demographic patterns in price sensitivity
   * `Ria_Q3_visualizations.ipynb`: effect of price on demographics (including age, household size, number of dependents)
   * `./q2_viz_2_2021-23.ipynb`: repeat vs. all applicant demographics 
-  * `./q1_viz_1_2021-23.ipynb`: applicant demographics by property town
+  * `./q2_viz_1_2021-23.ipynb`: applicant demographics by property town
   * `./q2_viz_2021-2025.ipynb`: analyzing applicant demographics by CHAPA's property pool
 
 
@@ -196,6 +212,19 @@ This indicates that **factors like location, property type, and accessibility** 
 *Applicant racial groups show distinct price-range preferences.
 * Lower-priced units disproportionately attract Hispanic/Latino applicants, while higher-priced units see more Black applicants.
 * These differences remain after statistical testing, suggesting meaningful variation in affordability preferences or constraints across groups.
+
+### 4. Repeat vs. Single Applicants
+* **Age as Primary Differentiator**: Repeat applicants skew significantly older (peak ages 60-70) compared to single applicants. Income, assets, and race show minimal differences between groups, indicating age and life stage drive repeat behavior more than economic factors.
+* **Hyper-Local Geographic Attachment**:
+  * ~75%+ of repeat applicants apply within a **single county**
+  * Most target **1-2 towns** with property distances of **0-20 km**, demonstrating neighborhood-level preferences
+  * Strong geographic clustering contradicts assumptions that housing seekers apply broadly statewide
+* **Eastern MA Demand Concentration**: Repeat applicants disproportionately cluster in Greater Boston counties (Suffolk, Middlesex, Essex, Norfolk) where housing costs are highest and competition for affordable units is most intense.
+* **Strategic vs. Broad Search**: Distance analysis reveals a heavily right-skewed distribution—applicants maintain localized searches driven by employment/family ties, transportation constraints, and community attachment rather than casting a wide net.
+* **Policy Implications**:
+  * Expand affordable housing supply in high-demand Eastern MA counties where repeat rates peak
+  * Prioritize **age-restricted/senior housing developments** to address older applicants' persistent housing instability
+  * Coordinate regional housing authorities to share vacancy information across adjacent towns and reduce redundant applications
 
 
 

@@ -3,14 +3,14 @@
   <br>
   <a href="https://www.bu.edu/spark/" target="_blank"><img src="https://www.bu.edu/spark/files/2023/08/logo.png" alt="BUSpark" width="200"></a>
   <br>
-  Project README Template <change to project name>
+  Citizens’ Housing and Planning Association (CHAPA) – Affordable Housing Applications - Team A
   <br>
 </h1>
 
-<h4 align="center">A template for the project readme file. </h4> <change to repo short description>
+<h4 align="center">An overview of the repository and its components
 
 <p align="center">
-  <a href="#key-features">Key Components</a> •
+  <a href="#key-components">Key Components</a> •
   <a href="#how-to-use">How To Use</a> •
   <a href="#project-description">Project Description</a> •
   <a href="#data-locations">Data Locations</a>
@@ -102,10 +102,26 @@ pip install -r requirements.txt
 
 # Data locations
 
-In this section, you should include the location of all of your datasets for the project (if applicable)
-
+Since all of CHAPA's datasets are confidential, below are the attached links to the datasets in the administered access Google Drive.
 <a href="dataset-documentation">Dataset Documentation</a>
-* Location 1: [location]
-  - [description]
-* Location 2: [location]
-  - [description]
+## Raw Datasets provided by CHAPA
+**Applicant datasets**
+* CHAPA Chapter 40B Application Data_June 2021 to Sept 2023 - Confidential: [https://docs.google.com/spreadsheets/d/1Bw4DPZ3kvTztUVNY0bQYtYYokJag1XPP/edit?usp=drive_link&ouid=103584276599024109029&rtpof=true&sd=true]
+* CHAPA Chapter 40B Application Data_Oct 2023 to May 2025 - Confidential: [https://docs.google.com/spreadsheets/d/1T4fxMvTW0WccmcGBFzH7aLcR0UmW-AAA/edit?usp=drive_link&ouid=103584276599024109029&rtpof=true&sd=true]
+*  TOUCHABLE CHAPA Chapter 40B Application Data 2021-2023 & 10_2023-05_2025: [https://docs.google.com/spreadsheets/d/1aOj-mwxEqZFxyOyb-hZ_h4PSL7t55A1B/edit?usp=drive_link&ouid=103584276599024109029&rtpof=true&sd=true]
+
+**Resale Transaction datasets**
+*  Resale Transaction Info - Confidential_updated Sept 2025: [https://docs.google.com/spreadsheets/d/1ItkgY49Q_fLOoE0XaJxGXQWfq4kcMFqI/edit?usp=drive_link&ouid=103584276599024109029&rtpof=true&sd=true]
+     - Contains transactions updated September 2025
+*  TOUCHABLE Resale Transaction Info - Confidential: [https://docs.google.com/spreadsheets/d/1cRnPBugd7m2TfGDZM21ivKTvFtITztui/edit?usp=sharing&ouid=103584276599024109029&rtpof=true&sd=true]
+     - PITNE Summer 2025 Team's cleaned transaction data (not updated with September 2025 transactions)
+
+**Price datasets**
+* Resale Values_Jun 2021 to Sept 2023: [https://docs.google.com/spreadsheets/d/1gTz3Wg2clVd1Jvw1bTLYa4tanln-FFNs/edit?usp=drive_link&ouid=103584276599024109029&rtpof=true&sd=true]
+* Resale Values_Oct 2023 to May 2025: [https://docs.google.com/spreadsheets/d/1Gq_dIYjOjTSYqudI4lqf_mySzj5rOlai/edit?usp=drive_link&ouid=103584276599024109029&rtpof=true&sd=true]
+* Resale Values_May 2025 to Sept 2025: [https://docs.google.com/spreadsheets/d/12pygwRwYZ0UKmwyFsNRAOHIgz-H8yrTY/edit?usp=drive_link&ouid=103584276599024109029&rtpof=true&sd=true]
+* Property_Data_Jun2021_Sep2025_MissingResaleValues_Completed: [https://drive.google.com/file/d/18OpLHK7w0rI9agJQ25twMncOaTXhNjwg/view?usp=drive_link]
+    - Dataset supplied by CHAPA after missing price values were identified during our exploratory data analysis (EDA).
+
+ 
+ 
