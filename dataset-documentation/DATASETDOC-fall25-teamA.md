@@ -112,10 +112,18 @@ The code used for preprocessing and cleaning, including merging files, standardi
 
 *Uses* 
 
-* What tasks has the dataset been used for so far? Please provide a description.   
-* What (other) tasks could the dataset be used for?  
-* Is there anything about the composition of the dataset or the way it was collected and preprocessed/cleaned/labeled that might impact future uses?   
+* What tasks has the dataset been used for so far? Please provide a description.
+
+* The dataset has been used for several descriptive and exploratory analyses. This includes movement and distance analysis, examining how far applicants apply from their current residence and whether this varies by race, age, or household characteristics. It has also been used to study portfolio effects, investigating the extent to which applicant demographics are influenced by the limited number of CHAPA properties versus applicant choice. Analyses of price effects have examined how the maximum resale price of affordable homes affects the number of applicants and their demographics while controlling for income limits. Finally, repeat versus non-repeat applicant analyses explored differences in demographics between applicants who apply multiple times versus one-time applicants, as well as whether they apply to similar or nearby properties.
+* What (other) tasks could the dataset be used for?
+
+The dataset could be used for predictive modeling, such as forecasting applicant demand for specific properties or identifying factors associated with repeat applications. It could also support policy analysis, including evaluating equity in access to affordable housing across demographic groups or analyzing trends in property pricing and resale data.
+* Is there anything about the composition of the dataset or the way it was collected and preprocessed/cleaned/labeled that might impact future uses?
+
+Derived features and cleaned fields, such as distances, race categories, and geocoded coordinates, reflect preprocessing decisions that could affect analyses that require alternative representations.
 * Are there tasks for which the dataset should not be used? If so, please provide a description.
+
+The dataset should not be used to publicly identify individuals, as it contains personally identifiable information. <br>
 
 *Distribution*
 
