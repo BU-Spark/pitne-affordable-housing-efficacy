@@ -8,7 +8,7 @@ Date: Nov 9, 2025
     * b. How does the applicant geographic range compare between different demographic groups? (e.g., race, household type, age, marketing source, etc.). Are local applicant demographics similar or different from more distant applicants?
 2. **Portfolio Effects**: To what extent are the applicant demographics driven by CHAPA's limited property pool (suburban, age-restricted homes) versus applicant choice?
 3. **Price**: Does the price of the affordable home affect applicant quantity and demographics, controlling for income limits?
-4. **Repeat vs. Single Applicants**: What differentiates repeat applicants (multiple submissions) from one-time applicants in terms of demographics, geographic search patterns, and housing preferences?
+4. **Repeat vs. Non-repeat Applicants**: What differentiates repeat applicants (multiple submissions) from one-time applicants in terms of demographics, geographic search patterns, and housing preferences?
 
 
 ## Work Completed
@@ -26,11 +26,10 @@ Date: Nov 9, 2025
 #### Notebooks:
 * Merging and cleaning:
     * US cities dataset to clean: `../data/us-cities.txt`
-    * `../eda/Ngo_Chapter-40B_merged.ipynb`
-    * `../eda/Rohan_EDA_RaceCleaning_2021_25.ipynb`
+    * `../eda/EDA_Chapter-40B_2021-25.ipynb`
 * Populating geographical info columns:
     * MA county and city dataset: https://www.mass.gov/doc/metrolstpdf/download
-    * `./Jihyeon_Chapter-40B_zip_long_lat.ipynb`
+    * `../eda/EDA_applicant_geocode.ipynb`
 * Visualizing:
     * `./Ngo_q1_viz.ipynb`
     * `./Ngo_q2_viz.ipynb`
@@ -152,7 +151,6 @@ The **new workflow** integrates supplementary price data **before merging with r
 - `Q3-_full_merged_V1_analysis.ipynb`: Analyzed 120 specific addresses, confirmed prices don't significantly affect applicants after controlling for income
 - `Q3-_applicant_vs_price_analysis-2-.ipynb`: 47-town analysis + race patterns (Hispanics prefer lowest prices, Black applicants highest prices)
 
-
 * Notebooks:
   * `Q3)_full_merged_V1_analysis.ipynb`: performs price sensitivity modeling and regression analysis and also explores racial patterns in price sensitivity
   * `Q3)_applicant_vs_price_analysis.ipynb`: explores demographic patterns in price sensitivity
@@ -225,7 +223,6 @@ This indicates that **factors like location, property type, and accessibility** 
   * Expand affordable housing supply in high-demand Eastern MA counties where repeat rates peak
   * Prioritize **age-restricted/senior housing developments** to address older applicants' persistent housing instability
   * Coordinate regional housing authorities to share vacancy information across adjacent towns and reduce redundant applications
-
 
 
 ## Notebook Requirements
