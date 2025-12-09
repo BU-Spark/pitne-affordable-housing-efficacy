@@ -24,7 +24,8 @@ DS 701 at Boston University
 ***Dataset Information***
 
 * What data sets did you use in your project? Please provide a link to the data sets, this could be a link to a folder in your GitHub Repo, Spark\! owned Google Drive Folder for this project, or a path on the SCC, etc.
-[Link](https://drive.google.com/drive/u/1/folders/1nlVp39HIudp6QNPv4IvXQCVbhfo7djES) 
+[Link](https://drive.google.com/drive/u/1/folders/1nlVp39HIudp6QNPv4IvXQCVbhfo7djES) <br>
+[Link](https://drive.google.com/drive/u/1/folders/1iiFpNSMI6VF4kaUujSlOxAJbUot3NVbI)
 * Please provide a link to any data dictionaries for the datasets in this project. If one does not exist, please create a data dictionary for the datasets used in this project. **(Example of data dictionary)**   
 * What keywords or tags would you attach to the data set?  
   * Domain(s) of Application: Affordable Housing, Housing Applications, Applicant Demographics, Distance to Property, Housing Prices, Portfolio Effects 
@@ -34,7 +35,7 @@ DS 701 at Boston University
 
 * For what purpose was the dataset created? Was there a specific task in mind? Was there a specific gap that needed to be filled? Please provide a description. 
 
-The dataset was created to give CHAPA a clearer understanding of how people interact with the affordable housing system in Massachusetts. By bringing together information on applicant demographics, property characteristics, locations, prices, and application behavior, it fills an important gap in understanding who applies for affordable housing, how far they are willing to move, and what factors shape their choices. The primary purpose was to analyze patterns such as movement distance, demographic differences, the influence of CHAPA’s limited property portfolio, the role of pricing, and how repeat applicants behave compared to one-time applicants. Overall, the dataset was built to support more informed decisions about housing access, equity, and resource planning.
+The dataset was created to give CHAPA a clearer understanding of how people interact with the affordable housing system in Massachusetts. By bringing together information on applicant demographics, property characteristics, locations, prices, and application behavior, it fills an important gap in understanding who applies for affordable housing, how far they are willing to move, and what factors shape their choices. The primary purpose was to analyze patterns such as movement distance, demographic differences, the influence of CHAPA’s limited property portfolio, the role of pricing, and how repeat applicants behave compared to one-time applicants. Overall, the dataset was built to support more informed decisions about housing access, equity, and resource planning. <br>
 *Composition*
 
 * What do the instances that comprise the dataset represent (e.g., documents, photos, people, countries)? Are there multiple types of instances (e.g., movies, users, and ratings; people and interactions between them; nodes and edges)? What is the format of the instances (e.g., image data, text data, tabular data, audio data, video data, time series, graph data, geospatial data, multimodal (please specify), etc.)? Please provide a description.   
