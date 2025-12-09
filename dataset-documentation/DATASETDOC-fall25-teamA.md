@@ -20,7 +20,7 @@ David Gasser: dgasser@chapa.org <br>
 Josh Vogel: jvogel@chapa.org
 * What class was this project part of?
   
-DS 701 at Boston University
+DS 701 at Boston University <br>
 ***Dataset Information***
 
 * What data sets did you use in your project? Please provide a link to the data sets, this could be a link to a folder in your GitHub Repo, Spark\! owned Google Drive Folder for this project, or a path on the SCC, etc.
