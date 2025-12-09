@@ -27,7 +27,9 @@ DS701  <br>
 * What data sets did you use in your project? Please provide a link to the data sets, this could be a link to a folder in your GitHub Repo, Spark\! owned Google Drive Folder for this project, or a path on the SCC, etc.
 [Link](https://drive.google.com/drive/u/1/folders/1nlVp39HIudp6QNPv4IvXQCVbhfo7djES),
 [Link](https://drive.google.com/drive/u/1/folders/1iiFpNSMI6VF4kaUujSlOxAJbUot3NVbI)
-* Please provide a link to any data dictionaries for the datasets in this project. If one does not exist, please create a data dictionary for the datasets used in this project. **(Example of data dictionary)**   
+* Please provide a link to any data dictionaries for the datasets in this project. If one does not exist, please create a data dictionary for the datasets used in this project. **(Example of data dictionary)**
+
+[Link](https://docs.google.com/document/d/11X0lnHchmluo3QoGkTZOfvRwK4fZqhJ4URn9MbBIkuw/edit?tab=t.0)
 * What keywords or tags would you attach to the data set?  
   * Domain(s) of Application: Affordable Housing, Housing Applications, Applicant Demographics, Distance to Property, Housing Prices, Portfolio Effects 
 
