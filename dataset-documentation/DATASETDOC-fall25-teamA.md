@@ -20,7 +20,7 @@ David Gasser: dgasser@chapa.org <br>
 Josh Vogel: jvogel@chapa.org
 * What class was this project part of?
   
-DS 701 at Boston University <br>
+DS701  <br>
 
 ***Dataset Information***
 
@@ -85,10 +85,15 @@ Since the dataset includes personally identifiable information about applicants,
   
 *Collection Process*
 
-* What mechanisms or procedures were used to collect the data (e.g., API, artificially generated, crowdsourced \- paid, crowdsourced \- volunteer, scraped or crawled, survey, forms, or polls, taken from other existing datasets, provided by the client, etc)? How were these mechanisms or procedures validated?  
-* If the dataset is a sample from a larger set, what was the sampling strategy (e.g., deterministic, probabilistic with specific sampling probabilities)?  
-* Over what timeframe was the data collected? Does this timeframe match the creation timeframe of the data associated with the instances (e.g., recent crawl of old news articles)? If not, please describe the timeframe in which the data associated with the instances was created. 
+* What mechanisms or procedures were used to collect the data (e.g., API, artificially generated, crowdsourced \- paid, crowdsourced \- volunteer, scraped or crawled, survey, forms, or polls, taken from other existing datasets, provided by the client, etc)? How were these mechanisms or procedures validated?
 
+The data was provided by the client. 
+* If the dataset is a sample from a larger set, what was the sampling strategy (e.g., deterministic, probabilistic with specific sampling probabilities)?
+
+The dataset represents a sample of CHAPA applications, including all applications received for the properties in the dataset from 2021-2025. The sampling was deterministic, meaning every submitted application for included properties was recorded.
+* Over what timeframe was the data collected? Does this timeframe match the creation timeframe of the data associated with the instances (e.g., recent crawl of old news articles)? If not, please describe the timeframe in which the data associated with the instances was created.
+ 
+Data was collected from 2021-2025. The data corresponds to the dates of application submissions and property transactions, so the timeframe of data collection aligns closely with the creation timeframe of the individual application instances.
 *Preprocessing/cleaning/labeling* 
 
 * Was any preprocessing/cleaning/labeling of the data done (e.g., discretization or bucketing, tokenization, part-of-speech tagging, SIFT feature extraction, removal of instances, processing of missing values)? If so, please provide a description. If not, you may skip the remaining questions in this section.   
