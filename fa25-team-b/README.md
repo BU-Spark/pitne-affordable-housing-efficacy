@@ -121,6 +121,7 @@ A token file will be created:
 fa25-team-b/secrets/token.json
 ```
 This is all you have to do. You never have to rerun this script -- as long as the token is cached, your repository will have access to your google account, and therefore be able to pull the necessary files. This is done using scripts 04_pull_all.py.
+
 ---
 
 ## 📁 5. Data Locations
