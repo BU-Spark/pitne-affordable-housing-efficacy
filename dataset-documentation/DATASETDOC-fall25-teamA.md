@@ -14,8 +14,8 @@ CHAPA Affordable Housing - Team A
 David Gasser and Josh Vogel
 * Who are the client contacts for the project?
 
-David Gasser: [dgasser@chapa.org]
-Josh Vogel: [jvogel@chapa.org]
+David Gasser: dgasser@chapa.org <br>
+Josh Vogel: jvogel@chapa.org
 * What class was this project part of?
 DS 701 at Boston University
 
