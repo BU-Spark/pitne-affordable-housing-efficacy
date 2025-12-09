@@ -123,17 +123,22 @@ The dataset could be used for predictive modeling, such as forecasting applicant
 Derived features and cleaned fields, such as distances, race categories, and geocoded coordinates, reflect preprocessing decisions that could affect analyses that require alternative representations.
 * Are there tasks for which the dataset should not be used? If so, please provide a description.
 
-The dataset should not be used to publicly identify individuals, as it contains personally identifiable information. <br>
+The dataset should not be used to publicly identify individuals, as it contains personally identifiable information. It is also not appropriate for tasks that require a complete or fully representative sample of all affordable housing applicants in Massachusetts, because it only includes CHAPA properties. <br>
 
 *Distribution*
 
 * Based on discussions with the client, what access type should this dataset be given (eg., Internal (Restricted), External Open Access, Other)?
 
+Based on discussions with the client, the dataset should be classified as Internal (Restricted). It contains personally identifiable information, including current addresses, age, and household characteristics, so access should be limited to authorized personnel only. <br>
+
 *Maintenance* 
 
-* If others want to extend/augment/build on/contribute to the dataset, is there a mechanism for them to do so? If so, please provide a description. 
+* If others want to extend/augment/build on/contribute to the dataset, is there a mechanism for them to do so? If so, please provide a description.
+
+At this time, there is no formal mechanism for other users to extend or contribute to the dataset. Updates or augmentations are managed internally by the project team in coordination with the client. Any future contributions or extensions would require approval and careful review to maintain data privacy and consistency. <br>
 
 *Other*
 
 * Is there any other additional information that you would like to provide that has not already been covered in other sections?
 
+It is important to not that the dataset is highly structured and cleaned for analysis, including derived features. It does not represent the full population of affordable housing applicants in Massachusetts, so analyses should take this limitation into account. Users should also follow all privacy and data protection guidelines when working with this dataset.
