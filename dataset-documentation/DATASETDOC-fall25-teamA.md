@@ -9,9 +9,16 @@ CHAPA Affordable Housing - Team A
 * What is the link to your project’s Google Drive folder? \*\**This should be a Spark\! Owned Google Drive folder \- please contact your PM if you do not have access\*\**
 [Link](https://drive.google.com/drive/u/1/folders/1p01teV8XJz43jc-hNAiNo4L22ePyiaex)
 * In your own words, what is this project about? What is the goal of this project?   
-* Who is the client for the project?  
-* Who are the client contacts for the project?  
+* Who is the client for the project?
+
+David Gasser and Josh Vogel
+
+* Who are the client contacts for the project?
+
+ 
 * What class was this project part of?
+  
+DS 701 at Boston University
 
 ***Dataset Information***
 
