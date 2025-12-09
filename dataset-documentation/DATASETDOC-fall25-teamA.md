@@ -36,6 +36,7 @@ DS 701 at Boston University
 * For what purpose was the dataset created? Was there a specific task in mind? Was there a specific gap that needed to be filled? Please provide a description. 
 
 The dataset was created to give CHAPA a clearer understanding of how people interact with the affordable housing system in Massachusetts. By bringing together information on applicant demographics, property characteristics, locations, prices, and application behavior, it fills an important gap in understanding who applies for affordable housing, how far they are willing to move, and what factors shape their choices. The primary purpose was to analyze patterns such as movement distance, demographic differences, the influence of CHAPA’s limited property portfolio, the role of pricing, and how repeat applicants behave compared to one-time applicants. Overall, the dataset was built to support more informed decisions about housing access, equity, and resource planning. <br>
+
 *Composition*
 
 * What do the instances that comprise the dataset represent (e.g., documents, photos, people, countries)? Are there multiple types of instances (e.g., movies, users, and ratings; people and interactions between them; nodes and edges)? What is the format of the instances (e.g., image data, text data, tabular data, audio data, video data, time series, graph data, geospatial data, multimodal (please specify), etc.)? Please provide a description.
