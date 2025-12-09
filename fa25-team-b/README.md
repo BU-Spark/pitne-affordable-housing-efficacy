@@ -57,10 +57,10 @@ Continuing the work of students in the **Summer of 2025**, we are focusing on id
 # CHAPA – Local Data Access
 
 
-This repo uses **Google OAuth (per user)** to read files from the shared Drive folder named **`Dataset`**. Data is downloaded to `data/` (gitignored). Secrets are kept out of Git.
+This repo uses **Google OAuth** to read files from the shared Drive folder named **`Dataset`**. Data is downloaded to `data/` (gitignored). Secrets are kept out of Git.
 
 ---
-## 🚀 How To Use
+## How To Use
 
 This guide explains how to set up the environment, configure Google OAuth,
 place data correctly, and run the full CHAPA Team B processing pipeline.
@@ -93,62 +93,58 @@ pip install -r requirements.txt
 
 ---
 
-## 🔐 4. Google OAuth Setup (Required for Sheets-Based Scripts)
+## 🔐 4. Google OAuth Setup
 
-Some validation scripts connect to Google Sheets (crosswalks, validation tables).
-These require Google OAuth credentials.
+Our data is located in a shared google folder, and is confidential. Since we cannot have our data shared publicly, we are using **Google OAuth** to access data from our drives locally. This works for anyone who has sharing access to the dataset folder, as long as you obtain the necessary JSON from a team member.
 
-### 4.1 Create OAuth Credentials
+### 4.1 Get JSON setup
 
-🟩 Visit: https://console.cloud.google.com  
-🟩 Go to **APIs & Services → Credentials**  
-🟩 Click **Create Credentials → OAuth Client ID**  
-🟩 Choose **Desktop App**  
-🟩 Download the JSON file  
-🟩 Save it to:
+- Get the oauth_client.json file from a team member
+- Save it to:
 
 ```
-fa25-team-b/.credentials/client_secret.json
+fa25-team-b/secrets/client_secret.json
 ```
 
-*(Create the `.credentials/` folder if it does not exist.)*
+*(Create the `secrets/` folder if it does not exist. Folders with this name are gitignored.)*
 
 ---
 
 ### 4.2 First-Time Google Authentication
 
-🟩 Run any script that uses Google Sheets  
-🟩 A browser window will open  
-🟩 Log in with your BU Google account  
-🟩 Approve access  
+- Run script 01_oauth.py
+- A browser window will open  
+- Log in with your BU Google account  
+- Approve access  
 
 A token file will be created:
 
 ```
-fa25-team-b/.credentials/token.json
+fa25-team-b/secrets/token.json
 ```
-
+This is all you have to do. You never have to rerun this script -- as long as the token is cached, your repository will have access to your google account, and therefore be able to pull the necessary files. This is done using scripts 04_pull_all.py.
 ---
 
 ## 📁 5. Data Locations
 
-Raw CHAPA CSV files (confidential):
+Once pulled, the raw CHAPA CSV files will land in the raw folder:
 
 ```
 data/raw/
 ```
+The entire data folder is gitignored, so don't worry about accidentally uploading confidential data.
 
-Outputs created by scripts:
-
+Data cleaning scripts also use these folders:
 ```
 data/processed/
 data/cache/
+data/interim
 ```
+Folders are created if they don't already exist.
 
-Notebooks and visuals:
+Visuals produced by scripts land here:
 
 ```
-notebooks/
 visuals/
 ```
 
@@ -156,8 +152,8 @@ visuals/
 
 ## ⚙️ 6. Run the Data Processing Pipeline
 
-Run all cleaning + property extraction + geocoding scripts from the
-`fa25-team-b` directory.
+To easily run all cleaning + property extraction + geocoding scripts from the
+`fa25-team-b` directory, simply run the script `run_data_pipeline.sh` from the base team B folder.
 
 ---
 
@@ -209,11 +205,7 @@ You can run all the scripts in order if you wish, but the only important ones ar
 
 The CHAPA project relies on **confidential raw datasets** stored in a private
 Google Drive folder. These files are **never committed to GitHub** and are
-pulled locally using OAuth through the scripts in `fa25-team-b/scripts`.
-
-Below is a complete map of where data lives inside the `fa25-team-b` folder.
-
-CHAPA application data is confidential and therefore not available on this public repo. We have worked around this using OAuth; go back to the Local Data Access section for more information. Beyond that, here is a breakdown of what belongs in each folder and what each file does.
+pulled locally using OAuth through the scripts in `fa25-team-b/scripts`; go back to the Local Data Access section for more information. Beyond that, here is a breakdown of what belongs in each folder and what each file does.
 
 <a href="dataset-documentation">Dataset Documentation</a>
 
