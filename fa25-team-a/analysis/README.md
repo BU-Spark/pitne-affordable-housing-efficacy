@@ -1,8 +1,7 @@
-
 # Data Analysis and Visualization
-Date: Nov 9, 2025
 
 ## Project Base Questions
+
 1. **Movement and Distance Analysis**
     * a. How far from their current homes, do applicants apply for these affordable homeownership opportunities?
     * b. How does the applicant geographic range compare between different demographic groups? (e.g., race, household type, age, marketing source, etc.). Are local applicant demographics similar or different from more distant applicants?
@@ -12,7 +11,9 @@ Date: Nov 9, 2025
 
 
 ## Work Completed
+
 ### Applicant Data (2021-25)
+
 #### Pipeline:
 * Merge, clean, and standardize 2021-23 and 2023-25 CHAPA Chapter 40B Applicant datasets
 * Geocode
@@ -22,29 +23,57 @@ Date: Nov 9, 2025
 * Create `current_county` and `property_county` using a Massachussetts county and city list
 * Categorize applications into local (if current residence town and property town are in the same county) vs. distant
 * Merge with Resale and Prices dataset on Property Address, Unit, and Town
-* Analyze and visualize for Base Questions 1 and 2
+
 #### Notebooks:
-* Merging and cleaning:
+* Merge and clean:
     * US cities dataset to clean: `../data/us-cities.txt`
     * `../eda/EDA_Chapter-40B_2021-25.ipynb`
-* Populating geographical info columns:
+* Populate geographical info columns:
     * MA county and city dataset: https://www.mass.gov/doc/metrolstpdf/download
     * `../eda/EDA_applicant_geocode.ipynb`
-* Visualizing:
-    * `./Ngo_q1_viz.ipynb`
-    * `./Ngo_q2_viz.ipynb`
-    * `./q1_viz_2021-2025.ipynb`: Applicant movement analysis and demographics
 
-### Repeat Applicant Analysis (2021-25)
+
+### Q1 - Movement and Distance Analysis
+
+#### Visualizations:
+* *Race Distribution: Repeat vs. All Applicatis*: race distribution between repeat applicants vs. all applicants
+* *Applicant Race/Ethnicity Distribution*: count of each applicant race/ethicity
+* *Unique Applicants and Repeat Applicants by Property Town*: emphasize towns with the most applications for all and repeat applicants
+* *Local vs. Non-Local Applicants*: count of how many applicants live in the same town where they apply
+
+#### Notebooks:
+* `./q1_viz_2021-2025.ipynb`
+* `./q1_analysis_and_viz.ipynb`
+
+
+### Q2 - Portfolio Effects
+
+#### Visualizations:
+* *Race Distrubution by Property Town*: proportion of race distribution by property town
+* *Distribution of Properties by Town*: count of each property available by town
+* *Race/Ethnicity Proportions by Marketing Source*: which marketing source reached which race demographic of applicants
+* *Property Restrictions (e.g., Age-Restricted)*: highlight the amount of applications for each type of property restriction
+* *Applicant Race/Ethnicity Proportions by Property Restriction*: show how CHAPA’s property restrictions shape the applicant pool
+
+
+#### Notebooks:
+* `./q2_viz_2021-2025.ipynb`
+* `./q2_property_demand.ipynb`
+
+
+### Q4 - Repeat vs. Non-repeat Applicant Analysis
 #### Focus:
 * Compare demographic characteristics (age, income, race/ethnicity, assets) between repeat and single applicants
 * Analyze geographic search behavior: distance between properties, county/town clustering patterns
 * Map spatial distribution of repeat applicants across Massachusetts counties
 * Visualize property similarity and movement patterns for multi-time applicants
+
 #### Notebook:
-* `./Additional_q_1.ipynb`
+* `./q4_repeat_applicants.ipynb`
+
 
 ### Resale & Prices Data (2021-25)
+
 #### Data Sources:
 *Datasets provided by **CHAPA** and used in the data pipeline:*
 * Resale Data:
@@ -61,16 +90,16 @@ Date: Nov 9, 2025
 The **original workflow** was actually run to produce datasets for analysis. Steps included:
 
 1. Parsing and Cleaning
-  * Resale Data:
-    * Clean missing values, inconsistent formats, and extraneous text
-    * **Output file:** `ParsedResale_updatedSept2025_New.csv`
-  * Price Data:
-    * Combine June 2021 – September 2025 price files into a single CSV (`PriceMerge_Jun21_Sept25.csv`) using Excel
-    * Parse concatenated `Application Property` column into:
+ * Resale Data:
+  * Clean missing values, inconsistent formats, and extraneous text
+  * **Output file:** `ParsedResale_updatedSept2025_New.csv`
+* Price Data:
+  * Combine June 2021 – September 2025 price files into a single CSV (`PriceMerge_Jun21_Sept25.csv`) using Excel
+  * Parse concatenated `Application Property` column into:
       * **Town**
       * **Street Address**
       * **Unit Number**
-    * Extract property features such as `(55+)`, `(first come first serve)`, `(age restricted)` into **Property Feature**
+  * Extract property features such as `(55+)`, `(first come first serve)`, `(age restricted)` into **Property Feature**
     * **Output file:** `Jun21_Sept25_Parsed.csv`
 
 2. Dataset Integration
@@ -123,60 +152,39 @@ The **new workflow** integrates supplementary price data **before merging with r
 3. `Ria_Merge_Resale&Price_NewWorkFlow.ipynb`
 4. `Ria_Merge_PriceResaleApplicantData_NewWorkFlow.ipynb`
 
-#### Price Analysis and Demographic Insights:
+
+### Q3 - Price Effects
 * **Objective:** Evaluate whether the resale price of affordable homes affects applicant quantity and demographic composition, while controlling for income limits.
 
-* Methods & Work Completed:
-  * **Data Cleaning:** Standardized `Maximum Resale Price` and `hh_income` fields, removed symbols, and converted text-based income ranges into numeric values.
-  * **Data Aggregation:** Grouped applicants by `Matched Address` to calculate average resale price, average applicant income, and total applicant count per property.
-  * **Modeling:** Ran Ordinary Least Squares (OLS) regression models to test whether price predicts applicant count while holding income constant.
-  * **Visualizations:**
-    * *Applicant Count vs. Price (OLS Trend)* –shows slight negative slope but statistically insignificant relationship.
-    * *Correlation Heatmap (Price,Income, Applicant Count)* – weak correlation, confirming minimal price impact.
-    * *Correlation by Income Bracket* – highlights that lower-income applicants (<$60k) are more price-sensitive than higher-income brackets.
-    * *Average Price by Race* – explores whether price distribution differs across racial groups, showing no major disparities.
-    * *Slope of Age vs Resale Price per Income Bracket* - applicants in $20K–$39K and $40K–$59K income brackets have a weak, yet statistically significant correlation indicating that older owners tend to buy slightly higher-priced homes. 
-    * *Race Distribution: Repeat vs. All Applicatis* - shows the race distribution between repeat applicants vs. all applicants.
-    * *Race Distrubution by Property Town* - shows the proportion of race distribution by property town.
-    * *Distribution of Properties by Town* - a visulization of the count of each property available by town.
-    * *Applicant Race/Ethnicity Distribution*  - displays count of each applicant race/ethicity.
-    * *Unique Applicants and Repeat Applicants by Property Town* - emphasizes towns with the most applications for all and repeat applicants.
-    * *Race/Ethnicity Proportions by Marketing Source* - shows which marketing source reached which race demographic of applicants.
-    * *Property Restrictions (e.g., Age-Restricted)* - highlights the amount of applications for each type of property restriction. 
-    * *Applicant Race/Ethnicity Proportions by Property Restriction* - shows how CHAPA’s property restrictions shape the applicant pool.
-    * *Local vs. Non-Local Applicants* - count of how many applicants live in the same town where they apply.  
-  * **Demographic Extension:** Expanded analysis to assess race and income diversity across property price levels.
- **My Price-Applicant Analysis (Q3):**
-- `Q3-price_applicants_income_analysis.ipynb`: Merged resale + CHAPA data (1,265 properties), found prices slightly increase applicants (statistically significant, R²=0.059). This was performed on data file with missing price values, which were given by the client later.
-- `Q3-_full_merged_V1_analysis.ipynb`: Analyzed 120 specific addresses, confirmed prices don't significantly affect applicants after controlling for income
-- `Q3-_applicant_vs_price_analysis-2-.ipynb`: 47-town analysis + race patterns (Hispanics prefer lowest prices, Black applicants highest prices)
+#### Pipeline:
+* **Data Cleaning:** Standardize `Maximum Resale Price` and `hh_income` fields, remove symbols, and convert text-based income ranges into numeric values
+* **Data Aggregation:** Group applicants by `Matched Address` to calculate average resale price, average applicant income, and total applicant count per property
+* **Modeling:** Run Ordinary Least Squares (OLS) regression models to test whether price predicts applicant count while holding income constant
 
-* Notebooks:
-  * `Q3)_full_merged_V1_analysis.ipynb`: performs price sensitivity modeling and regression analysis and also explores racial patterns in price sensitivity
-  * `Q3)_applicant_vs_price_analysis.ipynb`: explores demographic patterns in price sensitivity
-  * `Ria_Q3_visualizations.ipynb`: effect of price on demographics (including age, household size, number of dependents)
-  * `./q2_viz_2_2021-23.ipynb`: repeat vs. all applicant demographics 
-  * `./q2_viz_1_2021-23.ipynb`: applicant demographics by property town
-  * `./q2_viz_2021-2025.ipynb`: analyzing applicant demographics by CHAPA's property pool
+#### Visualizations:
+* *Applicant Count vs. Price (OLS Trend)*: shows slight negative slope but statistically insignificant relationship
+* *Correlation Heatmap (Price,Income, Applicant Count)*: weak correlation, confirming minimal price impact
+* *Correlation by Income Bracket*: highlights that lower-income applicants (<$60k) are more price-sensitive than higher-income brackets.
+* *Average Price by Race*: explores whether price distribution differs across racial groups, showing no major disparities
+* *Slope of Age vs Resale Price per Income Bracket*: applicants in $20K–$39K and $40K–$59K income brackets have a weak, yet statistically significant correlation indicating that older owners tend to buy slightly higher-priced homes
+
+#### Notebooks:
+* `Q3-price_applicants_income_analysis.ipynb`
+  * Merge resale + CHAPA data (1,265 properties)
+  * Observe that prices slightly increase applicants (statistically significant, R²=0.059), this was performed on data file with missing price values, which were given by the client later
+* `Q3-_full_merged_V1_analysis.ipynb`
+  * Analyze 120 specific addresses, confirm prices don't significantly affect applicants after controlling for income
+* `Q3-_applicant_vs_price_analysis-2-.ipynb`
+  * 47-town analysis + race patterns (Hispanics prefer lowest prices, Black applicants highest prices)
+* `Q3)_full_merged_V1_analysis.ipynb`
+  * Perform price sensitivity modeling and regression analysis
+  * Explore racial patterns in price sensitivity
+* `Q3)_applicant_vs_price_analysis.ipynb`
+  * Explore demographic patterns in price sensitivity
+* `Ria_Q3_visualizations.ipynb`: effect of price on demographics (including age, household size, number of dependents)
 
 
-## Next Steps
-### 1. Movement and Distance Analysis
-* Finalize distance metrics
-* Validate geocoding accuracy and confirm the definition of "local" vs. "distant" applicants (whether to use county-level aggregation or a percentile threshold approach)
-* Analyze the demographic disparities between local vs. distant applicants
-
-### 2. Portfolio Effects
-* Revisit the analysis with complete demographic data now available, incorporating clearer distinctions for:
-  * FTHB (First-Time Home Buyer) vs. non-FTHB applicants
-  * Age-restricted vs. unrestricted properties
-  * Expanded demographic variables (race, household size, income, assets, age)
-
-### 3. Price
-* Explore **interaction effects** between price and demographics (race, household type, age group) to understand nuanced affordability patterns
-
-
-## Initial Analysis Results
+## Initial Analysis Results (by Nov 9, 2025)
 ### 1. Movement and Distance Analysis
 * Strong In-State Concentration: About 95 % of applicants are from Massachusetts, with neighboring NH (57 %) and RI (23 %) forming the bulk of the remainder — confirming CHAPA’s programs primarily serve a regional audience.
 * Localized Demand Patterns: Most applicants live within 25 km of their chosen property, implying affordability demand is highly local. Larger distances tend to come from younger and non-White applicants.
@@ -227,4 +235,5 @@ This indicates that **factors like location, property type, and accessibility** 
 
 ## Notebook Requirements
 * requirements.txt
-   * `pip install -r fa25-team-a/eda/requirements.txt` before running the Jupyter Notebook files
+   * `pip install -r fa25-team-a/requirements.txt` before running the Jupyter Notebook files
+
