@@ -5,11 +5,13 @@
 * Pipeline:
    1. Recorded differences in counts between *TOUCHABLE Resale Transaction Info* (Old cleaned dataset) and **Resale Transaction Info updated Sept 2025** (New dataset), to check for new data to be added to the cleaned dataset.
    2. Within **TOUCHABLE Resale Transaction Info,** final\_round2 sheet was used, since it appeared to be the latest cleaned version of the Resale Transaction Info dataset by the previous team.  
-   3. Parsed and concatenated address fields into structured columns (Town, Development, Address, Unit Number) for **Resale Transaction Info updated Sept 2025**. *Ref: ParseResaleData_Revised.ipynb.* 
+   3. Parsed and concatenated address fields into structured columns (Town, Development, Address, Unit Number) for **Resale Transaction Info updated Sept 2025**. *Ref: `ParseResaleData_Revised.ipynb`.* 
    4. Checked for discrepancies between the New and Old datasets, and saved a CSV file of the new Sept 2025 entries that weren't present in the Old dataset. *Ref: DisparityCheckResale.ipynb.*  
-   5. Merged these new entries into the Old cleaned dataset. *Ref: Merge_Resale_Data.ipynb.*  
+   5. Merged these new entries into the Old cleaned dataset. *Ref: `Merge_Resale_Data.ipynb`.*  
 * Notebooks:
-   * fa25-team-a/eda/Q3)_EDA_price_and_resale.ipynb
+   * `Q3)_EDA_price_and_resale.ipynb`
+   * `ParseResaleData_Revised.ipynb`
+   * `Merge_Resale_Data.ipynb`
 
 ### Chapter 40B Applicant datasets
 #### 2021-23
@@ -38,11 +40,11 @@
         * Will perform more EDA using clarification from the Oct 10 client meeting
         * perform **geocoding** and **race–ethnicity realignment** before advanced modeling or equity analysis.
 * Notebooks:
-   * `EDA_Chapter-40B_applicant_2023-25.ipynb`
+   * `EDA_Chapter-40B_applicant_2023-25_stats.ipynb`
       * `zip` null values can be extracted from `matched_address`
       * further geocode to fill the rest of `matched_address `
       * need help from client in handling null values and outliers in some columns (e.g., `age`, `hh_income`)
-   * Rohan_S2.ipynb
+   * `EDA_Chapter-40B_applicant_2023-25_viz.ipynb`
       * Complete cleaning and initial visualization of 2023–25 CHAPA applicant data (focus: income, race, submission trends, and next-step recommendations)
 
 ## Requirements
