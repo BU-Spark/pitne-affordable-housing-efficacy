@@ -93,13 +93,22 @@ The data was provided by the client.
 The dataset represents a sample of CHAPA applications, including all applications received for the properties in the dataset from 2021-2025. The sampling was deterministic, meaning every submitted application for included properties was recorded.
 * Over what timeframe was the data collected? Does this timeframe match the creation timeframe of the data associated with the instances (e.g., recent crawl of old news articles)? If not, please describe the timeframe in which the data associated with the instances was created.
  
-Data was collected from 2021-2025. The data corresponds to the dates of application submissions and property transactions, so the timeframe of data collection aligns closely with the creation timeframe of the individual application instances.
+Data was collected from 2021-2025. The data corresponds to the dates of application submissions and property transactions, so the timeframe of data collection aligns closely with the creation timeframe of the individual application instances. <br> 
+
 *Preprocessing/cleaning/labeling* 
 
-* Was any preprocessing/cleaning/labeling of the data done (e.g., discretization or bucketing, tokenization, part-of-speech tagging, SIFT feature extraction, removal of instances, processing of missing values)? If so, please provide a description. If not, you may skip the remaining questions in this section.   
-* Were any transformations applied to the data (e.g., cleaning mismatched values, cleaning missing values, converting data types, data aggregation, dimensionality reduction, joining input sources, redaction or anonymization, etc.)? If so, please provide a description.   
-* Was the “raw” data saved in addition to the preprocessed/cleaned/labeled data (e.g., to support unanticipated future uses)? If so, please provide a link or other access point to the “raw” data, this could be a link to a folder in your GitHub Repo, Spark\! owned Google Drive Folder for this project, or a path on the SCC, etc.  
-* Is the code that was used to preprocess/clean the data available? If so, please provide a link to it (e.g., EDA notebook/EDA script in the GitHub repository). 
+* Was any preprocessing/cleaning/labeling of the data done (e.g., discretization or bucketing, tokenization, part-of-speech tagging, SIFT feature extraction, removal of instances, processing of missing values)? If so, please provide a description. If not, you may skip the remaining questions in this section.
+
+The dataset underwent preprocessing and cleaning after being provided by the client. Steps included standardizing categorical fields such as race, restricted property, household type, and application source to ensure consistency, processing missing values by either leaving them blank, imputing median, or removing incomplete records.
+* Were any transformations applied to the data (e.g., cleaning mismatched values, cleaning missing values, converting data types, data aggregation, dimensionality reduction, joining input sources, redaction or anonymization, etc.)? If so, please provide a description.
+
+Fields such as age, price, and address were converted for more consistent formats. We merged all data files from the client into one dataset that included our geocoded addition to the data. 
+* Was the “raw” data saved in addition to the preprocessed/cleaned/labeled data (e.g., to support unanticipated future uses)? If so, please provide a link or other access point to the “raw” data, this could be a link to a folder in your GitHub Repo, Spark\! owned Google Drive Folder for this project, or a path on the SCC, etc.
+
+The "raw" data was saved separately to support reproducibility and potential future analyses. Access to these "raw" files is not publicly available.
+* Is the code that was used to preprocess/clean the data available? If so, please provide a link to it (e.g., EDA notebook/EDA script in the GitHub repository).
+
+The code used for preprocessing and cleaning, including merging files, standardizing fields, and calculating derived features, is maintained in our project notebooks. These notebooks can be found on team’s GitHub repository. <br> 
 
 *Uses* 
 
