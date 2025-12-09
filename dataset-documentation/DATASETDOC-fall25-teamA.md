@@ -12,12 +12,10 @@ CHAPA Affordable Housing - Team A
 * Who is the client for the project?
 
 David Gasser and Josh Vogel
-
 * Who are the client contacts for the project?
 
  
 * What class was this project part of?
-  
 DS 701 at Boston University
 
 ***Dataset Information***
