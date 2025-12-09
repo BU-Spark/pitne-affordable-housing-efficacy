@@ -7,13 +7,15 @@
   <br>
 </h1>
 
-<h4 align="center">A repo providing a data analysis of CHAPA's application data. </h4> <change to repo short description>
+<h4 align="center">Geospatial and demographic analysis of CHAPA affordable housing applications across Massachusetts</h4>
 
 <p align="center">
   <a href="#project-description">Project Description</a> •
-  <a href="#How To Use">How To Use</a> •
-  <a href="#chapa--local-data-access">CHAPA - Local Data Access</a> •
-  <a href="#folder-structure-guide">Folder Structure Guide</a> 
+  <a href="#how-to-use">How To Use</a> •
+  <a href="#google-oauth-setup">Google OAuth Setup</a> •
+  <a href="#run-the-data-processing-pipeline">Run Pipeline</a> •
+  <a href="#key-outputs">Key Outputs</a> •
+  <a href="#folder-structure-guide">Folder Structure Guide</a>
 </p>
 
 # Project Description
@@ -54,12 +56,8 @@ Continuing the work of students in the **Summer of 2025**, we are focusing on id
 - Does property price affect applicant quantity?  
 - Are these demographic trends different for lower vs. higher-priced properties?
 
-# CHAPA – Local Data Access
-
-
-This repo uses **Google OAuth** to read files from the shared Drive folder named **`Dataset`**. Data is downloaded to `data/` (gitignored). Secrets are kept out of Git.
-
 ---
+
 ## How To Use
 
 This guide explains how to set up the environment, configure Google OAuth,
@@ -152,62 +150,126 @@ visuals/
 
 ## ⚙️ 6. Run the Data Processing Pipeline
 
-To easily run all cleaning + property extraction + geocoding scripts from the
-`fa25-team-b` directory, simply run the script `run_data_pipeline.sh` from the base team B folder.
-
----
-
-### 6.1 Clean application-level data
+The easiest way to run the complete pipeline is to use the automated script:
 
 ```bash
-python cleaners/01_clean_applications.py
+./run_data_pipeline.sh
 ```
 
-Produces:
-
-🟩 `data/processed/applications_clean.parquet`
+This script runs five key steps:
+1. **Pulls data from Google Drive** (`scripts/04_pull_all.py`)
+2. **Cleans application data** (`scripts/06_clean_applications_pipeline.py`)
+3. **Generates static visualizations** (`scripts/popularity_graph_generation.py`)
+4. **Generates age-restricted analysis** (`scripts/age_analysis.py`)
+5. **Generates interactive map** (`scripts/folium_map_generation.py`)
 
 ---
 
-### 6.2 Extract unique CHAPA properties
+### What the Pipeline Does
+
+#### Step 1: Pull Data (`04_pull_all.py`)
+- Downloads raw CHAPA datasets from Google Drive
+- Saves to `data/raw/`
+- Uses OAuth credentials from Step 4
+
+#### Step 2: Clean Applications (`06_clean_applications_pipeline.py`)
+- Loads and standardizes column headers
+- Normalizes current residence using fuzzy matching
+- Geocodes applicant locations
+- Normalizes race/ethnicity data
+- Appends resale price data
+- Appends HUD MTSP income limit data
+- Geocodes property locations
+- Produces: `data/processed/applications_clean.parquet`
+
+#### Step 3: Generate Static Visualizations (`popularity_graph_generation.py`)
+- Creates price vs. application volume analysis
+- Generates top properties bar charts (overall and by demographics)
+- Produces Pareto chart showing application concentration
+- Analyzes traits of most popular properties
+- Produces:
+  - `visuals/applications_vs_price_binned.png`
+  - `visuals/top_properties_bar.png`
+  - `visuals/top_properties_stacked.png`
+  - `visuals/applications_pareto.png`
+  - `visuals/popular_property_traits_comparison.png`
+  - `visuals/popular_property_traits_analysis.csv`
+  - `visuals/property_demand_with_geo.csv`
+
+#### Step 4: Generate Age-Restricted Analysis (`age_analysis.py`)
+- Analyzes age-restricted (55+/62+) properties and applicant demographics
+- Creates age distribution visualizations
+- Compares age-restricted vs. non-age-restricted properties
+- Analyzes income and race patterns by age group
+- Produces:
+  - `visuals/Age Restricted Analysis/age_distribution_all.png`
+  - `visuals/Age Restricted Analysis/age_distribution_unique.png`
+  - `visuals/Age Restricted Analysis/age_restricted_vs_nonrestricted.png`
+  - `visuals/Age Restricted Analysis/race_distribution_by_restriction_top.png`
+  - `visuals/Age Restricted Analysis/applications_per_property_horizontal.png`
+  - `visuals/Age Restricted Analysis/income_by_agebin.png`
+  - `visuals/Age Restricted Analysis/heatmap_age_vs_race_restricted_clean.png`
+
+#### Step 5: Generate Interactive Map (`folium_map_generation.py`)
+- Creates enhanced geospatial visualization
+- Includes demographic heatmaps, property markers, and flow analysis
+- Produces: `visuals/applications_map_enhanced.html`
+
+---
+
+### Manual Execution
+
+If you prefer to run steps individually:
 
 ```bash
-python cleaners/07_find_chapa_properties.py
+# Step 1: Pull data
+PYTHONPATH=. python scripts/04_pull_all.py
+
+# Step 2: Clean data
+PYTHONPATH=. python scripts/06_clean_applications_pipeline.py
+
+# Step 3: Generate static visualizations
+python scripts/popularity_graph_generation.py --input data/processed/applications_clean.parquet --outdir visuals
+
+# Step 4: Generate age-restricted analysis
+python scripts/age_analysis.py --input data/processed/applications_clean.parquet --outdir "visuals/Age Restricted Analysis"
+
+# Step 5: Generate interactive map
+python scripts/folium_map_generation.py --input data/processed/applications_clean.parquet --outdir visuals
 ```
 
-Produces:
+---
 
-🟩 `data/processed/chapa_properties_from_apps.csv`
+## 🎯 Key Outputs
+
+After running the pipeline, you'll have:
+
+### 📊 Cleaned Data
+- `data/processed/applications_clean.parquet` — Fully processed application dataset with geocoding, normalized demographics, and property information
+
+### 🗺️ Interactive Visualizations
+- `visuals/applications_map_enhanced.html` — Interactive map with demographic heatmaps, property markers, distance analysis, and applicant flow patterns
+- See `ENHANCED_MAP_GUIDE.md` for detailed usage instructions
+
+### 📈 Static Charts
+- `visuals/applications_pareto.png` — Pareto chart showing application concentration
+- `visuals/applications_vs_price_binned.png` — Demand vs. price analysis
+- `visuals/top_properties_bar.png` — Top properties by application count
+- `visuals/top_properties_stacked.png` — Demographic breakdown by property
+- `visuals/popular_property_traits_comparison.png` — Analysis of popular property characteristics
+
+### 📓 Analysis Notebooks
+- `eda/CHAPA_TeamB_EDA.ipynb` — Main exploratory data analysis
+- `eda/CHAPA_TeamB_EDA_2nd_version.ipynb` — Updated EDA with refined visualizations
+- `eda/Bayesian_Model.ipynb` — Bayesian statistical modeling of application patterns
 
 ---
 
-### 6.3 Geocode CHAPA properties (cached)
-
-```bash
-python cleaners/08_geocode_chapa_properties.py
-```
-
-Produces:
-
-🟩 `data/cache/property_geocode.parquet`  
-🟩 `data/processed/applications_with_property_geo.parquet`
-
----
-
-
-## Pipeline
-You can run all the scripts in order if you wish, but the only important ones are number 4 and number 6. Files land in `data/` and are **not** committed to Git.  
-
----
-
-
-## 📁 Data Locations
+## 📁 Folder Structure Guide
 
 The CHAPA project relies on **confidential raw datasets** stored in a private
 Google Drive folder. These files are **never committed to GitHub** and are
-pulled locally using OAuth through the scripts in `fa25-team-b/scripts`; go back to the Local Data Access section for more information. Beyond that, here is a breakdown of what belongs in each folder and what each file does.
-
-<a href="dataset-documentation">Dataset Documentation</a>
+pulled locally using OAuth through the scripts in `fa25-team-b/scripts`. Below is a breakdown of what belongs in each folder and what each file does.
 
 ### 🧩 `assets/`
 Contains static reference files and lookup tables used to support cleaning and analysis.  
@@ -219,41 +281,49 @@ Contains static reference files and lookup tables used to support cleaning and a
 
 
 ### 🧹 `cleaners/`
-Contains all **data-cleaning and preprocessing scripts** that prepare the raw CHAPA dataset for analysis.  
-Each script focuses on a specific aspect of the cleaning pipeline.
+Contains all **data-cleaning and preprocessing scripts** that prepare the raw CHAPA dataset for analysis.
+Each script focuses on a specific aspect of the cleaning pipeline and is called by `scripts/06_clean_applications_pipeline.py`.
 
 #### **`HUD_economic_data_import_cleaning.py`**
-- Imports, cleans, and appends **Multifamily Tax Subsidy (MTSP) Income Limit data** from HUD to the applicant dataset.  
-- Ensures consistent linkage between applicant income levels and federal HUD thresholds.  
+- Imports, cleans, and appends **Multifamily Tax Subsidy Program (MTSP) Income Limit data** from HUD
+- Links applicant income levels to federal HUD income thresholds
+- Enables affordability eligibility analysis
 
 #### **`append_resale_data.py`**
-- Takes the application dataset and **appends resale value datasets** to it.  
-- Integrates resale-related attributes to allow further analysis on property affordability and pricing trends.  
+- Appends **resale value datasets** to the application data
+- Integrates property pricing information for affordability and demand analysis
 
 #### **`current_residence_name_normalization_v1.py`**
-- Normalizes the **‘Current Residence’** column in the application dataset.  
-- Handles directional abbreviations (e.g., *N.*, *S.*, *E.*, *W.* → *North*, *South*, *East*, *West*).  
-- Merges subregions (e.g., *East Boston*, *West Boston* → *Boston*).  
-- Applies **fuzzy matching** against a standardized list of Massachusetts city names.  
+- Normalizes the **'Current Residence'** column using fuzzy matching
+- Handles directional abbreviations (e.g., *N.*, *S.*, *E.*, *W.* → *North*, *South*, *East*, *West*)
+- Merges subregions (e.g., *East Boston*, *West Boston* → *Boston*)
+- Matches against standardized Massachusetts city names from `assets/city_names_norm_ma.csv`
 
 #### **`geographic_encoding_ma_cities.py`**
-- Geolocates normalized city names for spatial analysis.  
-- Outputs columns for `city_name`, `longitude`, `latitude`, and `full_location_name`.  
-- Enables visualization of applicant distributions across Massachusetts.  
+- Geocodes normalized city names for spatial analysis
+- Uses Nominatim geocoding with local caching to avoid redundant API calls
+- Outputs `city_name`, `longitude`, `latitude`, and `full_location_name`
+- Enables mapping and distance calculations
+
+#### **`applicant_property_geocoding.py`**
+- Geocodes property addresses for accurate map placement
+- Calculates distances between applicant locations and properties
+- Uses Haversine formula for great-circle distance calculations
+- Caches results in `data/cache/` to improve performance
 
 #### **`race_naming_normalization.py`**
-- Normalizes the **‘Race/Ethnicity’** column in the dataset.  
-- Fixes symbol issues, typos, and inconsistent abbreviations.  
-- Creates a **‘White_MENA’** category and adds **dummy columns** for each race.  
-- Adds a boolean **`is_mixed_race`** column to flag multi-racial applicants.  
-- Final standardized race field is stored in `race_norm_final`.  
+- Normalizes the **'Race/Ethnicity'** column in the dataset
+- Fixes symbol issues, typos, and inconsistent abbreviations
+- Creates **'White_MENA'** category (Middle Eastern/North African)
+- Adds **dummy columns** for each race category
+- Adds boolean **`is_mixed_race`** column to flag multi-racial applicants
+- Produces `race_norm_final` standardized field
 
 #### **`race_norm_corrections.py`**
-- Performs **secondary corrections** on the race column after normalization.  
-- Combines “unknown” and “choose_not_to_answer” responses.  
-- Fixes logic where “White_MENA” was incorrectly included in other race flags.  
-- Recreates dummy columns to ensure clean final outputs.  
-
+- Performs **secondary corrections** on race normalization
+- Combines "unknown" and "choose_not_to_answer" responses
+- Fixes logic where "White_MENA" was incorrectly included in other race flags
+- Recreates dummy columns to ensure clean final outputs
 
 ---
 
@@ -267,10 +337,18 @@ These files ensure reproducibility across different scripts and notebooks.
 ---
 
 ### 📊 `data/`
-Used to store local or intermediate datasets.  
-- Contains cleaned `.csv` or `.parquet` files created during preprocessing.  
-- **Raw CHAPA data is *not* stored here** due to confidentiality — it’s instead accessed from a secure Google Drive folder.  
-- Temporary or test data (like `temp.txt`) may also appear here during development.
+Local data storage for raw, interim, processed, and cached datasets.
+**All contents are gitignored** to protect confidential CHAPA data.
+
+#### **Subdirectories**
+- **`data/raw/`** — Raw datasets downloaded from Google Drive (never committed to Git)
+- **`data/interim/`** — Intermediate outputs during cleaning pipeline
+- **`data/processed/`** — Final cleaned datasets (e.g., `applications_clean.parquet`)
+- **`data/cache/`** — Cached geocoding results and computed data to avoid redundant API calls
+  - `geocode.parquet` — Cached city geocodes
+  - `property_geocode.parquet` — Cached property coordinates
+
+Raw CHAPA data is **never** stored in the repository — it's accessed securely from Google Drive using OAuth.
 
 ---
 
@@ -283,22 +361,52 @@ This folder serves as the central repository for explanatory materials and repor
 ---
 
 ### 🔍 `eda/` (Exploratory Data Analysis)
-Includes scripts and notebooks used for exploration, visualization, and data insight generation.  
-- **`age_eda.py`** → analyzes age-restricted properties and applicant demographics.  
-- **`CHAPA_TeamB_EDA.ipynb`** → main exploratory notebook for all visual and statistical summaries.  
-- **`CHAPA_TeamB_EDA_2nd_version.ipynb`** → updated version incorporating refined plots and metrics.  
-All EDA outputs (figures, charts) are automatically saved to the `visuals/` folder.
+Jupyter notebooks and scripts for data exploration, statistical analysis, and insight generation.
+
+- **`CHAPA_TeamB_EDA.ipynb`** — Main exploratory notebook covering:
+  - Application trends over time
+  - Age distribution analysis
+  - Household income and assets analysis
+  - Race/ethnicity demographics
+  - Income vs. resale value relationships
+
+- **`CHAPA_TeamB_EDA_2nd_version.ipynb`** — Updated EDA with:
+  - Refined visualizations
+  - Additional statistical summaries
+  - Improved demographic breakdowns
+
+- **`Bayesian_Model.ipynb`** — Bayesian statistical modeling including:
+  - Hierarchical models for application patterns
+  - Probabilistic analysis of demographic influences
+  - Inference on property preferences and accessibility
+
+- **`age_eda.py`** — Original age analysis script (legacy):
+  - Reads from Excel file directly
+  - Now superseded by `scripts/age_analysis.py` which integrates with the pipeline
+  - Kept for reference and manual analysis
+
+All EDA outputs (figures, charts) are saved to the `visuals/` folder and subfolders.
 
 ---
 
 ### 🧮 `scripts/`
-Automation and pipeline scripts that connect to the CHAPA data sources, perform cleaning, and orchestrate workflows.  
-These are generally executed in sequence to fetch, clean, and prepare data for analysis.  
-- **`01_auth.py`** → authenticates access to CHAPA / Google Drive data.  
-- **`03_pull_dataset.py` / `04_pull_all.py`** → download and combine raw data.  
-- **`05_clean_pipeline.py` / `06_clean_applications_pipeline.py`** → run full cleaning workflows.    
-Together, these scripts automate the end-to-end data preparation process. Unnumbered scripts exist for data analysis:
-- **`analyze_property_popularityV2.py`** → analyzes property-level application demand.
+Automation and pipeline scripts that connect to CHAPA data sources, perform cleaning, and generate visualizations.
+These scripts orchestrate the end-to-end workflow from data acquisition to analysis outputs.
+
+#### **Pipeline Scripts (numbered, run in order)**
+- **`01_auth.py`** — Authenticates Google OAuth for Drive access (run once during setup)
+- **`02_list_datasets.py`** — Lists available datasets in the Google Drive folder
+- **`03_pull_dataset.py`** — Downloads a single dataset from Google Drive
+- **`04_pull_all.py`** — Downloads all datasets from Google Drive (used in pipeline)
+- **`05_clean_pipeline.py`** — Legacy cleaning orchestrator
+- **`06_clean_applications_pipeline.py`** — Main cleaning pipeline (calls all cleaners, produces `applications_clean.parquet`)
+
+#### **Analysis & Visualization Scripts**
+- **`age_analysis.py`** — Generates comprehensive age-restricted property analysis (55+/62+ properties, age demographics, income patterns)
+- **`folium_map_generation.py`** — Generates enhanced interactive map with demographic layers, property markers, and heatmaps
+- **`popularity_graph_generation.py`** — Creates static charts analyzing property popularity and demand patterns
+- **`analyze_property_popularityV2.py`** — Legacy analysis script (V2, superseded by popularity_graph_generation.py)
+- **`geocode_properties_for_map.py`** — Geocodes property addresses for map visualization
 
 ---
 
@@ -311,14 +419,123 @@ This folder helps modularize shared functionality, keeping the main scripts clea
 ---
 
 ### 📈 `visuals/`
-Contains all visualization outputs produced from EDA scripts and notebooks.  
-- Stores static plots (`.png`), interactive charts (`.html`), and categorized folders for specific analyses.  
-- Example files:  
-  - `applications_map.html` → interactive map of housing applications.  
-  - `applications_pareto.png`, `applications_vs_price_binned.png` → visual summaries of property demand and affordability.  
-  - `top_properties_bar.png`, `top_properties_stacked.png` → visual comparisons of top housing properties.  
-- Subfolders:  
-  - **`Age Restricted Analysis/`** → visuals focusing on senior/age-restricted properties.  
-  - **`Income and Demographics vs Applications/`** → plots exploring socioeconomic and demographic patterns.  
+All visualization outputs produced from EDA scripts and notebooks.
+Includes static plots (`.png`), interactive maps (`.html`), and CSV exports.
+
+#### **Interactive Map**
+- **`applications_map_enhanced.html`** — Enhanced geospatial visualization with:
+  - Demographic heatmaps (8 race/ethnicity categories)
+  - Property markers with detailed popups
+  - Distance metrics and applicant flow analysis
+  - Price heatmap and demand overlay
+  - Search functionality and interactive filters
+
+#### **Static Charts**
+- **`applications_pareto.png`** — Pareto chart showing 80/20 application concentration pattern
+- **`applications_vs_price_binned.png`** — Demand vs. price relationship analysis
+- **`top_properties_bar.png`** — Top properties ranked by total applications
+- **`top_properties_stacked.png`** — Demographic composition across top properties
+- **`popular_property_traits_comparison.png`** — Comparative analysis of popular property characteristics
+
+#### **Data Exports**
+- **`property_demand_with_geo.csv`** — Property-level demand data with coordinates
+- **`popular_property_traits_analysis.csv`** — Statistical analysis of high-demand property traits
+
+#### **Subfolders**
+- **`Age Restricted Analysis/`** — Visualizations for senior (55+/62+) properties:
+  - Age distribution analysis
+  - Income and asset patterns by age group
+  - Race/ethnicity comparisons
+  - Applications per age-restricted property
+
+- **`Income and Demographics vs Applications/`** — Socioeconomic and demographic analysis:
+  - Income distribution by property type
+  - Applicant count vs. median income
+  - Race/ethnicity composition by property
+  - Applications vs. household assets
+
+See `visuals/README.md` for detailed descriptions of all visualizations.
+
+---
+
+## 📚 Additional Documentation
+
+Beyond this main README, the repository includes folder-specific documentation:
+
+- **`visuals/README.md`** — Detailed descriptions of all visualization outputs
+- **`eda/README.md`** — Overview of exploratory data analysis notebooks and methodology
+
+---
+
+## 🛠️ Dependencies
+
+The project uses Python 3.8+ with the following key packages (see `requirements.txt` for complete list):
+
+### **Data Processing**
+- `pandas` — Data manipulation and analysis
+- `numpy` — Numerical operations
+- `pyarrow` — Parquet file support
+
+### **Geocoding & Geospatial**
+- `geopy` — Geocoding via Nominatim
+- `geopandas` — Geographic data processing
+- `shapely` — Geometric operations
+- `pyproj` — Coordinate system transformations
+
+### **Visualization**
+- `matplotlib` — Static plotting
+- `folium` — Interactive maps
+- `tqdm` — Progress bars
+
+### **String Matching**
+- `rapidfuzz` — Fast fuzzy string matching
+- `fuzzywuzzy` — Fuzzy matching utilities
+
+### **Google Drive Integration**
+- `google-api-python-client` — Google Drive API
+- `google-auth` — OAuth authentication
+- `google-auth-oauthlib` — OAuth flow
+
+### **Statistical Modeling**
+- `pymc` — Bayesian statistical modeling
+- `arviz` — Bayesian model diagnostics
+
+### **Utilities**
+- `pyyaml` — YAML config parsing
+- `openpyxl` — Excel file support
+
+---
+
+## 💡 Tips & Best Practices
+
+### **Performance**
+- Geocoding results are cached in `data/cache/` — don't delete unless you need to refresh coordinates
+- Use `run_data_pipeline.sh` instead of running scripts individually for consistency
+- The pipeline only geocodes new cities/properties, reusing cached results
+
+### **Data Privacy**
+- Never commit files in `data/` or `secrets/` directories
+- All confidential data stays local or in Google Drive
+- OAuth tokens are personal — don't share `secrets/token.json`
+
+### **Troubleshooting**
+- If geocoding fails: check internet connection and try again (cached results are preserved)
+- If OAuth expires: delete `secrets/token.json` and rerun `scripts/01_auth.py`
+- If pipeline errors: ensure you've run `pip install -r requirements.txt`
+
+### **Working with Maps**
+- Open `.html` map files directly in a web browser
+- For best performance, use Chrome or Firefox
+- Interactive maps work offline once generated
+
+---
+
+## 🎓 Project Context
+
+This work is part of the **BU Spark! Data Science for Social Good** program, in partnership with the **Citizens' Housing and Planning Association (CHAPA)**.
+
+**Team:** Fall 2025 Team B
+**Partner:** CHAPA
+**Focus:** Affordable housing application patterns and demographic analysis across Massachusetts
 
 ---
