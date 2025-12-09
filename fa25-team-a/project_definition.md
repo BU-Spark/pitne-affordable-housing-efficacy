@@ -1,7 +1,7 @@
 # Project definition
 
 ## Partner Organization
-**CHAPA (Citizens’ Housing and Planning Association)** is Massachusetts’ statewide affordable housing umbrella organization. CHAPA monitors approximately 3,000 permanently affordable homes across the state.  
+**CHAPA (Citizens' Housing and Planning Association)** is Massachusettsï¿½ statewide affordable housing umbrella organization. CHAPA monitors approximately 3,000 permanently affordable homes across the state.  
 
 ## Objective
 To provide an in-depth analysis and insights into the systemic barriers present in the application process for permanently affordable homes in Massachusetts, with a particular focus on geographic trends, demographic representation, and access disparities.
