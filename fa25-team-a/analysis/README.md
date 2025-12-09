@@ -39,11 +39,11 @@
 * *Race Distribution: Repeat vs. All Applicatis*: race distribution between repeat applicants vs. all applicants
 * *Applicant Race/Ethnicity Distribution*: count of each applicant race/ethicity
 * *Unique Applicants and Repeat Applicants by Property Town*: emphasize towns with the most applications for all and repeat applicants
-* *Local vs. Non-Local Applicants*: count of how many applicants live in the same town where they apply
 
 #### Notebooks:
-* `./q1_viz_2021-2025.ipynb`
-* `./q1_analysis_and_viz.ipynb`
+* `./q1_distance_demographics.ipynb`
+* `./q1_distance.ipynb`
+* `./q1_movement.ipynb`
 
 
 ### Q2 - Portfolio Effects
@@ -54,10 +54,12 @@
 * *Race/Ethnicity Proportions by Marketing Source*: which marketing source reached which race demographic of applicants
 * *Property Restrictions (e.g., Age-Restricted)*: highlight the amount of applications for each type of property restriction
 * *Applicant Race/Ethnicity Proportions by Property Restriction*: show how CHAPA’s property restrictions shape the applicant pool
+* *Local vs. Non-Local Applicants*: count of how many applicants live in the same town where they apply
 
 
 #### Notebooks:
-* `./q2_viz_2021-2025.ipynb`
+* `./q2_property_restrictions.ipynb`
+* `./q2_property_demand.ipynb`
 * `./q2_property_demand.ipynb`
 
 
