@@ -55,8 +55,12 @@ Each instance in the dataset consists of structured information describing a sin
 * Is there any information missing from individual instances? If so, please provide a description, explaining why this information is missing (e.g., because it was unavailable). This does not include intentionally removed information, but might include redacted text.
 
 Some individual instances in the dataset contain missing information. For example, certain applicant records are missing demographic details such as age, race, or household size. Some property information, such as unit characteristics or specific price information, are also incomplete for a number of applications. This missing information is due to it being unavailable at the time of data collection, such as applicants choosing not to provide certain details or records not being fully entered in the original data files. No data was intentionally removed, and any missing values reflect gaps in the original application records.
-* Are there recommended data splits (e.g., training, development/validation, testing)? If so, please provide a description of these splits, explaining the rationale behind them  
-* Are there any errors, sources of noise, or redundancies in the dataset? If so, please provide a description.   
+* Are there recommended data splits (e.g., training, development/validation, testing)? If so, please provide a description of these splits, explaining the rationale behind them
+
+No formal data splits are provided with this dataset. The dataset is primarily intended for descriptive and exploratory analysis of housing applications rather than for predictive modeling.
+* Are there any errors, sources of noise, or redundancies in the dataset? If so, please provide a description.
+
+The dataset contains some sources of noise and potential redundancies. Because the data was collected from multiple data files and merged, there are occasional inconsistencies in formatting, or spelling. Additionally, certain calculated variables, such as distances or geocoded coordinates, may have minor inaccuracies due to approximations or missing address information. Overall, these issues only make up a small amount of noise but do not effect the analytical value of the dataset.
 * Is the dataset self-contained, or does it link to or otherwise rely on external resources (e.g., websites, tweets, other datasets)? If it links to or relies on external resources,   
   * Are there guarantees that they will exist, and remain constant, over time;  
   * Are there official archival versions of the complete dataset (i.e., including the external resources as they existed at the time the dataset was created)?  
