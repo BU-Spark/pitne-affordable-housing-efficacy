@@ -6,6 +6,7 @@ Generates statistical visualizations for property popularity analysis:
 - Price vs. application volume relationship
 - Top properties bar charts (overall and by demographics)
 - Pareto chart showing concentration of applications
+- Trait analysis of most popular properties
 
 Inputs
 ------
@@ -19,6 +20,8 @@ Outputs
 - top_properties_bar.png : Top 15 properties bar chart
 - top_properties_stacked.png : Top 15 properties stacked by race
 - applications_pareto.png : Pareto chart of application concentration
+- popular_property_traits_analysis.csv : Statistical comparison of traits for popular vs all properties
+- popular_property_traits_comparison.png : Box plots comparing trait distributions
 """
 
 from __future__ import annotations
@@ -420,6 +423,197 @@ def plot_pareto(demand: pd.DataFrame, outdir: str) -> None:
     plt.close()
 
 
+def analyze_popular_property_traits(demand: pd.DataFrame, outdir: str, top_n: int = 20, top_percentile: int = 10) -> pd.DataFrame:
+    """
+    Analyze traits of the most popular properties vs all properties.
+
+    Returns a DataFrame with comparative statistics.
+    """
+    if demand.empty:
+        return pd.DataFrame()
+
+    # Define "popular" properties - using both top N and top percentile
+    top_by_count = demand.nlargest(top_n, "application_count")
+    percentile_threshold = demand["application_count"].quantile(1 - top_percentile / 100)
+    top_by_percentile = demand[demand["application_count"] >= percentile_threshold]
+
+    # Use the larger of the two sets
+    popular = top_by_percentile if len(top_by_percentile) > len(top_by_count) else top_by_count
+    all_props = demand
+
+    # Traits to analyze
+    trait_cols = ["price_num", "median_distance_miles", "avg_distance_miles",
+                  "min_distance_miles", "max_distance_miles", "property_latitude",
+                  "property_longitude"]
+
+    # Filter to existing columns
+    trait_cols = [c for c in trait_cols if c in demand.columns]
+
+    results = []
+
+    for trait in trait_cols:
+        popular_vals = popular[trait].dropna()
+        all_vals = all_props[trait].dropna()
+
+        if len(popular_vals) == 0 or len(all_vals) == 0:
+            continue
+
+        result = {
+            "Trait": trait,
+            "Popular_Mean": popular_vals.mean(),
+            "Popular_Median": popular_vals.median(),
+            "Popular_Std": popular_vals.std(),
+            "All_Mean": all_vals.mean(),
+            "All_Median": all_vals.median(),
+            "All_Std": all_vals.std(),
+            "Difference_Mean": popular_vals.mean() - all_vals.mean(),
+            "Difference_Median": popular_vals.median() - all_vals.median(),
+            "Percent_Diff_Mean": ((popular_vals.mean() - all_vals.mean()) / all_vals.mean() * 100) if all_vals.mean() != 0 else np.nan,
+        }
+
+        # Perform t-test if we have enough data
+        if len(popular_vals) >= 2 and len(all_vals) >= 2:
+            from scipy import stats
+            t_stat, p_value = stats.ttest_ind(popular_vals, all_vals, equal_var=False)
+            result["T_Statistic"] = t_stat
+            result["P_Value"] = p_value
+            result["Significant"] = "Yes" if p_value < 0.05 else "No"
+
+        results.append(result)
+
+    # Add application count statistics
+    results.append({
+        "Trait": "application_count",
+        "Popular_Mean": popular["application_count"].mean(),
+        "Popular_Median": popular["application_count"].median(),
+        "Popular_Std": popular["application_count"].std(),
+        "All_Mean": all_props["application_count"].mean(),
+        "All_Median": all_props["application_count"].median(),
+        "All_Std": all_props["application_count"].std(),
+        "Difference_Mean": popular["application_count"].mean() - all_props["application_count"].mean(),
+        "Difference_Median": popular["application_count"].median() - all_props["application_count"].median(),
+        "Percent_Diff_Mean": ((popular["application_count"].mean() - all_props["application_count"].mean()) / all_props["application_count"].mean() * 100),
+    })
+
+    trait_analysis = pd.DataFrame(results)
+
+    # Save to CSV
+    out_csv = os.path.join(outdir, "popular_property_traits_analysis.csv")
+    trait_analysis.to_csv(out_csv, index=False)
+    logging.info(f"Saved trait analysis to {out_csv}")
+
+    # Log summary
+    logging.info(f"\n{'='*70}")
+    logging.info(f"POPULAR PROPERTY TRAITS ANALYSIS")
+    logging.info(f"{'='*70}")
+    logging.info(f"Comparing top {len(popular)} properties (top {top_percentile}%) vs all {len(all_props)} properties")
+    logging.info(f"\nKey Findings:")
+
+    for _, row in trait_analysis.iterrows():
+        trait = row["Trait"]
+        if pd.notna(row.get("Percent_Diff_Mean")):
+            direction = "higher" if row["Percent_Diff_Mean"] > 0 else "lower"
+            sig = f" (p={row['P_Value']:.4f})" if "P_Value" in row and pd.notna(row["P_Value"]) else ""
+            logging.info(f"  • {trait}: {abs(row['Percent_Diff_Mean']):.1f}% {direction} on average{sig}")
+
+    logging.info(f"{'='*70}\n")
+
+    return trait_analysis
+
+
+def plot_trait_comparison(demand: pd.DataFrame, outdir: str, top_percentile: int = 10) -> None:
+    """Create visualizations comparing traits of popular vs all properties"""
+    if demand.empty:
+        return
+
+    # Define popular properties
+    percentile_threshold = demand["application_count"].quantile(1 - top_percentile / 100)
+    demand_copy = demand.copy()
+    demand_copy["Category"] = demand_copy["application_count"].apply(
+        lambda x: f"Top {top_percentile}%" if x >= percentile_threshold else f"Other {100-top_percentile}%"
+    )
+
+    # Traits to visualize
+    traits = [
+        ("price_num", "Maximum Resale Price ($)", True),
+        ("median_distance_miles", "Median Distance from Applicants (miles)", False),
+        ("avg_distance_miles", "Average Distance from Applicants (miles)", False),
+    ]
+
+    # Filter to traits that exist
+    traits = [(col, label, log) for col, label, log in traits if col in demand_copy.columns]
+
+    if not traits:
+        logging.warning("No trait columns found for visualization")
+        return
+
+    # Create comparison plots
+    n_traits = len(traits)
+    fig, axes = plt.subplots(1, n_traits, figsize=(6*n_traits, 5))
+
+    if n_traits == 1:
+        axes = [axes]
+
+    for ax, (trait_col, trait_label, use_log) in zip(axes, traits):
+        data_to_plot = demand_copy[[trait_col, "Category"]].dropna()
+
+        if data_to_plot.empty:
+            continue
+
+        # Box plot
+        categories = [f"Top {top_percentile}%", f"Other {100-top_percentile}%"]
+        plot_data = [
+            data_to_plot[data_to_plot["Category"] == cat][trait_col].values
+            for cat in categories
+        ]
+
+        bp = ax.boxplot(plot_data, labels=categories, patch_artist=True,
+                       widths=0.6, showmeans=True,
+                       boxprops=dict(facecolor="#CBD5E1", edgecolor="#475569", linewidth=1.2),
+                       whiskerprops=dict(color="#475569", linewidth=1.2),
+                       capprops=dict(color="#475569", linewidth=1.2),
+                       medianprops=dict(color="#0F766E", linewidth=2),
+                       meanprops=dict(marker="D", markerfacecolor="#DC2626",
+                                     markeredgecolor="#DC2626", markersize=6))
+
+        # Highlight top percentile box
+        bp['boxes'][0].set_facecolor('#0F766E')
+        bp['boxes'][0].set_alpha(0.6)
+
+        ax.set_ylabel(trait_label, fontsize=11)
+        ax.set_xlabel("Property Category", fontsize=11)
+
+        if use_log:
+            ax.set_yscale("log")
+            ax.yaxis.set_major_formatter(StrMethodFormatter("${x:,.0f}"))
+        else:
+            ax.yaxis.set_major_formatter(StrMethodFormatter("{x:,.1f}"))
+
+        ax.grid(True, axis="y", color="#E2E8F0", linewidth=0.8, alpha=0.7)
+        ax.spines["top"].set_visible(False)
+        ax.spines["right"].set_visible(False)
+
+        # Add count annotations - modify x-tick labels to include count
+        for i, cat in enumerate(categories):
+            count = len(plot_data[i])
+            median = np.median(plot_data[i])
+
+        # Update x-tick labels to include counts
+        new_labels = [f"{cat}\n(n={len(plot_data[i])})" for i, cat in enumerate(categories)]
+        ax.set_xticklabels(new_labels, fontsize=10)
+
+    plt.suptitle(f"Trait Comparison: Top {top_percentile}% vs Other Properties",
+                fontsize=14, weight="bold", y=0.98)
+    fig.text(0.5, 0.01, "Box = IQR · Line = Median · Diamond = Mean",
+            ha="center", fontsize=10, color="#475569")
+
+    plt.tight_layout()
+    plt.subplots_adjust(top=0.92, bottom=0.15)
+    plt.savefig(os.path.join(outdir, "popular_property_traits_comparison.png"), dpi=220)
+    plt.close()
+    logging.info("Generated trait comparison visualization")
+
+
 # -----------------------
 # Main
 # -----------------------
@@ -462,6 +656,11 @@ def main():
     plot_pareto(demand, args.outdir)
     plot_price_vs_demand(demand, args.outdir)
     plot_top_properties_stacked(demand, df, args.outdir, top_n=15)
+
+    # Analyze popular property traits
+    logging.info("Analyzing traits of popular properties...")
+    analyze_popular_property_traits(demand, args.outdir, top_n=20, top_percentile=10)
+    plot_trait_comparison(demand, args.outdir, top_percentile=10)
 
     logging.info("Done!")
 

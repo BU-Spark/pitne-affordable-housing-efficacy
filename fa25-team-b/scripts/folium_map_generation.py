@@ -739,10 +739,8 @@ def plot_v4_enhanced_map(demand: pd.DataFrame, df: pd.DataFrame, outdir: str) ->
                             label = DEMO_COLS[col][0]
                             # Use float value for accurate percentage calculation
                             value = flow[col]
-                            pct = (value / flow['flow_count'] * 100) if flow['flow_count'] > 0 else 0
-                            # Display rounded count for readability
                             count_display = round(value)
-                            tooltip_parts.append(f"  {label}: {count_display} ({pct:.0f}%)")
+                            tooltip_parts.append(f"  {label}: {count_display}")
 
                     tooltip_text = "<br>".join(tooltip_parts)
 
