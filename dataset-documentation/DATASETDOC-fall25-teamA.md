@@ -27,8 +27,7 @@ DS 701 at Boston University
 [Link](https://drive.google.com/drive/u/1/folders/1nlVp39HIudp6QNPv4IvXQCVbhfo7djES) 
 * Please provide a link to any data dictionaries for the datasets in this project. If one does not exist, please create a data dictionary for the datasets used in this project. **(Example of data dictionary)**   
 * What keywords or tags would you attach to the data set?  
-  * Domain(s) of Application: Computer Vision, Object Detection, OCR, Image Classification, Image Segmentation, Facial Recognition, NLP, Topic Modeling, Sentiment Analysis, Named Entity Recognition, Text Classification, Summarization, Anomaly Detection, Other   
-  * Sustainability, Health, Civic Tech, Voting, Housing, Policing, Budget, Education, Transportation, etc. 
+  * Domain(s) of Application: Affordable Housing, Housing Applications, Applicant Demographics, Distance to Property, Housing Prices, Portfolio Effects 
 
 *The following questions pertain to the datasets you used in your project.*   
 *Motivation* 
