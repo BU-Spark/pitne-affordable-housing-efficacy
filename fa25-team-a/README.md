@@ -52,9 +52,9 @@ This project aims to produce actionable insights for CHAPA that can inform progr
 This repository contains all Fall 2025 work for **Team A** within the CHAPA project. 
 Below is an overview of the repository structure and key pipeline components, along with short descriptions of what each part of the codebase does. **More detailed documentation for the EDA and Analysis workflow and findings exists within the respective folder’s individual README**.
 
-* `fa25-team-a/data/` – All datasets used in the project  
-  - Includes raw and intermediate data files  
-  - May require manual download if not stored in the repo
+* `fa25-team-a/data/` – Datasets used in the project  
+  - Includes public raw and intermediate data files  
+  - Private/confidential data files may require manual download
 
 * `fa25-team-a/eda/` – Exploratory Data Analysis notebooks and scripts  
   - Documents data cleaning, preparation, and preliminary visualizations  
@@ -122,6 +122,3 @@ Since all of CHAPA's datasets are confidential, below are the attached links to 
 * Resale Values_May 2025 to Sept 2025: [https://docs.google.com/spreadsheets/d/12pygwRwYZ0UKmwyFsNRAOHIgz-H8yrTY/edit?usp=drive_link&ouid=103584276599024109029&rtpof=true&sd=true]
 * Property_Data_Jun2021_Sep2025_MissingResaleValues_Completed: [https://drive.google.com/file/d/18OpLHK7w0rI9agJQ25twMncOaTXhNjwg/view?usp=drive_link]
     - Dataset supplied by CHAPA after missing price values were identified during our exploratory data analysis (EDA).
-
- 
- 
