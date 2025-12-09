@@ -8,3 +8,4 @@ scipy
 uszipcode
 geopy
 geopandas
+regex

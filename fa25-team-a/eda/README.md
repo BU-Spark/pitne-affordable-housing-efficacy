@@ -15,7 +15,7 @@
 #### 2021-23
 * Dataset: TOUCHABLE CHAPA Chapter 40B Application Data 2021-2023 & 10|2023-05|2025
 (https://docs.google.com/spreadsheets/d/1xcW0qveqOPD-1JvJX1jaSJjPyCVVMGbY/edit?gid=690813037#gid=690813037)
-* Sheet used: Geocoded Kayla 2021-2023, CLEAN w stats Kayla 2021-2023
+* Sheet used: Geocoded Kayla 2021-2023
 * Pipeline:
    1. Explore the sheets and select one which covers up all the other sheets and one with geocoded data
    2. Extract zip values from 'Matched Address' and fill 'ZIP' null values
@@ -23,8 +23,8 @@
    4. Preprocess the dataset: replace age median to round value, deal with null values, visualizing
    5. Check blockers for blockers: difference between 'Race/Ethnicity' and 'Census Race' categories (e.g. Hispanic/Latino) require clarification, further gecoded data needed
 * Notebooks:
-   * Jihyeon_EDA_geocoded_2021_23.ipynb
-   * madison_eda_2021-23.ipynb
+   * `EDA_Chapter-40B_applicant_2021-23_stats.ipynb`
+   * `EDA_Chapter-40B_applicant_2021-23_viz.ipynb`
 
 #### 2023-25
 * Dataset: TOUCHABLE CHAPA Chapter 40B Application Data 2021-2023 & 10|2023-05|2025 (https://docs.google.com/spreadsheets/d/1xcW0qveqOPD-1JvJX1jaSJjPyCVVMGbY/edit?gid=690813037#gid=690813037)
@@ -38,7 +38,7 @@
         * Will perform more EDA using clarification from the Oct 10 client meeting
         * perform **geocoding** and **race–ethnicity realignment** before advanced modeling or equity analysis.
 * Notebooks:
-   * Ngo_EDA_Chapter-40B_2023-25.ipynb
+   * `EDA_Chapter-40B_applicant_2023-25.ipynb`
       * `zip` null values can be extracted from `matched_address`
       * further geocode to fill the rest of `matched_address `
       * need help from client in handling null values and outliers in some columns (e.g., `age`, `hh_income`)
@@ -47,4 +47,4 @@
 
 ## Requirements
 * requirements.txt
-   * `pip install -r fa25-team-a/eda/requirements.txt` before running the Jupyter Notebook files
+   * `pip install -r fa25-team-a/requirements.txt` before running the Jupyter Notebook files
