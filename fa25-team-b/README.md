@@ -481,7 +481,9 @@ See `visuals/README.md` for detailed descriptions of all visualizations.
 
 Beyond this main README, the repository includes folder-specific documentation:
 
-- **`visuals/README.md`** — Detailed descriptions of all visualization outputs
+- **`visuals/README.md`** — Overview of the folder and visualizations.
+- **`visuals/Portfolio Effects Analysis/README.md`** — Detailed explanation of portfolio effects visualizaion outputs
+- **`visuals/Income and Demographics vs Applicants Analysis/README.md`** — Detailed explanation of income/demographics graphs
 - **`eda/README.md`** — Overview of exploratory data analysis notebooks and methodology
 
 ---
