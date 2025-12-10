@@ -187,15 +187,20 @@ This script runs five key steps:
 - Creates price vs. application volume analysis
 - Generates top properties bar charts (overall and by demographics)
 - Produces Pareto chart showing application concentration
-- Analyzes traits of most popular properties
+- Analyzes 11 comprehensive traits of most popular properties including:
+  - Property characteristics (price)
+  - Distance metrics (median, average)
+  - Applicant demographics (age, household size, dependents)
+  - Financial characteristics (income, assets)
+  - Special status (disability, first-time homebuyer)
 - Produces:
-  - `visuals/applications_vs_price_binned.png`
-  - `visuals/top_properties_bar.png`
-  - `visuals/top_properties_stacked.png`
-  - `visuals/applications_pareto.png`
-  - `visuals/popular_property_traits_comparison.png`
-  - `visuals/popular_property_traits_analysis.csv`
-  - `visuals/property_demand_with_geo.csv`
+  - `visuals/Portfolio Effects Analysis/applications_vs_price_binned.png`
+  - `visuals/Portfolio Effects Analysis/top_properties_bar.png`
+  - `visuals/Portfolio Effects Analysis/top_properties_stacked.png`
+  - `visuals/Portfolio Effects Analysis/applications_pareto.png`
+  - `visuals/Portfolio Effects Analysis/trait_comparison_*.png` (11 individual trait visualizations)
+  - `visuals/Portfolio Effects Analysis/popular_property_traits_analysis.csv`
+  - `visuals/Portfolio Effects Analysis/property_demand_with_geo.csv`
 
 #### Step 4: Generate Age-Restricted Analysis (`age_analysis.py`)
 - Analyzes age-restricted (55+/62+) properties and applicant demographics
@@ -214,7 +219,7 @@ This script runs five key steps:
 #### Step 5: Generate Interactive Map (`folium_map_generation.py`)
 - Creates enhanced geospatial visualization
 - Includes demographic heatmaps, property markers, and flow analysis
-- Produces: `visuals/applications_map_enhanced.html`
+- Produces: `visuals/Portfolio Effects Analysis/applications_map_enhanced.html`
 
 ---
 
@@ -229,14 +234,14 @@ PYTHONPATH=. python scripts/04_pull_all.py
 # Step 2: Clean data
 PYTHONPATH=. python scripts/06_clean_applications_pipeline.py
 
-# Step 3: Generate static visualizations
-python scripts/popularity_graph_generation.py --input data/processed/applications_clean.parquet --outdir visuals
+# Step 3: Generate static visualizations (outputs to Portfolio Effects Analysis by default)
+python scripts/popularity_graph_generation.py --input data/processed/applications_clean.parquet
 
 # Step 4: Generate age-restricted analysis
 python scripts/age_analysis.py --input data/processed/applications_clean.parquet --outdir "visuals/Age Restricted Analysis"
 
-# Step 5: Generate interactive map
-python scripts/folium_map_generation.py --input data/processed/applications_clean.parquet --outdir visuals
+# Step 5: Generate interactive map (outputs to Portfolio Effects Analysis by default)
+python scripts/folium_map_generation.py --input data/processed/applications_clean.parquet
 ```
 
 ---
@@ -249,15 +254,33 @@ After running the pipeline, you'll have:
 - `data/processed/applications_clean.parquet` — Fully processed application dataset with geocoding, normalized demographics, and property information
 
 ### 🗺️ Interactive Visualizations
-- `visuals/applications_map_enhanced.html` — Interactive map with demographic heatmaps, property markers, distance analysis, and applicant flow patterns
-- See `ENHANCED_MAP_GUIDE.md` for detailed usage instructions
+- `visuals/Portfolio Effects Analysis/applications_map_enhanced.html` — Interactive map with demographic heatmaps, property markers, distance analysis, and applicant flow patterns
 
-### 📈 Static Charts
-- `visuals/applications_pareto.png` — Pareto chart showing application concentration
-- `visuals/applications_vs_price_binned.png` — Demand vs. price analysis
-- `visuals/top_properties_bar.png` — Top properties by application count
-- `visuals/top_properties_stacked.png` — Demographic breakdown by property
-- `visuals/popular_property_traits_comparison.png` — Analysis of popular property characteristics
+### 📈 Portfolio Effects Analysis
+All portfolio analysis outputs are in `visuals/Portfolio Effects Analysis/`:
+
+**Static Charts:**
+- `applications_pareto.png` — Pareto chart showing application concentration
+- `applications_vs_price_binned.png` — Demand vs. price analysis
+- `top_properties_bar.png` — Top properties by application count
+- `top_properties_stacked.png` — Demographic breakdown by property
+
+**Trait Comparison Visualizations** (11 individual analyses):
+- `trait_comparison_price.png` — Maximum resale price comparison
+- `trait_comparison_distance_median.png` — Median applicant distance
+- `trait_comparison_distance_avg.png` — Average applicant distance
+- `trait_comparison_age_mean.png` — Mean applicant age
+- `trait_comparison_hh_size_mean.png` — Mean household size
+- `trait_comparison_dependents_mean.png` — Mean number of dependents
+- `trait_comparison_hh_income_median.png` — Median household income
+- `trait_comparison_hh_assets_median.png` — Median household assets
+- `trait_comparison_hh_assets_mean.png` — Mean household assets
+- `trait_comparison_disability_pct.png` — Proportion with disability
+- `trait_comparison_fthb_pct.png` — Proportion first-time homebuyers
+
+**Data Exports:**
+- `property_demand_with_geo.csv` — Property-level demand data with coordinates
+- `popular_property_traits_analysis.csv` — Statistical analysis comparing popular vs. all properties across 16 traits
 
 ### 📓 Analysis Notebooks
 - `eda/CHAPA_TeamB_EDA.ipynb` — Main exploratory data analysis
@@ -423,26 +446,19 @@ This folder helps modularize shared functionality, keeping the main scripts clea
 All visualization outputs produced from EDA scripts and notebooks.
 Includes static plots (`.png`), interactive maps (`.html`), and CSV exports.
 
-#### **Interactive Map**
-- **`applications_map_enhanced.html`** — Enhanced geospatial visualization with:
-  - Demographic heatmaps (8 race/ethnicity categories)
-  - Property markers with detailed popups
-  - Distance metrics and applicant flow analysis
-  - Price heatmap and demand overlay
-  - Search functionality and interactive filters
-
-#### **Static Charts**
-- **`applications_pareto.png`** — Pareto chart showing 80/20 application concentration pattern
-- **`applications_vs_price_binned.png`** — Demand vs. price relationship analysis
-- **`top_properties_bar.png`** — Top properties ranked by total applications
-- **`top_properties_stacked.png`** — Demographic composition across top properties
-- **`popular_property_traits_comparison.png`** — Comparative analysis of popular property characteristics
-
-#### **Data Exports**
-- **`property_demand_with_geo.csv`** — Property-level demand data with coordinates
-- **`popular_property_traits_analysis.csv`** — Statistical analysis of high-demand property traits
-
 #### **Subfolders**
+
+- **`Portfolio Effects Analysis/`** — Comprehensive property popularity and demand analysis:
+  - **Interactive Map:** `applications_map_enhanced.html` — Enhanced geospatial visualization with demographic heatmaps, property markers, distance metrics, flow analysis, and interactive filters
+  - **Static Charts:** Price vs. demand, top properties (overall and by demographics), Pareto concentration chart
+  - **Trait Comparisons:** 11 individual visualizations comparing popular vs. unpopular properties across:
+    - Property characteristics (price)
+    - Distance metrics (median/average applicant distance)
+    - Demographics (age, household size, dependents)
+    - Financial (income, assets)
+    - Special status (disability, first-time homebuyer)
+  - **Data Exports:** Property demand with coordinates, statistical trait analysis CSV
+
 - **`Age Restricted Analysis/`** — Visualizations for senior (55+/62+) properties:
   - Age distribution analysis
   - Income and asset patterns by age group

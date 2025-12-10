@@ -31,7 +31,7 @@ import matplotlib
 matplotlib.use("Agg")
 
 # Config
-DEFAULT_OUTPUT = "visuals"
+DEFAULT_OUTPUT = "visuals/Portfolio Effects Analysis"
 PROP_COL = "Application Property"
 PRICE_COL = "Property Maximum Resale Price"
 PROP_LON_COL = "property_longitude"

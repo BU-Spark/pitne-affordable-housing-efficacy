@@ -43,7 +43,7 @@ from matplotlib.ticker import StrMethodFormatter
 # -----------------------
 # Config
 # -----------------------
-DEFAULT_OUTPUT = "visuals"
+DEFAULT_OUTPUT = "visuals/Portfolio Effects Analysis"
 PROP_COL = "Application Property"
 PRICE_COL = "Property Maximum Resale Price"
 
@@ -111,13 +111,132 @@ def haversine_distance(lat1, lon1, lat2, lon2):
     return c * r
 
 
+def load_bedroom_data() -> dict:
+    """Load bedroom and age restriction data from resale transaction info files"""
+    property_data = {}
+
+    resale_files = [
+        "data/raw/Resale_Transaction_Info_-_Updated.xlsx",
+        "data/raw/Resale_Transaction_Info_-_Confidential_updated_Sept_2025.xlsx",
+        "data/raw/Resale_Transaction_Info_-_Confidential_(Google_Sheet).csv"
+    ]
+
+    for file_path in resale_files:
+        if not os.path.exists(file_path):
+            continue
+
+        try:
+            if file_path.endswith('.csv'):
+                df = pd.read_csv(file_path)
+            else:
+                xl = pd.ExcelFile(file_path)
+                sheet_name = 'final_round2' if 'final_round2' in xl.sheet_names else xl.sheet_names[0]
+                df = pd.read_excel(file_path, sheet_name=sheet_name)
+
+            # Check if required columns exist
+            if 'Bedrooms' not in df.columns:
+                continue
+
+            # Match based on Address and City columns
+            if 'Address' in df.columns and 'City' in df.columns:
+                for _, row in df.iterrows():
+                    if pd.notna(row.get('Address')) and pd.notna(row.get('City')):
+                        address = str(row['Address']).strip()
+                        city = str(row['City']).strip()
+
+                        # Normalize the address for matching
+                        address_normalized = address.lower()
+                        address_normalized = address_normalized.replace(' street', ' st').replace(' road', ' rd').replace(' avenue', ' ave')
+                        address_normalized = address_normalized.replace(' drive', ' dr').replace(' lane', ' ln')
+                        address_normalized = address_normalized.replace(' st.', ' st').replace(' rd.', ' rd').replace(' ave.', ' ave')
+                        address_normalized = address_normalized.replace(' dr.', ' dr').replace(' ln.', ' ln')
+                        address_normalized = address_normalized.rstrip(',.').strip()
+                        city_normalized = city.lower()
+
+                        key = f"{address_normalized} ~ {city_normalized}"
+
+                        if key not in property_data:
+                            property_data[key] = {
+                                'bedrooms': [],
+                                'age_restricted': []
+                            }
+
+                        if pd.notna(row.get('Bedrooms')):
+                            property_data[key]['bedrooms'].append(int(row['Bedrooms']))
+
+                        if pd.notna(row.get('Age Restricted')):
+                            property_data[key]['age_restricted'].append(str(row['Age Restricted']))
+
+            logging.info(f"Loaded property data from {file_path}: {len(property_data)} unique properties")
+        except Exception as e:
+            logging.warning(f"Could not load property data from {file_path}: {e}")
+
+    # Convert lists to mode (most common value)
+    from scipy import stats
+    from collections import Counter
+    property_map = {}
+    for prop_key, data in property_data.items():
+        property_map[prop_key] = {}
+
+        if data['bedrooms']:
+            mode_result = stats.mode(data['bedrooms'], keepdims=True)
+            property_map[prop_key]['bedrooms'] = int(mode_result.mode[0])
+
+        if data['age_restricted']:
+            # Use Counter for string data instead of stats.mode
+            counter = Counter(data['age_restricted'])
+            property_map[prop_key]['age_restricted'] = counter.most_common(1)[0][0]
+
+    logging.info(f"Created property mapping for {len(property_map)} properties")
+    return property_map
+
+
+def normalize_property_for_match(property_str: str) -> str:
+    """Normalize an Application Property string to match property_map keys"""
+    if pd.isna(property_str):
+        return None
+
+    prop_str = str(property_str).lower().strip()
+    import re
+
+    # Fix cases where there's no space after ~
+    prop_str = re.sub(r'~(?!\s)', '~ ', prop_str)
+
+    if ' ~ ' in prop_str:
+        parts = prop_str.split(' ~ ')
+        if len(parts) == 2:
+            address_part = parts[0].strip()
+            city_part = parts[1].strip()
+
+            # Remove unit numbers from address
+            address_part = re.sub(r',?\s+unit\s+#?\s*[\w\-]+', '', address_part, flags=re.IGNORECASE)
+            address_part = re.sub(r',?\s*#\s*[\w\-]+', '', address_part)
+            address_part = re.sub(r',\s*[a-z]\d+,?', '', address_part, flags=re.IGNORECASE)
+            address_part = re.sub(r',\s+unit\s+[\w\-]+$', '', address_part, flags=re.IGNORECASE)
+
+            # Normalize street types
+            address_part = address_part.replace(' street', ' st').replace(' road', ' rd').replace(' avenue', ' ave')
+            address_part = address_part.replace(' drive', ' dr').replace(' lane', ' ln')
+            address_part = address_part.replace(' st.', ' st').replace(' rd.', ' rd').replace(' ave.', ' ave')
+            address_part = address_part.replace(' dr.', ' dr').replace(' ln.', ' ln')
+            address_part = address_part.rstrip(',.').strip()
+
+            # Clean city part
+            city_part = re.sub(r'\s*\(.*?\)', '', city_part).strip()
+
+            return f"{address_part} ~ {city_part}"
+
+    return None
+
+
 def build_property_tables(df: pd.DataFrame) -> Tuple[pd.DataFrame, pd.DataFrame]:
     """
     Return (demand, attrs) dataframes, both one row per property.
 
     demand: Property, application_count
     attrs : Property, price_num, property_longitude, property_latitude,
-            applicant_median_lon, applicant_median_lat, median_distance_miles
+            applicant_median_lon, applicant_median_lat, median_distance_miles,
+            plus applicant-level aggregates (age, HH size, income, etc.)
 
     NOTE: Property coordinates are now in the main dataset (property_latitude, property_longitude)
     """
@@ -141,6 +260,20 @@ def build_property_tables(df: pd.DataFrame) -> Tuple[pd.DataFrame, pd.DataFrame]
           .sort_values("application_count", ascending=False)
     )
 
+    # Load property-level data (bedrooms, age restriction)
+    logging.info("Loading property-level data (bedrooms, age restriction)...")
+    property_map = load_bedroom_data()
+
+    # Add property-level data to demand
+    demand['property_normalized'] = demand['Property'].apply(normalize_property_for_match)
+    demand['bedrooms'] = demand['property_normalized'].apply(
+        lambda x: property_map.get(x, {}).get('bedrooms') if x else None
+    )
+    demand['age_restricted'] = demand['property_normalized'].apply(
+        lambda x: property_map.get(x, {}).get('age_restricted') if x else None
+    )
+    demand.drop(columns=['property_normalized'], inplace=True)
+
     # Price attributes
     price_num = to_float_series(df[PRICE_COL]) if PRICE_COL in df.columns else pd.Series([np.nan]*len(df))
 
@@ -152,6 +285,59 @@ def build_property_tables(df: pd.DataFrame) -> Tuple[pd.DataFrame, pd.DataFrame]
     prop_lon = to_float_series(df[PROP_LON_COL])
     prop_lat = to_float_series(df[PROP_LAT_COL])
 
+    # Extract applicant-level features
+    age_data = to_float_series(df['Age']) if 'Age' in df.columns else pd.Series([np.nan]*len(df))
+    hh_size_data = to_float_series(df['HH Size']) if 'HH Size' in df.columns else pd.Series([np.nan]*len(df))
+    dependents_data = to_float_series(df['Dependents']) if 'Dependents' in df.columns else pd.Series([np.nan]*len(df))
+    hh_income_data = to_float_series(df['HH Income']) if 'HH Income' in df.columns else pd.Series([np.nan]*len(df))
+    hh_assets_data = to_float_series(df['HH Assets']) if 'HH Assets' in df.columns else pd.Series([np.nan]*len(df))
+
+    # Disability is typically Yes/No, convert to binary
+    disability_data = pd.Series([np.nan]*len(df))
+    if 'Disability' in df.columns:
+        disability_data = df['Disability'].map({'Yes': 1, 'No': 0}).fillna(np.nan)
+
+    # FTHB Class is typically Yes/No, convert to binary
+    fthb_data = pd.Series([np.nan]*len(df))
+    if 'FTHB Class?' in df.columns:
+        fthb_data = df['FTHB Class?'].map({'Yes': 1, 'No': 0}).fillna(np.nan)
+
+    # Build aggregation dictionary
+    agg_dict = {
+        "price_num": ("price_num", "median"),
+        "applicant_median_lon": ("applicant_median_lon", "median"),
+        "applicant_median_lat": ("applicant_median_lat", "median"),
+        "property_longitude": (PROP_LON_COL, "first"),
+        "property_latitude": (PROP_LAT_COL, "first"),
+    }
+
+    # Add applicant-level aggregations
+    if 'Age' in df.columns:
+        agg_dict["median_age"] = ("age_data", "median")
+        agg_dict["mean_age"] = ("age_data", "mean")
+
+    if 'HH Size' in df.columns:
+        agg_dict["median_hh_size"] = ("hh_size_data", "median")
+        agg_dict["mean_hh_size"] = ("hh_size_data", "mean")
+
+    if 'Dependents' in df.columns:
+        agg_dict["median_dependents"] = ("dependents_data", "median")
+        agg_dict["mean_dependents"] = ("dependents_data", "mean")
+
+    if 'HH Income' in df.columns:
+        agg_dict["median_hh_income"] = ("hh_income_data", "median")
+        agg_dict["mean_hh_income"] = ("hh_income_data", "mean")
+
+    if 'HH Assets' in df.columns:
+        agg_dict["median_hh_assets"] = ("hh_assets_data", "median")
+        agg_dict["mean_hh_assets"] = ("hh_assets_data", "mean")
+
+    if 'Disability' in df.columns:
+        agg_dict["pct_disability"] = ("disability_data", "mean")  # Proportion with disability
+
+    if 'FTHB Class?' in df.columns:
+        agg_dict["pct_fthb"] = ("fthb_data", "mean")  # Proportion first-time homebuyers
+
     attrs = (
         pd.DataFrame({
             PROP_COL: df[PROP_COL],
@@ -160,20 +346,20 @@ def build_property_tables(df: pd.DataFrame) -> Tuple[pd.DataFrame, pd.DataFrame]
             "applicant_median_lat": applicant_lat,
             PROP_LON_COL: prop_lon,
             PROP_LAT_COL: prop_lat,
+            "age_data": age_data,
+            "hh_size_data": hh_size_data,
+            "dependents_data": dependents_data,
+            "hh_income_data": hh_income_data,
+            "hh_assets_data": hh_assets_data,
+            "disability_data": disability_data,
+            "fthb_data": fthb_data,
         })
         .groupby(PROP_COL, as_index=False)
-        .agg(
-            price_num=("price_num", "median"),
-            applicant_median_lon=("applicant_median_lon", "median"),
-            applicant_median_lat=("applicant_median_lat", "median"),
-            property_longitude=(PROP_LON_COL, "first"),  # Property coords are same for all rows
-            property_latitude=(PROP_LAT_COL, "first"),
-        )
+        .agg(**agg_dict)
         .rename(columns={PROP_COL: "Property"})
     )
 
     # Calculate median distance from applicants to property
-    # Property coordinates are already in the dataset
     distances = []
     for _, row in df.iterrows():
         if pd.notna(row[PROP_LAT_COL]) and pd.notna(row[PROP_LON_COL]) and \
@@ -441,10 +627,26 @@ def analyze_popular_property_traits(demand: pd.DataFrame, outdir: str, top_n: in
     popular = top_by_percentile if len(top_by_percentile) > len(top_by_count) else top_by_count
     all_props = demand
 
-    # Traits to analyze
-    trait_cols = ["price_num", "median_distance_miles", "avg_distance_miles",
-                  "min_distance_miles", "max_distance_miles", "property_latitude",
-                  "property_longitude"]
+    # Traits to analyze - expanded list
+    trait_cols = [
+        # Property characteristics
+        "price_num",
+        # Distance metrics
+        "median_distance_miles", "avg_distance_miles",
+        "min_distance_miles", "max_distance_miles",
+        # Applicant age
+        "mean_age",
+        # Household characteristics
+        "mean_hh_size",
+        "mean_dependents",
+        # Financial characteristics
+        "median_hh_income",
+        "median_hh_assets", "mean_hh_assets",
+        # Binary characteristics (proportions)
+        "pct_disability", "pct_fthb",
+        # Location (for reference)
+        "property_latitude", "property_longitude"
+    ]
 
     # Filter to existing columns
     trait_cols = [c for c in trait_cols if c in demand.columns]
@@ -522,7 +724,7 @@ def analyze_popular_property_traits(demand: pd.DataFrame, outdir: str, top_n: in
 
 
 def plot_trait_comparison(demand: pd.DataFrame, outdir: str, top_percentile: int = 10) -> None:
-    """Create visualizations comparing traits of popular vs all properties"""
+    """Create individual visualizations comparing traits of popular vs all properties"""
     if demand.empty:
         return
 
@@ -533,32 +735,46 @@ def plot_trait_comparison(demand: pd.DataFrame, outdir: str, top_percentile: int
         lambda x: f"Top {top_percentile}%" if x >= percentile_threshold else f"Other {100-top_percentile}%"
     )
 
-    # Traits to visualize
+    # Expanded traits to visualize - each will be a separate image
     traits = [
-        ("price_num", "Maximum Resale Price ($)", True),
-        ("median_distance_miles", "Median Distance from Applicants (miles)", False),
-        ("avg_distance_miles", "Average Distance from Applicants (miles)", False),
+        # Property characteristics
+        ("price_num", "Maximum Resale Price ($)", True, "price"),
+        # Distance metrics
+        ("median_distance_miles", "Median Distance from Applicants (miles)", False, "distance_median"),
+        ("avg_distance_miles", "Average Distance from Applicants (miles)", False, "distance_avg"),
+        # Applicant age
+        ("mean_age", "Mean Applicant Age (years)", False, "age_mean"),
+        # Household characteristics
+        ("mean_hh_size", "Mean Household Size", False, "hh_size_mean"),
+        ("mean_dependents", "Mean Number of Dependents", False, "dependents_mean"),
+        # Financial characteristics
+        ("median_hh_income", "Median Household Income ($)", False, "hh_income_median"),
+        ("median_hh_assets", "Median Household Assets ($)", False, "hh_assets_median"),
+        ("mean_hh_assets", "Mean Household Assets ($)", False, "hh_assets_mean"),
+        # Proportions
+        ("pct_disability", "Proportion with Disability", False, "disability_pct"),
+        ("pct_fthb", "Proportion First-Time Homebuyers", False, "fthb_pct"),
     ]
 
     # Filter to traits that exist
-    traits = [(col, label, log) for col, label, log in traits if col in demand_copy.columns]
+    traits = [(col, label, log, filename) for col, label, log, filename in traits if col in demand_copy.columns]
 
     if not traits:
         logging.warning("No trait columns found for visualization")
         return
 
-    # Create comparison plots
-    n_traits = len(traits)
-    fig, axes = plt.subplots(1, n_traits, figsize=(6*n_traits, 5))
+    logging.info(f"Generating {len(traits)} individual trait comparison plots...")
 
-    if n_traits == 1:
-        axes = [axes]
-
-    for ax, (trait_col, trait_label, use_log) in zip(axes, traits):
+    # Create individual plots for each trait
+    for trait_col, trait_label, use_log, filename in traits:
         data_to_plot = demand_copy[[trait_col, "Category"]].dropna()
 
         if data_to_plot.empty:
+            logging.warning(f"No data for trait: {trait_col}")
             continue
+
+        # Create figure
+        fig, ax = plt.subplots(figsize=(8, 6))
 
         # Box plot
         categories = [f"Top {top_percentile}%", f"Other {100-top_percentile}%"]
@@ -566,6 +782,12 @@ def plot_trait_comparison(demand: pd.DataFrame, outdir: str, top_percentile: int
             data_to_plot[data_to_plot["Category"] == cat][trait_col].values
             for cat in categories
         ]
+
+        # Check if we have data for both categories
+        if len(plot_data[0]) == 0 or len(plot_data[1]) == 0:
+            logging.warning(f"Insufficient data for trait: {trait_col}")
+            plt.close()
+            continue
 
         bp = ax.boxplot(plot_data, labels=categories, patch_artist=True,
                        widths=0.6, showmeans=True,
@@ -580,12 +802,17 @@ def plot_trait_comparison(demand: pd.DataFrame, outdir: str, top_percentile: int
         bp['boxes'][0].set_facecolor('#0F766E')
         bp['boxes'][0].set_alpha(0.6)
 
-        ax.set_ylabel(trait_label, fontsize=11)
+        ax.set_ylabel(trait_label, fontsize=12, weight='bold')
         ax.set_xlabel("Property Category", fontsize=11)
 
+        # Format y-axis based on trait type
         if use_log:
             ax.set_yscale("log")
             ax.yaxis.set_major_formatter(StrMethodFormatter("${x:,.0f}"))
+        elif 'income' in trait_col.lower() or 'assets' in trait_col.lower() or 'price' in trait_col.lower():
+            ax.yaxis.set_major_formatter(StrMethodFormatter("${x:,.0f}"))
+        elif 'pct' in trait_col.lower():
+            ax.yaxis.set_major_formatter(mtick.PercentFormatter(1.0))
         else:
             ax.yaxis.set_major_formatter(StrMethodFormatter("{x:,.1f}"))
 
@@ -593,25 +820,41 @@ def plot_trait_comparison(demand: pd.DataFrame, outdir: str, top_percentile: int
         ax.spines["top"].set_visible(False)
         ax.spines["right"].set_visible(False)
 
-        # Add count annotations - modify x-tick labels to include count
-        for i, cat in enumerate(categories):
-            count = len(plot_data[i])
-            median = np.median(plot_data[i])
-
         # Update x-tick labels to include counts
         new_labels = [f"{cat}\n(n={len(plot_data[i])})" for i, cat in enumerate(categories)]
         ax.set_xticklabels(new_labels, fontsize=10)
 
-    plt.suptitle(f"Trait Comparison: Top {top_percentile}% vs Other Properties",
-                fontsize=14, weight="bold", y=0.98)
-    fig.text(0.5, 0.01, "Box = IQR · Line = Median · Diamond = Mean",
-            ha="center", fontsize=10, color="#475569")
+        # Add title and subtitle
+        ax.set_title(f"Comparison: {trait_label}", fontsize=14, weight="bold", pad=15)
 
-    plt.tight_layout()
-    plt.subplots_adjust(top=0.92, bottom=0.15)
-    plt.savefig(os.path.join(outdir, "popular_property_traits_comparison.png"), dpi=220)
-    plt.close()
-    logging.info("Generated trait comparison visualization")
+        # Add statistical annotation if significantly different
+        try:
+            from scipy import stats
+            if len(plot_data[0]) >= 2 and len(plot_data[1]) >= 2:
+                t_stat, p_value = stats.ttest_ind(plot_data[0], plot_data[1], equal_var=False)
+                if p_value < 0.05:
+                    sig_text = f"Statistically significant difference (p={p_value:.4f})"
+                    ax.text(0.5, 0.98, sig_text, transform=ax.transAxes,
+                           ha="center", va="top", fontsize=9, color="#DC2626",
+                           bbox=dict(boxstyle="round,pad=0.3", fc="white", ec="#DC2626", alpha=0.8))
+        except Exception as e:
+            logging.warning(f"Could not perform t-test for {trait_col}: {e}")
+
+        plt.tight_layout()
+        # Increase bottom margin to prevent overlap
+        plt.subplots_adjust(bottom=0.18)
+
+        # Add legend text at the bottom with proper spacing
+        fig.text(0.5, 0.03, "Box = IQR · Line = Median · Diamond = Mean",
+                ha="center", fontsize=9, color="#475569")
+
+        # Save individual plot
+        output_path = os.path.join(outdir, f"trait_comparison_{filename}.png")
+        plt.savefig(output_path, dpi=220)
+        plt.close()
+        logging.info(f"  Generated: {output_path}")
+
+    logging.info(f"Completed generating {len(traits)} trait comparison visualizations")
 
 
 # -----------------------
