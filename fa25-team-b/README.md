@@ -104,7 +104,9 @@ Our data is located in a shared google folder, and is confidential. Since we can
 fa25-team-b/secrets/client_secret.json
 ```
 
-*(Create the `secrets/` folder if it does not exist. Folders with this name are gitignored.)*
+Create the `secrets/` folder if it does not exist. Folders with this name are gitignored.
+
+If you are unable to contact a team member or want to set up OAuth for yourself, you can do so [here.](https://console.cloud.google.com/apis). Simply create a new OAuth project, setting it up as you would for a desktop app. Once you've generated the necessary JSON, do the same as above.
 
 ---
 
