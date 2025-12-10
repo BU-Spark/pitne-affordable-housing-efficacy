@@ -91,7 +91,7 @@ pip install -r requirements.txt
 
 ---
 
-## 🔐 4. Google OAuth Setup
+## Google OAuth Setup
 
 Our data is located in a shared google folder, and is confidential. Since we cannot have our data shared publicly, we are using **Google OAuth** to access data from our drives locally. This works for anyone who has sharing access to the dataset folder, as long as you obtain the necessary JSON from a team member.
 
@@ -126,7 +126,7 @@ This is all you have to do. You never have to rerun this script -- as long as th
 
 ---
 
-## 📁 5. Data Locations
+## Data Locations
 
 Once pulled, the raw CHAPA CSV files will land in the raw folder:
 
@@ -151,7 +151,7 @@ visuals/
 
 ---
 
-## ⚙️ 6. Run the Data Processing Pipeline
+## Run the Data Processing Pipeline
 
 The easiest way to run the complete pipeline is to use the automated script:
 
@@ -248,7 +248,7 @@ python scripts/folium_map_generation.py --input data/processed/applications_clea
 
 ---
 
-## 🎯 Key Outputs
+## Key Outputs
 
 After running the pipeline, you'll have:
 
@@ -291,7 +291,7 @@ All portfolio analysis outputs are in `visuals/Portfolio Effects Analysis/`:
 
 ---
 
-## 📁 Folder Structure Guide
+## Folder Structure Guide
 
 The CHAPA project relies on **confidential raw datasets** stored in a private
 Google Drive folder. These files are **never committed to GitHub** and are
