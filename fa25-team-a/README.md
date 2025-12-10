@@ -103,7 +103,8 @@ pip install -r requirements.txt
 # Data Locations
 
 Since all of CHAPA's datasets are confidential, below are the attached links to the datasets in the administered access Google Drive.
-<a href="Dataset Documentation">Dataset Documentation</a>
+<a href="../dataset-documentation/DATASETDOC-fall25-teamA.md">Dataset Documentation</a>
+
 ## Raw Datasets provided by CHAPA
 **Applicant datasets**
 * CHAPA Chapter 40B Application Data_June 2021 to Sept 2023 - Confidential: [https://docs.google.com/spreadsheets/d/1Bw4DPZ3kvTztUVNY0bQYtYYokJag1XPP/edit?usp=drive_link&ouid=103584276599024109029&rtpof=true&sd=true]
