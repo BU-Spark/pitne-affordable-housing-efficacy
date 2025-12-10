@@ -90,7 +90,16 @@
     * `Resale Values_May 2025 to Sept 2025.xlsx`
 
 #### Original Workflow (Executed):
-The **original workflow** was actually run to produce datasets for analysis. Steps included:
+The **original workflow** was executed run to produce datasets for analysis. To run our original pipeline pipeline, go to the folder `fa25-team-a/analysis/resale_price_original_workflow` and run in the following order:
+
+Further instructions, such as accessing the correct datasets, are present inside each notebook.
+
+1. `ParseResaleData.ipynb`
+2. `ParsePrices_OriginalWorkFlow.ipynb`
+3. `Merge_Resale&Price_OriginalWorkFlow.ipynb`
+4. `Merge_PriceResaleApplicantData_OriginalWorkFlow.ipynb`
+
+#### Overview of original workflow
 
 1. Parsing and Cleaning
  * Resale Data:
@@ -122,15 +131,22 @@ The **original workflow** was actually run to produce datasets for analysis. Ste
   * Merge `merged_properties_with_applicants.csv` with `Property_Data_Jun2021_Sep2025_MissingResaleValues_Completed.csv`
   * **Output file:** `new_merged_dataset_filled.csv`
 
-#### Notebooks (Original Workflow):
-**Location:** `fa25-team-a/analysis/resale_price_original_workflow`
-1. `Ria_ParseResaleData.ipynb`
-2. `Ria_ParsePrices_OriginalWorkFlow.ipynb`
-3. `Ria_Merge_Resale&Price_OriginalWorkFlow.ipynb`
-4. `Ria_Merge_PriceResaleApplicantData_OriginalWorkFlow.ipynb`
 
 #### Recommended New Workflow (Streamlined for Supplementary Prices):
 The **new workflow** integrates supplementary price data **before merging with resale**, providing a cleaner, fully reproducible pipeline.
+
+To run our original pipeline pipeline, go to the folder `fa25-team-a/analysis/resale_price_new_workflow` and run in the following order:
+
+Further instructions, such as accessing the correct datasets, are present inside each notebook.
+
+1. `ParseResaleData.ipynb`
+2. `ParsePrices_NewWorkFlow.ipynb`
+   > Includes step to merge missing prices before resale merge
+3. `Merge_Resale&Price_NewWorkFlow.ipynb`
+4. `Merge_PriceResaleApplicantData_NewWorkFlow.ipynb`
+
+#### Overview of new workflow
+
 1. Parsing and Cleaning
   * Parse resale and original price data as before
   * Merge supplementary price data with the original price dataset **before merging with resale**
@@ -139,29 +155,22 @@ The **new workflow** integrates supplementary price data **before merging with r
 2. Merge Price and Resale
   * Merge updated price dataset (original + missing prices) with resale dataset
   * **Output file:** `MergedPrice_Resale_Full.csv`
-  * **Notebook:** `Ria_Merge_Resale&Price_NewWorkFlow.ipynb`
+  * **Notebook:** `Merge_Resale&Price_NewWorkFlow.ipynb`
 
 3. Merge with Applicant Data
   * Merge `MergedPrice_Resale_Full.csv` with cleaned applicant dataset `CHAPA_Chapter-40B_Application-Data_2021-2025_merged_v0.3.csv`
   * Fill any missing prices from supplementary dataset if necessary
   * **Output file:** `Final_Merged_CHAPA_Dataset.csv`
-  * **Notebook:** `Ria_Merge_PriceResaleApplicantData_NewWorkFlow.ipynb`
+  * **Notebook:** `Merge_PriceResaleApplicantData_NewWorkFlow.ipynb`
 
-#### Notebooks (New Workflow):
-**Location:** `fa25-team-a/analysis/resale_price_new_workflow`
-1. `Ria_ParseResaleData.ipynb`
-2. `Ria_ParsePrices_NewWorkFlow.ipynb`
-   > Includes step to merge missing prices before resale merge
-3. `Ria_Merge_Resale&Price_NewWorkFlow.ipynb`
-4. `Ria_Merge_PriceResaleApplicantData_NewWorkFlow.ipynb`
 
 
 ### Q3 - Price Effects
 * **Objective:** Evaluate whether the resale price of affordable homes affects applicant quantity and demographic composition, while controlling for income limits.
 
 #### Pipeline:
-* **Data Cleaning:** Standardize `Maximum Resale Price` and `hh_income` fields, remove symbols, and convert text-based income ranges into numeric values
-* **Data Aggregation:** Group applicants by `Matched Address` to calculate average resale price, average applicant income, and total applicant count per property
+* **Data Cleaning:** Standardize `Maximum Resale Price` and `hh_income` fields, remove symbols, and convert text-based income ranges into numeric values. 
+* **Data Aggregation:** Group applicants by `Matched Address` to calculate average resale price, average applicant income, and total applicant count per property. Also calculated a new column called price tiers that helps categorizing properties by price (found at fa25-team-a/analysis/Property_Price_Tiers.ipynb).
 * **Modeling:** Run Ordinary Least Squares (OLS) regression models to test whether price predicts applicant count while holding income constant
 
 #### Visualizations:
@@ -172,11 +181,10 @@ The **new workflow** integrates supplementary price data **before merging with r
 * *Slope of Age vs Resale Price per Income Bracket*: applicants in $20K–$39K and $40K–$59K income brackets have a weak, yet statistically significant correlation indicating that older owners tend to buy slightly higher-priced homes
 
 #### Notebooks:
+* `Property_Price_Tiers.ipynb`
 * `Q3-price_applicants_income_analysis.ipynb`
   * Merge resale + CHAPA data (1,265 properties)
-  * Observe that prices slightly increase applicants (statistically significant, R²=0.059), this was performed on data file with missing price values, which were given by the client later
-* `Q3-_full_merged_V1_analysis.ipynb`
-  * Analyze 120 specific addresses, confirm prices don't significantly affect applicants after controlling for income
+  * Observe that prices slightly increase applicants (statistically significant, R²=0.059), this was performed on data file with missing price values, which were given by the client later 
 * `Q3-_applicant_vs_price_analysis-2-.ipynb`
   * 47-town analysis + race patterns (Hispanics prefer lowest prices, Black applicants highest prices)
 * `Q3)_full_merged_V1_analysis.ipynb`
@@ -184,7 +192,8 @@ The **new workflow** integrates supplementary price data **before merging with r
   * Explore racial patterns in price sensitivity
 * `Q3)_applicant_vs_price_analysis.ipynb`
   * Explore demographic patterns in price sensitivity
-* `Ria_Q3_visualizations.ipynb`: effect of price on demographics (including age, household size, number of dependents)
+* `Q3)_price_tiers_vs_demographics_analysis.ipynb`:
+   * effect of price on demographics (including age, household size, number of dependents)
 
 
 ## Initial Analysis Results (by Nov 9, 2025)
