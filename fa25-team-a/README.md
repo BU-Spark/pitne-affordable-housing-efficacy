@@ -10,7 +10,7 @@
 <h4 align="center">An overview of the repository and its components
 
 <p align="center">
-  <a href="#key-components">Key Components</a> •
+  <a href="#key-components-of-our-repository">Key Components</a> •
   <a href="#how-to-use">How To Use</a> •
   <a href="#project-description">Project Description</a> •
   <a href="#data-locations">Data Locations</a>
@@ -43,7 +43,7 @@ The Fall 2025 project shifts toward explaining the *why* and *how* behind these 
 - Conduct deeper analysis on:
   - **Movement & Distance**: How far applicants are willing to move and how this varies across demographic groups.
   - **Portfolio Effects**: Distinguishing whether demographic patterns are driven by applicant preferences or CHAPA’s limited property pool.
-  - **Price Sensitivity**: Whether maximum resale price influences applicant quantity and demographic composition.
+  - **Price Sensitivity**: Whether the maximum resale price influences applicant quantity and demographic composition.
   - **Marketing & Access Disparities**: How different listing sources affect who ends up applying.
 
 This project aims to produce actionable insights for CHAPA that can inform program design, marketing strategy, and policy discussions surrounding equitable access to affordable homeownership opportunities in Massachusetts.
@@ -100,7 +100,7 @@ source .venv/bin/activate     # On macOS/Linux
 pip install -r requirements.txt
 ```
 
-# Data locations
+# Data Locations
 
 Since all of CHAPA's datasets are confidential, below are the attached links to the datasets in the administered access Google Drive.
 <a href="Dataset Documentation">Dataset Documentation</a>
