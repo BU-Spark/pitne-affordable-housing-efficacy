@@ -351,6 +351,23 @@ Each script focuses on a specific aspect of the cleaning pipeline and is called 
 - Fixes logic where "White_MENA" was incorrectly included in other race flags
 - Recreates dummy columns to ensure clean final outputs
 
+#### **`geocode_utils.py`**
+- Normalizes input address strings before lookup
+- Implements in-memory caching to avoid duplicate API requests
+- Includes rate-limit–safe request handling for batch geocoding
+- Returns clean coordinate pairs (latitude, longitude) for both applicant origins and property destinations
+
+#### **`distance_utils.py`**
+- Implements the Haversine great-circle distance formula
+- Computes straight-line geographic distance between coordinate pairs
+- Returns distances in kilometers (with miles conversion handled upstream)
+
+#### **`compute_distances.py`**
+- Uses geocode_utils.py for Google API geocoding with caching
+- Computes great-circle distances between applicant origins and property coordinates
+- Appends latitude, longitude, and distance fields to the dataset
+- Outputs data/with_distance.csv for use in movement analysis, KDE plots
+
 ---
 
 ### ⚙️ `config/`
