@@ -35,7 +35,6 @@
 * Analyze location demand differences across demographic groups. This can be referred to in PITNE's team CHAPA final report (visualization on page 80).
 
 ### 2. To find what drives the applicant pool of CHAPA, whether it is based on the properties offered by CHAPA or the applicant's choice?  
-
 - By using the resale transaction info, we can find out the location, age restrictions, bedrooms, and accessibility of properties of CHAPA.  
 - We can clean the data of properties( clean addresses, e.g, street/st) and link the property address to link both the data sets of the applicant pool and properties.  
 - classifying properties in real transaction info by suburban vs. urban, age-restricted vs. family, and accessible vs. non-accessible.  
@@ -45,7 +44,6 @@
   - But if demographics don't match (e.g., many seniors apply even though the property is not age-restricted), then applicant choice overrides.  
 - We can run a logistic regression where the dependent variable will be the property type and the independent variables will be demographics(age, disability, income, household size).  
 - This will show whether demographic or property supply drives the applicant pool  
-
 
 ### 3. Analyzing the effects of price on applicant quantity and demographics
 *Price of affordable homes impacting applicant quantity*
