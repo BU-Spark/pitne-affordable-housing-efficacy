@@ -7,6 +7,8 @@ from cleaners.geographic_encoding_ma_cities import geocode_ma_cities
 from cleaners.race_naming_normalization import normalize_race
 from cleaners.append_resale_data import append_resale_data
 from cleaners.HUD_economic_data_import_cleaning import import_clean_append_HUD
+from cleaners.applicant_property_geocoding import applicant_property_geocoding
+
 import time
 from tqdm.auto import tqdm
 import json
@@ -128,6 +130,17 @@ def run():
     _stage("Appending Applicant MTSP Income Limit data")
     with Timer():
         df = import_clean_append_HUD(df)
+
+    _stage("Appending Property Geocoding")
+    with Timer():
+        df = applicant_property_geocoding(df)
+
+    # remove redundant residence columns in final output
+    cols_to_drop = [
+        "Current Residence",
+        "current_residence_norm_v1",
+    ]
+    df = df.drop(columns=[c for c in cols_to_drop if c in df.columns])
 
     # ensure parquet-safe dtypes
     df = sanitize_for_parquet(df)
