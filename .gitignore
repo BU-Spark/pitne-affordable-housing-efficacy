@@ -348,6 +348,21 @@ cython_debug/
 .cursorignore
 .cursorindexingignore
 
+# --- CHAPA local data + Google OAuth secrets ---
+# local data (downloads from Drive)
+data/
+# credentials and cached tokens
+secrets/
+**/token.json
+**/token.pickle
+**/.credentials/
+**/.drive_cache.json
 
-# ignore any .csv files
-*.csv
+# virtual environments (some overlap with above, just to be safe)
+.venv/
+venv/
+
+# mac + win helper scripts produce no logs, but guard anyway
+*.log
+
+# --- end CHAPA additions ---
