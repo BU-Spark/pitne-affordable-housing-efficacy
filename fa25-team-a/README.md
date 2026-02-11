@@ -3,76 +3,123 @@
   <br>
   <a href="https://www.bu.edu/spark/" target="_blank"><img src="https://www.bu.edu/spark/files/2023/08/logo.png" alt="BUSpark" width="200"></a>
   <br>
-  Project README Template <change to project name>
+  Citizens’ Housing and Planning Association (CHAPA) – Affordable Housing Applications - Team A
   <br>
 </h1>
 
-<h4 align="center">A template for the project readme file. </h4> <change to repo short description>
+<h4 align="center">An overview of the repository and its components
 
 <p align="center">
-  <a href="#key-features">Key Features</a> •
+  <a href="#key-components-of-our-repository">Key Components</a> •
   <a href="#how-to-use">How To Use</a> •
   <a href="#project-description">Project Description</a> •
   <a href="#data-locations">Data Locations</a>
 </p>
 
-## Key Features
-In this section you will be including a list of key features of your code/project.
+# Project Description
 
-You should also include a short description of what each part of your code does. (Detailed description in the readme of each directory, if applicable)
-* /path/to/directory - function and description
-  - Key notes
-* /path/to/script - function and description
-  - Key notes
-* Lorem Ipsum - Dolor Sit Amet
-  - Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-* Duis Aute Irure Dolor
-  - Excepteur sint occaecat
-* Excepteur Sint Occaecat
-  - Curabitur efficitur, nunc non ultricies gravida, felis purus posuere eros, sed faucibus sapien est nec quam. Nulla at nisl nisl.
+This project is conducted in partnership with **CHAPA (Citizens' Housing and Planning Association)**, Massachusetts’ statewide affordable housing umbrella organization. CHAPA monitors roughly 3,000 permanently affordable homes across the state, and our work contributes to understanding equity and accessibility within the homeownership application process.
+
+### Objective
+The goal of this project is to analyze systemic barriers in the application process for permanently affordable homes in Massachusetts. We focus on geographic trends, demographic representation, price sensitivity, and marketing/access disparities to better understand who applies, where they apply, and why certain gaps persist.
+
+### Key Focus Areas
+- **Applicant Movement Patterns**: How applicants connect their current residence to the locations of homes they apply for, and how this geographic search radius varies by race, age, household type, and other demographics.
+- **Portfolio Bias & Age-Restricted Housing**: To what extent applicant demographics are influenced by CHAPA’s current housing portfolio, which is heavily suburban and often age-restricted.
+- **Access & Marketing Disparities**: How listing sources, marketing strategies, and application complexity shape applicant diversity and equitable access.
+
+### Dataset and Prior Work
+Our work builds on the **Summer 2025 CHAPA project**, which focused on identifying *what* trends existed in the data. The previous team:
+- Used the **Combined Dataset (Merged 2021–2025)** and **Resale Transactions Dataset** from CHAPA.
+- Conducted descriptive analyses of age, race/ethnicity, income, assets, household composition, and marketing channels.
+- Explored geographic trends and initial impacts of simplifying the application process.
+- Examined income and asset gaps and preliminary effects of age-restricted units.
+
+### Current Fall 2025 Scope
+The Fall 2025 project shifts toward explaining the *why* and *how* behind these patterns:
+- **Integrate four new months of data** into the existing pipeline created by the summer team, following their cleaning and preprocessing documentation.
+- Analyze **additional large lottery data**, which may reveal new demographic patterns not visible in the main dataset.
+- Consider incorporating external datasets (e.g., **City of Boston** or other monitoring agencies) to broaden geographic and demographic coverage.
+- Conduct deeper analysis on:
+  - **Movement & Distance**: How far applicants are willing to move and how this varies across demographic groups.
+  - **Portfolio Effects**: Distinguishing whether demographic patterns are driven by applicant preferences or CHAPA’s limited property pool.
+  - **Price Sensitivity**: Whether the maximum resale price influences applicant quantity and demographic composition.
+  - **Marketing & Access Disparities**: How different listing sources affect who ends up applying.
+
+This project aims to produce actionable insights for CHAPA that can inform program design, marketing strategy, and policy discussions surrounding equitable access to affordable homeownership opportunities in Massachusetts.
  
-## How To Use
+# Key Components of our repository
+This repository contains all Fall 2025 work for **Team A** within the CHAPA project. 
+Below is an overview of the repository structure and key pipeline components, along with short descriptions of what each part of the codebase does. **More detailed documentation for the EDA and Analysis workflow and findings exists within the respective folder’s individual README**.
+
+* `fa25-team-a/data/` – Datasets used in the project  
+  - Includes public raw and intermediate data files  
+  - Private/confidential data files may require manual download
+
+* `fa25-team-a/eda/` – Exploratory Data Analysis notebooks and scripts  
+  - Documents data cleaning, preparation, and preliminary visualizations  
+  - Contains early insights that informed the modeling process
+
+* `fa25-team-a/analysis/` – Full analytical workflow  
+  - Contains scripts and notebooks used to answer all three research questions  
+  - Includes modeling, evaluation, and final outputs
+
+* `fa25-team-a/project_definition.md` – Project scope  
+  - High-level description of the project goals and guiding questions
+
+* `fa25-team-a/research.md` – Background research  
+  - Preliminary research and contextual understanding of the domain
+ 
+# How To Use
 
 To clone and run this application, you'll need <a href="https://git-scm.com" target="_blank">Git</a>
 From your command line:
 
-```bash
-# Clone this repository
-$ git clone [repo link]
 
-# Further Instructions
-...
+### Clone this repository
+```bash
+$ git clone https://github.com/BU-Spark/ds-chapa-affordable-housing.git
+cd ds-chapa-affordable-housing/fa25-team-a
+```
+### Set up a virtual environment (Optional)
+**Using Conda**
+```bash
+conda create -n chapa-fa25 python=3.10
+conda activate chapa-fa25
 ```
 
-Create a new branch from dev, add changes on the new branch you just created.
-
-You will want to look into <a href="https://git-scm.com/docs/git-branch" target="_blank">git branch</a> and <a href="https://git-scm.com/docs/git-checkout" target="_blank">git checkout</a>
-
+**Using Python venv**
 ```bash
-# Create and Checkout a new branch if it doesn't exist
-$ git checkout -b your-branch main
-...
+python3 -m venv .venv
+source .venv/bin/activate     # On macOS/Linux
+# OR: .venv\Scripts\activate  # On Windows PowerShell
 ```
 
-Open a Pull Request to dev. Add your PM and TPM as reviewers. 
+### Installing requirements
+```bash
+pip install -r requirements.txt
+```
 
-At the end of the semester during project wrap up open a final Pull Request to main from dev branch.
- 
-## Project Description
+# Data Locations
 
-In this section, you should include the project description, either from the client or spark.
+Since all of CHAPA's datasets are confidential, below are the attached links to the datasets in the administered access Google Drive.
+<a href="../dataset-documentation/DATASETDOC-fall25-teamA.md">Dataset Documentation</a>
 
-Please make sure it reflects what you see on the documents (project description) you recieved.
+## Raw Datasets provided by CHAPA
+**Applicant datasets**
+* CHAPA Chapter 40B Application Data_June 2021 to Sept 2023 - Confidential: [https://docs.google.com/spreadsheets/d/1Bw4DPZ3kvTztUVNY0bQYtYYokJag1XPP/edit?usp=drive_link&ouid=103584276599024109029&rtpof=true&sd=true]
+* CHAPA Chapter 40B Application Data_Oct 2023 to May 2025 - Confidential: [https://docs.google.com/spreadsheets/d/1T4fxMvTW0WccmcGBFzH7aLcR0UmW-AAA/edit?usp=drive_link&ouid=103584276599024109029&rtpof=true&sd=true]
+*  TOUCHABLE CHAPA Chapter 40B Application Data 2021-2023 & 10_2023-05_2025: [https://docs.google.com/spreadsheets/d/1aOj-mwxEqZFxyOyb-hZ_h4PSL7t55A1B/edit?usp=drive_link&ouid=103584276599024109029&rtpof=true&sd=true]
 
-* Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi. Donec vel nunc at libero ultrices tincidunt. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Mauris ut ligula nec risus posuere ultricies at et ligula. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
-* Veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+**Resale Transaction datasets**
+*  Resale Transaction Info - Confidential_updated Sept 2025: [https://docs.google.com/spreadsheets/d/1ItkgY49Q_fLOoE0XaJxGXQWfq4kcMFqI/edit?usp=drive_link&ouid=103584276599024109029&rtpof=true&sd=true]
+     - Contains transactions updated September 2025
+*  TOUCHABLE Resale Transaction Info - Confidential: [https://docs.google.com/spreadsheets/d/1cRnPBugd7m2TfGDZM21ivKTvFtITztui/edit?usp=sharing&ouid=103584276599024109029&rtpof=true&sd=true]
+     - PITNE Summer 2025 Team's cleaned transaction data (not updated with September 2025 transactions)
 
-## Data locations
-
-In this section, you should include the location of all of your datasets for the project (if applicable)
-
-<a href="dataset-documentation">Dataset Documentation</a>
-* Location 1: [location]
-  - [description]
-* Location 2: [location]
-  - [description]
+**Price datasets**
+* Resale Values_Jun 2021 to Sept 2023: [https://docs.google.com/spreadsheets/d/1gTz3Wg2clVd1Jvw1bTLYa4tanln-FFNs/edit?usp=drive_link&ouid=103584276599024109029&rtpof=true&sd=true]
+* Resale Values_Oct 2023 to May 2025: [https://docs.google.com/spreadsheets/d/1Gq_dIYjOjTSYqudI4lqf_mySzj5rOlai/edit?usp=drive_link&ouid=103584276599024109029&rtpof=true&sd=true]
+* Resale Values_May 2025 to Sept 2025: [https://docs.google.com/spreadsheets/d/12pygwRwYZ0UKmwyFsNRAOHIgz-H8yrTY/edit?usp=drive_link&ouid=103584276599024109029&rtpof=true&sd=true]
+* Property_Data_Jun2021_Sep2025_MissingResaleValues_Completed: [https://drive.google.com/file/d/18OpLHK7w0rI9agJQ25twMncOaTXhNjwg/view?usp=drive_link]
+    - Dataset supplied by CHAPA after missing price values were identified during our exploratory data analysis (EDA).
